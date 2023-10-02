@@ -15,17 +15,11 @@ if [ "$(uname)" == "Darwin" ]; then
   fi
 fi
 
-# Clone the Bondi repository
 git clone https://github.com/HttpAnimation/Bondi.git
 cd Bondi
-
-# Remove README.md (if it exists)
-if [ -f README.md ]; then
-  rm README.md
-fi
-
-# Make Bondi.sh executable
+rm README.md # Removes as it not needed
+cd ../
+rm Install.sh
+cd Bondi
 chmod +x Bondi.sh
-
-# Run Bondi.sh
 ./Bondi.sh
