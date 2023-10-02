@@ -48,7 +48,7 @@ selected_game=$(zenity --list \
 # Check if the user selected a game
 if [ -n "$selected_game" ]; then
   # Launch the selected game using its executable
-  game_executable="$steam_dir/steam/steamapps/common/$selected_game/game_executable_name"
+  game_executable="$steam_dir/steamapps/common/$selected_game/game_executable_name"
   if [ -f "$game_executable" ]; then
     open -a "$game_executable"
   else
