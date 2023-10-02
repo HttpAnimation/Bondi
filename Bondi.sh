@@ -36,12 +36,6 @@ if [ "$1" == "-SP" ]; then
   exit 0
 fi
 
-# Check if Steam is running
-if ! pgrep -i -U "$USER" "steam" > /dev/null; then
-  zenity --error --text "Steam is not running. Please start Steam and try again."
-  exit 1
-fi
-
 # Get a list of installed games from Steam
 games=$(find "$steam_dir/steam/steamapps/common" -maxdepth 1 -type d -exec basename {} \; | sort)
 
@@ -53,6 +47,11 @@ selected_game=$(zenity --list \
 
 # Check if the user selected a game
 if [ -n "$selected_game" ]; then
-  # Launch the selected game using Steam
-  steam -applaunch "$(grep -i "$selected_game" "$steam_dir/steam/steamapps/appmanifest_*.acf" | grep -oP '^\s+"appid"\s+"\K\d+')"
+  # Launch the selected game using its executable
+  game_executable="$steam_dir/steam/steamapps/common/$selected_game/game_executable_name"
+  if [ -f "$game_executable" ]; then
+    open -a "$game_executable"
+  else
+    zenity --error --text "Game executable not found for $selected_game."
+  fi
 fi
