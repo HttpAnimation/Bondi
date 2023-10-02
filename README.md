@@ -1,2 +1,1 @@
-# Bondi
-A custom launcher for linux made beacuse others suck
+# A readme file is being worked on
