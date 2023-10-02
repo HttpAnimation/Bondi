@@ -37,7 +37,7 @@ if [ "$1" == "-SP" ]; then
 fi
 
 # Get a list of installed games from Steam
-games=$(find "$steam_dir/steam/steamapps/common" -maxdepth 1 -type d -exec basename {} \; | sort)
+games=$(find "$steam_dir/steamapps/common" -maxdepth 1 -type d -exec basename {} \; | sort)
 
 # Use Zenity to display a list of installed games
 selected_game=$(zenity --list \
