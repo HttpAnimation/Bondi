@@ -43,7 +43,7 @@ games=$(find "$steam_dir/steam/steamapps/common" -maxdepth 1 -type d -exec basen
 selected_game=$(zenity --list \
   --title "Select a Steam game to play" \
   --column "Game" $games \
-  --width=400 --height=300)
+  --width=1000 --height=500)
 
 # Check if the user selected a game
 if [ -n "$selected_game" ]; then
