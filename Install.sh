@@ -24,4 +24,4 @@ cd Bondi
 chmod +x Bondi.sh
 ./Bondi.sh
 
-echo "For MacOS users install zenity with brew | brew install zenity"
+echo "For MacOS users install zenity with brew if not already| brew install zenity"
