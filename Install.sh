@@ -20,8 +20,7 @@ cd Bondi
 rm README.md # Removes as it not needed
 cd ../
 rm Install.sh
+echo "For MacOS users install zenity with brew if not already| brew install zenity"
 cd Bondi
 chmod +x Bondi.sh
 ./Bondi.sh
-
-echo "For MacOS users install zenity with brew if not already| brew install zenity"
