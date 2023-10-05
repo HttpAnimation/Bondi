@@ -1,6 +1,7 @@
 # Bondi - Custom Launcher for MacOS/Hackintosh and Linux/Unix + Windows (Sort of)
 
-![Screenshot from 2023-10-01 19-47-09](https://github.com/HttpAnimation/Bondi/assets/97435656/47fc74c6-bd29-469c-826a-2e55f9455487)
+![image](https://github.com/HttpAnimation/Bondi/assets/97435656/54138e9a-286a-44e8-8944-06fe141c7988)
+
 
 Bondi is a versatile custom launcher designed to enhance your MacOS, Hackintosh, Linux, or Unix experience. It provides powerful features to streamline your workflow and improve your desktop environment.
 
