@@ -1,4 +1,4 @@
-# Bondi - Custom Launcher for MacOS/Hackintosh and Linux/Unix
+# Bondi - Custom Launcher for MacOS/Hackintosh and Linux/Unix + Windows (Sort of)
 
 ![Screenshot from 2023-10-01 19-47-09](https://github.com/HttpAnimation/Bondi/assets/97435656/47fc74c6-bd29-469c-826a-2e55f9455487)
 
