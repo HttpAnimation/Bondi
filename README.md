@@ -23,7 +23,7 @@ git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && rm -r V1 V2 
 For detailed information on using Bondi and its features, please refer to our official documentation on the [Bondi Website](https://httpanimation.github.io/Bondi/).
 
 ## Features
- **Open source:** Everything can be changed to whatever to you want even the art.
+- **Open source:** Everything can be changed to whatever to you want even the art.
 
 - **Efficiency:** Streamline your workflow and improve your productivity with Bondi's efficient launcher capabilities.
 
