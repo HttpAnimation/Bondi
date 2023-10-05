@@ -1,4 +1,4 @@
-# BONDI IS UNDER A HUGE CODE CHANGE SH->JAVA (May might take a while stuff is being made/ported)
+# BONDI IS UNDER A HUGE CODE CHANGE SH->JAVA (May might take while stuff is being made/ported)
 # Bondi - Custom Launcher for MacOS/Hackintosh and Linux/Unix
 
 ![Screenshot from 2023-10-01 19-47-09](https://github.com/HttpAnimation/Bondi/assets/97435656/47fc74c6-bd29-469c-826a-2e55f9455487)
