@@ -1,4 +1,3 @@
-# BONDI IS UNDER A HUGE CODE CHANGE SH->JAVA (May might take while stuff is being made/ported)
 # Bondi - Custom Launcher for MacOS/Hackintosh and Linux/Unix
 
 ![Screenshot from 2023-10-01 19-47-09](https://github.com/HttpAnimation/Bondi/assets/97435656/47fc74c6-bd29-469c-826a-2e55f9455487)
@@ -12,7 +11,7 @@ To install Bondi, follow these simple steps:
 2. Copy and paste the following command:
 
 ```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && rm -r V1 V2 More "Java port" README.md && cd V3 && chmod +x Install.sh && ./Install.sh
+git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && rm -r V1 V2 V3 More "Java port" README.md && cd V3 && chmod +x Install.sh && ./Install.sh
 ```
 
 3. Press Enter to execute the command.
