@@ -32,6 +32,13 @@ For detailed information on using Bondi and its features, please refer to our of
 
 Once you've installed Bondi, you can explore its features and customization options. Our documentation provides step-by-step instructions to help you get the most out of Bondi.
 
+## Plans
+1. A better UI (WIP)
+2. Simple rom importer (Not until the first is done and everything is working right)
+
+## Not planned
+1. Windows support (Maybe)
+
 ## Support
 
 If you encounter any issues or have questions, please open an issue on our [GitHub repository](https://github.com/HttpAnimation/Bondi/issues). We appreciate your feedback and will do our best to assist you.
