@@ -12,7 +12,7 @@ To install Bondi, follow these simple steps:
 2. Copy and paste the following command:
 
 ```bash
-curl -o Install.sh https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Install.sh && chmod +x Install.sh && ./Install.sh
+git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && rm -r V1 V2 More "Java port" README.md && cd V3 && chmod +x Install.sh && ./Install.sh
 ```
 
 3. Press Enter to execute the command.
