@@ -6,7 +6,7 @@
 Bondi is a versatile custom launcher designed to enhance your MacOS, Hackintosh, Linux, or Unix experience. It provides powerful features to streamline your workflow and improve your desktop environment.
 
 ## Installation
-
+# THIS DOES NOT WORK USE THIS
 To install Bondi, follow these simple steps:
 
 1. Open your terminal.
@@ -38,3 +38,5 @@ Once you've installed Bondi, you can explore its features and customization opti
 If you encounter any issues or have questions, please open an issue on our [GitHub repository](https://github.com/HttpAnimation/Bondi/issues). We appreciate your feedback and will do our best to assist you.
 
 Thank you for choosing Bondi as your custom launcher. We hope it enhances your computing experience!
+
+## Install (TEMP)
