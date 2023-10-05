@@ -33,11 +33,11 @@ For detailed information on using Bondi and its features, please refer to our of
 Once you've installed Bondi, you can explore its features and customization options. Our documentation provides step-by-step instructions to help you get the most out of Bondi.
 
 ## Plans
-1. A better UI (WIP)
-2. Simple rom importer (Not until the first is done and everything is working right)
+1. A better UI (WIP) - [Done]
+2. Simple rom importer (Not until the first is done and everything is working right) [Not now]
 
 ## Not planned
-1. Windows support (Maybe)
+1. Windows support (Maybe) - [Sort of]
 
 ## Support
 
