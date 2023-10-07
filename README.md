@@ -38,3 +38,6 @@ Once you've installed Bondi, you can explore its features and customization opti
 If you encounter any issues or have questions, please open an issue on our [GitHub repository](https://github.com/HttpAnimation/Bondi/issues). We appreciate your feedback and will do our best to assist you.
 
 Thank you for choosing Bondi as your custom launcher. We hope it enhances your computing experience!
+
+## IOS & Andriod
+For IOS and Andriod the surrport is limited but can be done with a simple Java runner that can be found on the play store for andriod and as a IPA file for IOS.
