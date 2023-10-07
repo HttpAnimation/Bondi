@@ -9,6 +9,12 @@ To install Bondi, follow these simple steps:
 ## IMPORTANT
 Note that these commands will not work on Windows so just use the zip file that can be found [here](https://github.com/HttpAnimation/Bondi/releases)
 
+
+## V6
+```bash
+git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V6 && rm README.md
+```
+
 ## V5
 ```bash
 git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V5 && rm README.md
