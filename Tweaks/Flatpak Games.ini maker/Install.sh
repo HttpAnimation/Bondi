@@ -6,6 +6,3 @@ wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Flatpak%2
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Flatpak%20Games.ini%20maker/Install.sh
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Flatpak%20Games.ini%20maker/README.md
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Flatpak%20Games.ini%20maker/subsections.ini
-rm Install.sh # You can comment this out to keep the main Install file / this one
-cd ../
-rm Install.sh 
