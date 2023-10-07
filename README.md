@@ -40,4 +40,4 @@ If you encounter any issues or have questions, please open an issue on our [GitH
 Thank you for choosing Bondi as your custom launcher. We hope it enhances your computing experience!
 
 ## IOS & Andriod
-For IOS and Andriod the surrport is limited but can be done with a simple Java runner that can be found on the play store for andriod and as a IPA file for IOS.
+For IOS and Andriod the surrport is limited but can be done with a simple Java runner that can be found on the Play Store for andriod and as an IPA file for IOS.
