@@ -12,7 +12,7 @@ To install Bondi, follow these simple steps:
 2. Copy and paste the following command:
 
 ```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V5
+git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V5 && rm README.md
 ```
 
 3. Press Enter to execute the command.
