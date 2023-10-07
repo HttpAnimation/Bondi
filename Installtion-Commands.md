@@ -5,6 +5,8 @@ To install Bondi, follow these simple steps:
 
 1. Open your terminal.
 2. Copy and paste the command for your selected version:
+
+## IMPORTANT
 Note that these commands will not work on Windows so just use the zip file that can be found [here](https://github.com/HttpAnimation/Bondi/releases)
 
 ## V5
