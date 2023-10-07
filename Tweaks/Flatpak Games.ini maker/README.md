@@ -8,6 +8,9 @@ To install this tweak open a terminal and run this command to install
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Flatpak%20Games.ini%20maker/Install.sh && chmod +x Install.sh && ./Install.sh 
 ```
 
+## Working
+This script is working in V6+
+
 ## Usage
 
 To generate your `Games.ini` file, follow these simple steps:

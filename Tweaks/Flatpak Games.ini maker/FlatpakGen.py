@@ -18,27 +18,38 @@ except subprocess.CalledProcessError as e:
     print(f"Error running 'flatpak list': {e}")
     exit(1)
 
-# Split the output into lines and process each line to generate the commands
-commands = []
-for line in flatpak_list_output.splitlines():
-    # Split the line into columns
-    columns = line.split("\t")
-
-    # Ensure there are at least 4 columns and that the run command is not empty
-    if len(columns) >= 4 and columns[2]:
-        app_name = columns[0]
-        flatpak_name = columns[1]
-        run_command = columns[2]
-
-        # Generate the command string
-        command_str = f"Flatpak | {app_name} | flatpak run {flatpak_name} | {run_command}"
-
-        # Append the command to the list
-        commands.append(command_str)
+# Initialize variables to store the previous app name and run command
+prev_app_name = None
+prev_run_command = None
 
 # Append the commands to the Games.ini file
 with open(games_ini_path, "a") as games_ini_file:
-    for command in commands:
-        games_ini_file.write(command + "\n")
+    for line in flatpak_list_output.splitlines():
+        # Split the line into columns
+        columns = line.split("\t")
+
+        # Ensure there are at least 4 columns and that the run command is not empty
+        if len(columns) >= 4 and columns[2]:
+            app_name = columns[0]
+            flatpak_name = columns[1]
+            run_command = columns[2]
+
+            # Extract the version number from flatpak_name
+            version_parts = flatpak_name.split(".")
+            version_number = version_parts[-1]
+
+            # Generate the command string with version number at the end
+            command_str = f"Flatpak | {app_name} | flatpak run {flatpak_name} | {version_number}"
+
+            # If the app name or run command has changed, add a newline
+            if app_name != prev_app_name or run_command != prev_run_command:
+                games_ini_file.write("\n")
+
+            # Append the command to the list, excluding the " | " after the last "|"
+            games_ini_file.write(command_str + "\n")
+
+            # Update the previous app name and run command
+            prev_app_name = app_name
+            prev_run_command = run_command
 
 print("Commands have been written to Games.ini")
