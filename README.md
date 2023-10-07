@@ -6,15 +6,7 @@
 Bondi is a versatile custom launcher designed to enhance your MacOS, Hackintosh, Linux, or Unix experience. It provides powerful features to streamline your workflow and improve your desktop environment.
 
 ## Installation
-To install Bondi, follow these simple steps:
-The install page has moved to [here](https://github.com/HttpAnimation/Bondi/blob/main/Installtion-Commands.md)
-
-1. Open your terminal.
-2. Copy and paste the following command:
-
-```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V5 && rm README.md
-```
+## The install page has moved to [here](https://github.com/HttpAnimation/Bondi/blob/main/Installtion-Commands.md)
 
 3. Press Enter to execute the command.
 4. Bondi will be downloaded and installed on your system.
