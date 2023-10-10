@@ -5,13 +5,24 @@
 
 Bondi is a versatile custom launcher designed to enhance your MacOS, Hackintosh, Linux, or Unix experience. It provides powerful features to streamline your workflow and improve your desktop environment.
 
+# Files
+[README.md](README.md) This is the main readme file that gets shown on the root github page.
+
+[Installtion-Commands.md](Installtion-Commands.md) This is the file that is used to get Bondi installed.
+
+[Runners.md](Runners.md) This file is a list of premade buttons for apps/games.
+
+[Setup-Guide.md](Setup-Guide.md) this is a setup guide.
+
 ## Installation
-## The install page has moved to [here](https://github.com/HttpAnimation/Bondi/blob/main/Installtion-Commands.md)
+The install page has moved to [here](Installtion-Commands.md)
 
 3. Press Enter to execute the command.
 4. Bondi will be downloaded and installed on your system.
 
 ## Documentation and Usage
+
+To setup Bondi head over to the setup [guide](Setup-Guide.md)
 
 For detailed information on using Bondi and its features, please look at our official documentation on the [Bondi Website](https://httpanimation.github.io/Bondi/).
 
@@ -29,9 +40,6 @@ Once you've installed Bondi, you can explore its features and customization opti
 ## Plans
 1. A better UI (WIP) - [Done]
 2. Simple rom importer (Not until the first is done and everything is working right) [Not now]
-
-## Not planned
-1. Windows support (Maybe) - [Sort of]
 
 ## Support
 
