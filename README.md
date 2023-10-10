@@ -14,6 +14,8 @@ Bondi is a versatile custom launcher designed to enhance your MacOS, Hackintosh,
 
 [Setup-Guide.md](Setup-Guide.md) this is a setup guide.
 
+[Install-Windows-Guide.md](Install-Windows-Guide.md) the guide to installing Bondi on Windows 7+
+
 ## Installation
 The install page has moved to [here](Installtion-Commands.md)
 
