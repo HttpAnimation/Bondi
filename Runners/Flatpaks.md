@@ -1,10 +1,10 @@
 ## Flatpaks
 //
-(Linux | )
+(Linux | V)
 //
-(MacOS | )
+(MacOS | X)
 //
-(Windows | )
+(Windows | X)
 //
 ## subsections.ini
 ```
