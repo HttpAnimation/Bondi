@@ -2,6 +2,6 @@
 
 # Back to [README.md](README.md)
 
-# [Flatpaks.md](Runners/Flatpaks)
+# [Flatpaks.md](Runners/Flatpaks.md)
 
 # [Steam](Runners/Steam.md)
