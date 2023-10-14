@@ -12,31 +12,31 @@ Note that these commands will not work on Windows so just use the zip file that 
 
 ## V7
 ```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V7 && rm README.md
+git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V7 && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
 ```
 
 ## V6
 ```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V6 && rm README.md
+git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V6 && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
 ```
 
 ## V5
 ```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V5 && rm README.md
+git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V5 && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
 ```
 ## V4
 ```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V4 && rm README.md
+git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V4 && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
 ```
 ## V3
 ```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V3 && rm README.md
+git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V3 && rm Runners.md && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
 ```
 ## V2
 ```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V2 && rm README.md
+git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V2 && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
 ```
 ## V1
 ```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V1 && rm README.md
+git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V1 && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
 ```
