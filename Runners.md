@@ -5,3 +5,5 @@
 # [Flatpaks](Runners/Flatpaks.md)
 
 # [Steam](Runners/Steam.md)
+
+# [MacOS](Runners/MacOS.md)
