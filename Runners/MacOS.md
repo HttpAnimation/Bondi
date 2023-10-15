@@ -24,7 +24,7 @@ MacOS | Safari | cd /Applications && start Safari.app
 ```
 
 ###### Chrome
-To use this command make sure [Chrome](https://www.google.com/chrome/) is installed in your /Applications folder
+To use this command make sure [Chrome for MacOS](https://www.google.com/chrome/) is installed in your /Applications folder
 ```
 MacOS | Chrome | cd /Applications && start Chrome.app
 ```
@@ -59,8 +59,8 @@ To use this command make sure [OBS for MacOS](https://obsproject.com/download) i
 MacOS | OBS | cd /Applications && start OBS.app
 ```
 
-###### App
-To use this command make sure [Openshot Video Editor](https://www.openshot.org/download/) is installed in your /Applications folder
+###### Openshot Video Editor
+To use this command make sure [Openshot Video Editor for MacOS](https://www.openshot.org/download/) is installed in your /Applications folder
 ```
 MacOS | Openshot Video Editor | cd /Applications && start OpenShot Video Editor.app
 ```
