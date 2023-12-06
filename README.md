@@ -1,5 +1,5 @@
 # Bondi - Custom Launcher for MacOS/Hackintosh and Linux/Unix + Windows (Sort of)
-### This project is on hold until I can get my hands on a steam deck :) I will be working on other projects and learing more about java in the meantime if you would like to help me get a steamdeck head over to the [donate page](https://httpanimation.github.io/Give-me-MONEY-to-do-nothing-at-all/)
+#### This project is no longer on hold as I was able to get my hands on a steam deck :) **V8** will be coming out once I get's to Ireland and I get done fully with testing and working on the update you are free to messege me on Discord **httpanimations** to get a pre-realse build.
 ![image](Photos/Screenshot%20from%202023-10-13%2019-50-41.png)
 
 
