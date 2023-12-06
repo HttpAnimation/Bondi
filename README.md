@@ -39,9 +39,12 @@ Once you've installed Bondi, explore its features and customization options. Our
 
 ## Plans
 
-1. A better UI (Work in Progress) - [Done]
-2. Simple ROM importer (Not until the first is done and everything is working right) [Not now]
-
+1.~~A better UI (Work in Progress) - [Done]~~
+2.~~Simple ROM importer (Not until the first is done and everything is working right) [Not now]~~
+3. Controller support.
+4. Fullscreen support.
+5. Light mode and Dark mode options
+6. Have the UI be held in html and then display that page on the Bondi window.
 ## Support
 
 If you encounter any issues or have questions, please open an issue on our [GitHub repository](https://github.com/HttpAnimation/Bondi/issues). We appreciate your feedback and will do our best to assist you.
