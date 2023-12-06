@@ -39,8 +39,8 @@ Once you've installed Bondi, explore its features and customization options. Our
 
 ## Plans
 
-1.~~A better UI (Work in Progress) - [Done]~~
-2.~~Simple ROM importer (Not until the first is done and everything is working right) [Not now]~~
+1. ~~A better UI (Work in Progress) - [Done]~~
+2. ~~Simple ROM importer (Not until the first is done and everything is working right) [Not now]~~
 3. Controller support.
 4. Fullscreen support.
 5. Light mode and Dark mode options
