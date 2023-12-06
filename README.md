@@ -1,7 +1,7 @@
 # Bondi 
 - An custom Launcher for MacOS/Hackintosh and Linux/Unix.
 
-**Project Status:** This project is no longer on hold as I was able to get my hands on a [Steam Deck](https://store.steampowered.com/steamdeck). **V8** will be released once I arrive in Ireland, and I complete testing and work on the update. Feel free to message me on [Discord](https://discord.com/app) **httpanimations** to get a pre-release build.
+**Project Status:** This project is no longer on hold as I was able to get my hands on a [Steam Deck](https://store.steampowered.com/steamdeck). **V8** will be released once it arrive's in Ireland, and I complete testing and work on the update. Feel free to message me on [Discord](https://discord.com/app) **httpanimations** to get a pre-release build.
 
 ![Bondi Screenshot](Photos/Screenshot%20from%202023-10-13%2019-50-41.png)
 
