@@ -1,0 +1,2 @@
+# Steam Art
+these are the art files that could be used for [Steam](https://store.steampowered.com/) they are each leabled for each type they are needed in if you use a [Steam Deck](https://store.steampowered.com/steamdeck) you will need to be in desktop mode to do this.
