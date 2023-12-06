@@ -10,7 +10,7 @@ Bondi is a versatile custom launcher designed to enhance your MacOS, Hackintosh,
 ## Files
 - [Installation Commands.md](Installtion-Commands.md): Instructions for installing Bondi.
 - [Runners.md](Runners.md): A list of premade buttons for apps/games.
-- [Setup-Guide.md](Setup Guide.md): The setup guide.
+- [Setup Guide.md](Setup-Guide.md): The setup guide.
 
 ## Installation
 
