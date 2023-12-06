@@ -1,5 +1,6 @@
-# This page is used to install Bondi
-## [Back to the main README](README.md)
+# Bondi Installation Guide
+
+## [Back](README.md)
 
 To install Bondi, follow these simple steps:
 
@@ -7,36 +8,68 @@ To install Bondi, follow these simple steps:
 2. Copy and paste the command for your selected version:
 
 ## IMPORTANT
-Note that these commands will not work on Windows so just use the zip file that can be found [here](https://github.com/HttpAnimation/Bondi/releases) and a install guide can be seen here [here](Installtion-Commands.md)
 
+Note that these commands will not work on [Windows](https://www.microsoft.com/en-us/windows) as I am unable to trust [Windows](https://www.microsoft.com/en-us/windows) and don't wanna relearn my whole way of using a pc :) is you would like to use a [Windows](https://www.microsoft.com/en-us/windows) version you can see if there is one as a fork.
 
-## V7
-```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V7 && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
-```
+## Version 7
+- This version added the following listed below.
+    - Added a new list for games.
+    - Added a new menu bar with an "Options" menu containing "Change Sidebar Width" and "Create New Game" options.
+    - Added a method to update the sidebar width.
+    - Added a method to add a new game.
+    - Added a method to create a dialog for adding a new game.
+    - Added a method to save games to a file (in append mode).
+    - Added a method to load games from a file.
+    - Added a Game class to represent game data.
+    - Updated the displayGameButtonsForCategory method to use the new Game class and load games from the new list.
+    - Updated the createMenuBar method to add a menu item for creating a new game.
+    - Updated the CategoryButtonListener inner class to use the new displayGameButtonsForCategory method.
+    - Updated the loadSidebarWidth method to use the new CONFIG_FILE_PATH constant.
+    - Updated the saveSidebarWidth method to use try-with-resources.
+    - Updated the displayGameButtonsForCategory method to remove all previous components in the subArea before adding new game buttons.
+    - Updated the sidebarWidth default value to 200.
+    ```
+    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V7 && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    ```
 
-## V6
-```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V6 && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
-```
+## Version 6
+- This version added the following listed .
+    - This version is to old to support the version changelog.
+    ```
+    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V6 && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    ```
 
-## V5
-```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V5 && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
-```
-## V4
-```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V4 && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
-```
-## V3
-```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V3 && rm Runners.md && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
-```
-## V2
-```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V2 && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
-```
-## V1
-```bash
-git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V1 && rm README.md && rm Setup-Guide.md && rm Installtion-Commands.md && rm Install-Windows-Guide.md  
-```
+## Version 5
+- This version added the following listed .
+    - This version is to old to support the version changelog.
+    ```
+    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V5 && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    ```
+
+## Version 4
+- This version added the following listed .
+    - This version is to old to support the version changelog.
+    ```
+    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V4 && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    ```
+
+## Version 3
+- This version added the following listed .
+    - This version is to old to support the version changelog.
+    ```
+    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V3 && rm Runners.md && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    ```
+
+## Version 2
+- This version added the following listed .
+    - This version is to old to support the version changelog.
+    ```
+    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V2 && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    ```
+
+## Version 1
+- This version added the following listed .
+    - This version is to old to support the version changelog.
+    ```
+    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V1 && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    ```
