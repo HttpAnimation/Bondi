@@ -1,7 +1,7 @@
 # Bondi 
-- An custom Launcher for MacOS/Hackintosh and Linux/Unix.
+An custom Launcher for MacOS/Hackintosh and Linux/Unix.
 
-**Project Status:** This project is no longer on hold as I was able to get my hands on a [Steam Deck](https://store.steampowered.com/steamdeck). **V8** will be released once it arrive's in Ireland, and I complete testing and work on the update. Feel free to message me on [Discord](https://discord.com/app) **httpanimations** to get a pre-release build.
+- **Project Status:** This project is no longer on hold as I was able to get my hands on a [Steam Deck](https://store.steampowered.com/steamdeck). **V8** will be released once it arrive's in Ireland, and I complete testing and work on the update. Feel free to message me on [Discord](https://discord.com/app) **httpanimations** to get a pre-release build.
 
 ![Bondi Screenshot](Photos/Screenshot%20from%202023-10-13%2019-50-41.png)
 
@@ -42,9 +42,13 @@ Once you've installed Bondi, explore its features and customization options. Our
 1. ~~A better UI (Work in Progress) - [Done]~~
 2. ~~Simple ROM importer (Not until the first is done and everything is working right) [Not now]~~
 3. Controller support.
-4. Fullscreen support.
+4. ~~Fullscreen support.~~
 5. Light mode and Dark mode options
 6. Have the UI be held in html and then display that page on the Bondi window.
+7. Compile into a .deb and [Flatpak](https://flatpak.org/)
+8. ~~Updater~~
+9. Auto updater when you click update.
+
 ## Support
 
 If you encounter any issues or have questions, please open an issue on our [GitHub repository](https://github.com/HttpAnimation/Bondi/issues). We appreciate your feedback and will do our best to assist you.

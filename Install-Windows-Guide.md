@@ -1,6 +1,14 @@
 # Windows
-All [Windows](https://www.microsoft.com/en-us/windows) support is removed and will never be added agian.
-
+All [Windows](https://www.microsoft.com/en-us/windows) support is removed and will never be woked on or tested **EVER** agian.
+You could try download the **.java** file and do  
+```
+javac Bondi.java
+```
+for compiling and for running
+```
+java Bondi.java
+```
+There is a Windows block to stop peopple from breaking the scipts all togather as script's are often modded you will need to use **//** on the windows block but note that no support for doing so will be added
 ---
 ---
 ---
