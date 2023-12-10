@@ -1,4 +1,4 @@
-# Flatpak Games.ini Maker
+# Flatpak generator
 
 This tool allows you to effortlessly create a `Games.ini` file for launching any of your installed applications or games from Flatpak on Linux. It simplifies the process of generating this configuration file by utilizing the `flatpak list` command.
 
@@ -9,7 +9,7 @@ wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Flatpak%2
 ```
 
 ## Working
-This script is working in V6+
+This script is made for version's of Bondi using the **.java** languge the old **.sh** versions are not gonna work.
 
 ## Usage
 
