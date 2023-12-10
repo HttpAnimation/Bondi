@@ -28,6 +28,6 @@ bash FlatpakGen.sh
 
 ## Note
 
-Please note that this tool is exclusively designed for Linux systems and requires the presence of Flatpak on your machine. It does not include any additional features beyond creating the `Games.ini` file.
+Please note that this tool is exclusively designed for Linux systems and requires the presence of Flatpak on your machine. It does not include any additional features beyond creating the `Games.ini` file also the `Games.ini` file is not made to be stand alone and should be added to a `Games.ini`.
 
 Feel free to use and share this tool with fellow Linux gamers!
