@@ -4,7 +4,7 @@ The **Steam generator** will grab a list of all steam game's installed in a dire
 ## Installing
 Open a terminal and run the command listed under.
 ```
-mkdir Steam\ generator && cd Steam\ generator && wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Steam%20generator/Steamgen.sh && mkdir output && cd output && touch Games.ini && cd ../
+mkdir Steam\ generator && cd Steam\ generator && wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Steam%20generator/Steamgen.sh && mkdir output && cd output && touch Games.ini && wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Steam%20generator/output/subsections.ini && cd ../
 ```
 
 ## Running
