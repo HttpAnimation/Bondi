@@ -2,8 +2,6 @@
 
 script_dir=$(dirname "$(readlink -f "$0")")
 source_ini="$script_dir/source.ini"
-
-# Check for -KS option
 if [ "$1" == "-KS" ]; then
     echo "Keeping the existing source.ini file."
 else
@@ -14,7 +12,6 @@ else
         exit 1
     fi
 fi
-
 if [ "$1" == "-r" ]; then
     path_file="$script_dir/TestingPath.ini"
     if [ ! -f "$path_file" ]; then
@@ -25,23 +22,17 @@ if [ "$1" == "-r" ]; then
 else
     read -p "Enter the folder path of where the SteamLibrary is stored: " file_path
 fi
-
 if [ ! -d "$file_path/SteamLibrary/steamapps/common" ]; then
     echo "Invalid path. Exiting."
     exit 1
 fi
-
 cd "$file_path/SteamLibrary/steamapps/common" || exit 1
-
 output_file="$script_dir/output/Games.ini"
-
 while IFS= read -r folder; do
     source_line=$(grep -E "^$folder" "$source_ini")
-    
     if [ -n "$source_line" ]; then
         new_name=$(echo "$source_line" | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $2); print $2}')
         rungameid=$(echo "$source_line" | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $3); print $3}')
-
         echo "Processing folder: $folder"
         echo "New Name: $new_name"
         echo "RunGameID: $rungameid"
@@ -53,8 +44,6 @@ while IFS= read -r folder; do
         echo "----------------------------------------"
     fi
 done < <(ls -1)
-
-# Remove source.ini only if -KS option is not used
 if [ "$1" != "-KS" ]; then
     rm "$source_ini"
 fi
