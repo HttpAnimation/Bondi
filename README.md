@@ -65,11 +65,15 @@ This will guide will show you how to add Bondi steam
 8. ~~Updater~~
 9. Auto updater when you click update.
 10. Server host for **Games.ini** and **subsections.ini**.
+
 ## Support
 
 If you encounter any issues or have questions, please open an issue on the [GitHub repository](https://github.com/HttpAnimation/Bondi/issues). We appreciate your feedback and will do our best to assist you.
 
 Thank you for choosing Bondi as your custom launcher. We hope it enhances your computing experience!
+
+## Tweaks
+Tweaks allow you to modify Bondi or auto make the **Games.ini** and **subsections.ini** files you can view them by clicking [here](/Tweaks/README.md). 
 
 ## IOS & Android
 
