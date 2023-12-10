@@ -5,4 +5,4 @@ Tweaks are extra software made for Bondi that can auto get data and make stuff f
 The **Flatpak generator** will run **flatpak list** in the terminal and then use that data to auto make data for a **Games.ini** and **subsections.ini** now these should not repalce you're files just be a addon to them
 
 ## Steam generator
-This **Steam generator** is still being worked on and might not be done for a while beacuse I have no idea how this is really gonna work.
+The **Steam generator** will grab a list of all steam game's installed in a directory that is given to it then it will make a **output/Games.ini** that can be used **Games.ini** and **subsections.ini** now note these should not repalce you're files just be a addon to them.
