@@ -42,7 +42,7 @@ This will guide will show you how to add Bondi steam
 1) Have Bondi downloaded first 
 2) Download the steam art with this script.
   ```
-  wget https://github.com/HttpAnimation/Bondi/edit/main/Steam%20Art/Download.sh && chmod +x Download.sh && ./Download.sh
+  wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Steam%20Art/Download.sh && chmod +x Download.sh && ./Download.sh
   ```
 3) Go to steam and click Add a game then add a non-steam game.
 ![Add a Game](Photos/Screenshot_20231208_121822.png)
