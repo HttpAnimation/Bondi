@@ -1,5 +1,5 @@
 # Bondi 
-An custom Launcher for MacOS/Hackintosh and Linux/Unix.
+A custom Launcher for MacOS/Hackintosh and Linux/Unix.
 
 - **Project Status:** This project is no longer on hold as I was able to get my hands on a [Steam Deck](https://store.steampowered.com/steamdeck). **V8** will be released once it arrive's in Ireland and I get my hands on it, and I complete testing and work on the update. Feel free to message me on [Discord](https://discord.com/app) **httpanimations** to get a pre-release build.
 
@@ -38,18 +38,18 @@ To set up Bondi, head over to the setup [guide](Setup-Guide.md). For detailed in
 Once you've installed Bondi, explore its features and customization options. Our documentation provides step-by-step instructions to help you get the most out of Bondi.
 
 ## Adding to steam
-This will guide will show you how to add Bondi steam
+This guide will show you how to add Bondi steam
 1) Have Bondi downloaded first 
-2) Download the steam art with this script.
+2) Download the Steam art with this script.
   ```
   wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Steam%20Art/Download.sh && chmod +x Download.sh && ./Download.sh
   ```
-3) Go to steam and click Add a game then add a non-steam game.
+3) Go to Steam and click Add a game then add a non-steam game.
 ![Add a Game](Photos/Screenshot_20231208_121822.png)
 4) Add the **Bondi.java** file into steam.
 ![Adding the file](Photos/Screenshot_20231208_122025.png)
 ![The file in Steam](Photos/Screenshot_20231208_122110.png)
-5) Go to the settings on that steam game and add **java** to the start.
+5) Go to the settings on that Steam game and add **java** to the start.
 ![The game in settings](Photos/Screenshot_20231208_122425.png)
 
 6) Add the steam art
@@ -60,7 +60,7 @@ This will guide will show you how to add Bondi steam
 3. Controller support.
 4. ~~Fullscreen support.~~
 5. Light mode and Dark mode options
-6. Have the UI be held in html and then display that page on the Bondi window.
+6. Have the UI be held in HTML and then display that page on the Bondi window.
 7. Compile into a .deb and [Flatpak](https://flatpak.org/)
 8. ~~Updater~~
 9. Auto updater when you click update.
@@ -73,8 +73,8 @@ If you encounter any issues or have questions, please open an issue on the [GitH
 Thank you for choosing Bondi as your custom launcher. We hope it enhances your computing experience!
 
 ## Tweaks
-Tweaks allow you to modify Bondi or auto make the **Games.ini** and **subsections.ini** files you can view them by clicking [here](/Tweaks/README.md). 
+Tweaks allow you to modify Bondi or auto-make the **Games.ini** and **subsections.ini** files you can view them by clicking [here](/Tweaks/README.md). 
 
 ## IOS & Android
 
-Andriod has not been tested but a java simualtor can most likly be found and for IOS you can find a IPA either on the app store or sideloaded with [TrollStore](https://github.com/opa334/TrollStore).
+Android has not been tested but a Java simulator can most likely be found and for IOS you can find an IPA either on the app store or sideloaded with [TrollStore](https://github.com/opa334/TrollStore).
