@@ -73,7 +73,8 @@ If you encounter any issues or have questions, please open an issue on the [GitH
 Thank you for choosing Bondi as your custom launcher. We hope it enhances your computing experience!
 
 ## Tweaks
-Android has not been tested but a Java simulator can most likely be found on the Playstore. For IOS you can find an IPA either on the app store or sideloaded with [TrollStore](https://github.com/opa334/TrollStore).
+Tweaks allow you to modify Bondi or auto-make the **Games.ini** and **subsections.ini** files you can view them by clicking [here](/Tweaks/README.md). 
+
 ## IOS & Android
 
-Android has not been tested but a Java simulator can most likely be found and for IOS you can find an IPA either on the app store or sideloaded with [TrollStore](https://github.com/opa334/TrollStore).
+Android has not been tested but a Java simulator can most likely be found on the Playstore. For IOS you can find an IPA either on the app store or sideloaded with [TrollStore](https://github.com/opa334/TrollStore).
