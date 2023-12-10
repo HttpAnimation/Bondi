@@ -19,7 +19,7 @@ To generate your `Games.ini` file, follow these simple steps:
 2. Run the following command:
 
 ```bash
-python3 FlatpakGen.py
+bash FlatpakGen.sh
 ```
 
 3. Sit back and watch as the tool scans your Flatpak-installed applications and games.
