@@ -35,25 +35,24 @@ cd "$file_path/SteamLibrary/steamapps/common" || exit 1
 
 output_file="$script_dir/output/Games.ini"
 
-for folder in *; do
-    if [ -d "$folder" ]; then
-        source_line=$(grep -E "^$folder" "$source_ini")
-        if [ -n "$source_line" ]; then
-            new_name=$(echo "$source_line" | cut -d '|' -f 2 | tr -d '[:space:]')
-            rungameid=$(echo "$source_line" | cut -d '|' -f 3 | tr -d '[:space:]')
+while IFS= read -r folder; do
+    source_line=$(grep -E "^$folder" "$source_ini")
+    
+    if [ -n "$source_line" ]; then
+        new_name=$(echo "$source_line" | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $2); print $2}')
+        rungameid=$(echo "$source_line" | awk -F'|' '{gsub(/^[ \t]+|[ \t]+$/, "", $3); print $3}')
 
-            echo "Processing folder: $folder"
-            echo "New Name: $new_name"
-            echo "RunGameID: $rungameid"
+        echo "Processing folder: $folder"
+        echo "New Name: $new_name"
+        echo "RunGameID: $rungameid"
 
-            echo "Steam | $new_name | $rungameid" >> "$output_file"
-            echo "----------------------------------------"
-        else
-            echo "No matching entry found in source.ini for folder: $folder"
-            echo "----------------------------------------"
-        fi
+        echo "Steam | $new_name | $rungameid" >> "$output_file"
+        echo "----------------------------------------"
+    else
+        echo "No matching entry found in source.ini for folder: $folder"
+        echo "----------------------------------------"
     fi
-done
+done < <(ls -1)
 
 # Remove source.ini only if -KS option is not used
 if [ "$1" != "-KS" ]; then
