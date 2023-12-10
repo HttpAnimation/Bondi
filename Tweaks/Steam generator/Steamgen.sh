@@ -3,11 +3,16 @@
 script_dir=$(dirname "$(readlink -f "$0")")
 source_ini="$script_dir/source.ini"
 
-curl -sSL https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Steam%20generator/source.ini -o "$source_ini"
+# Check for -KS option
+if [ "$1" == "-KS" ]; then
+    echo "Keeping the existing source.ini file."
+else
+    curl -sSL https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Steam%20generator/source.ini -o "$source_ini"
 
-if [ ! -f "$source_ini" ]; then
-    echo "source.ini not found in the script directory. Exiting."
-    exit 1
+    if [ ! -f "$source_ini" ]; then
+        echo "source.ini not found in the script directory. Exiting."
+        exit 1
+    fi
 fi
 
 if [ "$1" == "-r" ]; then
@@ -18,7 +23,7 @@ if [ "$1" == "-r" ]; then
     fi
     read -r file_path < "$path_file"
 else
-    read -p "Enter the file path: " file_path
+    read -p "Enter the folder path of where the SteamLibrary is stored: " file_path
 fi
 
 if [ ! -d "$file_path/SteamLibrary/steamapps/common" ]; then
@@ -50,6 +55,9 @@ for folder in *; do
     fi
 done
 
-rm "$source_ini"
+# Remove source.ini only if -KS option is not used
+if [ "$1" != "-KS" ]; then
+    rm "$source_ini"
+fi
 
 echo "Games.ini generated at $output_file"

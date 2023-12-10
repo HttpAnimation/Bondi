@@ -15,3 +15,4 @@ bash Steamden.sh
 
 ## Other info
 1) The file **TestingPath.ini** will not be needed as the file was only used for testing and I did want to enter the path every single dame time
+2) Run the script with **-KS** to keep the source file
