@@ -5,7 +5,7 @@ This tool allows you to effortlessly create a `Games.ini` file for launching any
 ## Install
 To install this tweak open a terminal and run this command to install
 ```bash
-wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Flatpak%20Games.ini%20maker/Install.sh && chmod +x Install.sh && ./Install.sh 
+wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Flatpak%20generator/Install.sh && chmod +x Install.sh && ./Install.sh
 ```
 
 ## Working
