@@ -1,44 +1,54 @@
 #!/bin/bash
 
 # Prompt the user for the file path
-read -p "Enter the file path: " file_path
+read -p "Enter the file path: " folder_path
 
-# Check if the path is valid
-if [ ! -d "$file_path/SteamLibrary/steamapps/common" ]; then
-    echo "Invalid path. Exiting."
-    exit 1
+# Check if the folder exists
+if [ ! -d "$folder_path/SteamLibrary/steamapps/common" ]; then
+  echo "Error: Folder does not exist."
+  exit 1
 fi
 
-# Go to the common folder
-cd "$file_path/SteamLibrary/steamapps/common" || exit 1
+# Function to fetch source.ini from the provided URL
+fetch_source_ini() {
+  local url="https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Steam%20generator/source.ini"
+  curl -s "$url" || { echo "Error fetching $url"; exit 1; }
+}
 
 # Initialize the output file
 output_file="output/Games.ini"
-echo "" > "$output_file"
+echo -e "Steam | new name | steam://rungameid/\n" > "$output_file"
 
-# Loop through each folder in the common directory
+# Iterate through each folder
 for folder in */; do
-    # Check if source.ini exists in the folder
-    source_file="${folder}source.ini"
-    if [ -f "$source_file" ]; then
-        # Extract data from source.ini
-        name=$(awk -F "|" '/Name/ {print $2}' "$source_file" | tr -d '[:space:]')
-        new_name=$(awk -F "|" '/new name/ {print $2}' "$source_file" | tr -d '[:space:]')
-        rungameid=$(awk -F "|" '/steam:\/\/rungameid/ {print $2}' "$source_file" | tr -d '[:space:]')
+  folder_name="${folder%/}"
 
-        # Print debugging information
-        echo "Processing folder: $folder"
-        echo "Name: $name"
-        echo "New Name: $new_name"
-        echo "RunGameID: $rungameid"
+  # Print the current folder being processed
+  echo "Processing $folder_name..."
 
-        # Append to Games.ini
-        echo "Steam | $new_name | $rungameid" >> "$output_file"
-        echo "----------------------------------------"
-    else
-        echo "source.ini not found in $folder"
-        echo "----------------------------------------"
-    fi
+  # Fetch source.ini from the URL
+  source_ini=$(fetch_source_ini)
+
+  # Check if source.ini file exists
+  if [ -n "$source_ini" ]; then
+    # Read values from source.ini
+    name=$(awk -F'|' '$1=="Name"{print $2}' <<< "$source_ini" | tr -d '[:space:]')
+    new_name=$(awk -F'|' '$1=="new name"{print $2}' <<< "$source_ini" | tr -d '[:space:]')
+    game_id=$(awk -F'|' '$1=="steam://rungameid/"{print $2}' <<< "$source_ini" | tr -d '[:space:]')
+
+    # Print debugging information
+    echo "Name: $name"
+    echo "New Name: $new_name"
+    echo "Game ID: $game_id"
+
+    # Append to the output file
+    echo -e "$name | $new_name | $game_id" >> "$output_file"
+  else
+    echo "Error: Unable to fetch source.ini from the URL."
+    exit 1
+  fi
+
+  echo "-------------------------------------"
 done
 
-echo "Games.ini generated at $output_file"
+echo "Processing completed. Check $output_file for the result."
