@@ -45,12 +45,8 @@ This guide will show you how to add Bondi steam
   wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Steam%20Art/Download.sh && chmod +x Download.sh && ./Download.sh
   ```
 3) Go to Steam and click Add a game then add a non-steam game.
-![Add a Game](Photos/Screenshot_20231208_121822.png)
 4) Add the **Bondi.java** file into steam.
-![Adding the file](Photos/Screenshot_20231208_122025.png)
-![The file in Steam](Photos/Screenshot_20231208_122110.png)
 5) Go to the settings on that Steam game and add **java** to the start.
-![The game in settings](Photos/Screenshot_20231208_122425.png)
 
 6) Add the steam art
 ## Plans
