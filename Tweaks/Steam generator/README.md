@@ -10,7 +10,7 @@ mkdir Steam\ generator && cd Steam\ generator && wget https://raw.githubusercont
 ## Running
 In the same place where you installed the Steam generator tweak run the command to run
 ```
-bash Steamden.sh
+bash Steamgen.sh
 ```
 
 ## Other info
