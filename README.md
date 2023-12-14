@@ -1,7 +1,7 @@
 # Bondi 
 A custom Launcher for MacOS/Hackintosh and Linux/Unix.
 
-- **Project Status:** This project is no longer on hold as I was able to get my hands on a [Steam Deck](https://store.steampowered.com/steamdeck). **V8** will be released once it arrives in Ireland I get my hands on it, and I complete testing and work on the update. Feel free to message me on [Discord](https://discord.com/app) **httpanimations** to get a pre-release build.
+- **Project Status:** V8 is planned to come out soon a lot of bugs have been fixed there is still a lot that has to be done with certian things and dark-mode is still a little messed up the [Steam Deck](https://store.steampowered.com/steamdeck) has made it to europe and now am just waiting for it to get here.
 
 ![Bondi Screenshot](Photos/Screenshot%20from%202023-10-13%2019-50-41.png)
 
@@ -49,18 +49,31 @@ This guide will show you how to add Bondi steam
 5) Go to the settings on that Steam game and add **java** to the start.
 
 6) Add the steam art
-## Plans
 
-1. ~~A better UI (Work in Progress) - [Done]~~
-2. ~~Simple ROM importer (Not until the first is done and everything is working right) [Not now]~~
-3. Controller support.
-4. ~~Fullscreen support.~~
-5. Light mode and Dark mode options
-6. Have the UI be held in HTML and then display that page on the Bondi window.
-7. Compile into a .deb and [Flatpak](https://flatpak.org/)
-8. ~~Updater~~
-9. Auto updater when you click update.
-10. Server host for **Games.ini** and **subsections.ini**.
+## Plans
+The plans of Bondi can change all the time either because I just am not able to get stuff working or if I want to add something.
+
+~~A better UI (Work in Progress)~~
+
+~~Simple ROM importer (Not until the first is done and everything is working right) [Not now]~~
+
+Controller support.
+
+~~Fullscreen support.~~
+
+Light mode and Dark mode options
+
+Have the UI be held in HTML and then display that page on 
+
+the Bondi window.
+
+Compile into a .deb and [Flatpak](https://flatpak.org/)
+
+~~Updater~~
+
+Auto updater when you click update.
+
+Server host for **Games.ini** and **subsections.ini**.
 
 ## Support
 
