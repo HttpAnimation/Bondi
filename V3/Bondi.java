@@ -15,7 +15,7 @@ public class Bondi extends JFrame {
     private JPanel subArea;
 
     public Bondi() {
-        // Load categories from subsections.ini
+        
         try (BufferedReader reader = new BufferedReader(new FileReader("subsections.ini"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -26,38 +26,38 @@ public class Bondi extends JFrame {
         }
 
         setTitle("Bondi");
-        setUndecorated(true); // Remove window decorations
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximize to full screen
+        setUndecorated(true); 
+        setExtendedState(JFrame.MAXIMIZED_BOTH); 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        // Set the main background color to dark grey
-        getContentPane().setBackground(new Color(245, 154, 175)); // Dark grey color
+        
+        getContentPane().setBackground(new Color(245, 154, 175)); 
 
         setLayout(new BorderLayout());
 
-        // Create a panel for category buttons
+        
         JPanel categoryPanel = new JPanel(new FlowLayout());
-        categoryPanel.setOpaque(false); // Make the panel transparent
+        categoryPanel.setOpaque(false); 
         for (String category : categories) {
             JButton categoryButton = new JButton(category);
             categoryButton.addActionListener(new CategoryButtonListener(category));
             categoryPanel.add(categoryButton);
         }
 
-        // Create a sub-area with a white background
+        
         subArea = new JPanel(new BorderLayout());
-        subArea.setBackground(new Color(207, 140, 156)); // White color
+        subArea.setBackground(new Color(207, 140, 156)); 
 
-        // Create a panel for game buttons
+        
         gameButtonPanel = new JPanel(new FlowLayout());
-        gameButtonPanel.setOpaque(false); // Make the panel transparent
+        gameButtonPanel.setOpaque(false); 
 
-        // Add the sub-area to the frame
+        
         add(categoryPanel, BorderLayout.NORTH);
-        add(subArea, BorderLayout.CENTER); // Add the sub-area to the center
+        add(subArea, BorderLayout.CENTER); 
 
         pack();
-        setLocationRelativeTo(null); // Center the window
+        setLocationRelativeTo(null); 
     }
 
     private class CategoryButtonListener implements ActionListener {
@@ -88,7 +88,7 @@ public class Bondi extends JFrame {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             try {
-                                // Execute the command when the game button is clicked
+                                
                                 ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
                                 pb.start();
                             } catch (IOException ex) {
@@ -106,7 +106,7 @@ public class Bondi extends JFrame {
         gameButtonPanel.revalidate();
         gameButtonPanel.repaint();
 
-        // Add gameButtonPanel to the subArea's center
+        
         subArea.add(gameButtonPanel, BorderLayout.CENTER);
     }
 

@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Bondi extends JFrame {
-    // Constants for file paths
+    
     private static final String SUBSECTIONS_FILE_PATH = "subsections.ini";
     private static final String GAMES_FILE_PATH = "Games.ini";
     private static final String CONFIG_FILE_PATH = "Config/SidebarWidth.ini";
@@ -18,58 +18,58 @@ public class Bondi extends JFrame {
     private JPanel gameButtonPanel;
     private JPanel subArea;
 
-    private int sidebarWidth = 500; // Default sidebar width
+    private int sidebarWidth = 500; 
 
     public Bondi() {
-        // Load categories from subsections.ini
+        
         loadCategories();
 
         setTitle("Bondi");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        // Set a modern UI look and feel if available
+        
         setSystemLookAndFeel();
 
-        // Create a sidebar for category buttons
+        
         JPanel sidebar = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.weightx = 1.0; // Allow buttons to expand horizontally
-        gbc.insets = new Insets(5, 5, 5, 5); // Add padding
+        gbc.weightx = 1.0; 
+        gbc.insets = new Insets(5, 5, 5, 5); 
 
-        Font buttonFont = new Font("Arial", Font.PLAIN, 18); // Set a larger font
+        Font buttonFont = new Font("Arial", Font.PLAIN, 18); 
         for (String category : categories) {
             JButton categoryButton = new JButton(category);
             categoryButton.addActionListener(new CategoryButtonListener(category));
-            categoryButton.setFont(buttonFont); // Apply the larger font
+            categoryButton.setFont(buttonFont); 
             sidebar.add(categoryButton, gbc);
-            gbc.gridy++; // Move to the next row
+            gbc.gridy++; 
         }
 
-        // Create a sub-area with a white background
-        subArea = new JPanel(new BorderLayout()); // Use BorderLayout for the subArea
+        
+        subArea = new JPanel(new BorderLayout()); 
 
-        // Create a panel for game buttons
-        gameButtonPanel = new JPanel(new GridLayout(0, 3, 10, 10)); // 3 columns, 10px horizontal and vertical gaps
+        
+        gameButtonPanel = new JPanel(new GridLayout(0, 3, 10, 10)); 
 
-        // Create a split pane to separate the sidebar and sub-area
+        
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, sidebar, subArea);
-        splitPane.setDividerLocation(sidebarWidth); // Set initial divider location
-        splitPane.setResizeWeight(0.0); // Disable resizing of the sidebar
+        splitPane.setDividerLocation(sidebarWidth); 
+        splitPane.setResizeWeight(0.0); 
 
-        // Add the split pane to the frame
+        
         add(splitPane);
 
-        setLocationRelativeTo(null); // Center the window
+        setLocationRelativeTo(null); 
 
-        // Load the saved sidebar width from the configuration file
+        
         loadSidebarWidth();
     }
 
-    // Load categories from subsections.ini
+    
     private void loadCategories() {
         try (BufferedReader reader = new BufferedReader(new FileReader(SUBSECTIONS_FILE_PATH))) {
             String line;
@@ -81,7 +81,7 @@ public class Bondi extends JFrame {
         }
     }
 
-    // Set system look and feel
+    
     private void setSystemLookAndFeel() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -113,13 +113,13 @@ public class Bondi extends JFrame {
                 if (parts.length == 3 && parts[0].trim().equals(category.trim())) {
                     String gameName = parts[1].trim();
                     JButton gameButton = new JButton(gameName);
-                    gameButton.setFont(new Font("Arial", Font.PLAIN, 24)); // Larger font for game buttons
+                    gameButton.setFont(new Font("Arial", Font.PLAIN, 24)); 
                     String command = parts[2].trim();
                     gameButton.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             try {
-                                // Execute the command when the game button is clicked
+                                
                                 ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
                                 pb.start();
                             } catch (IOException ex) {
@@ -137,18 +137,18 @@ public class Bondi extends JFrame {
         gameButtonPanel.revalidate();
         gameButtonPanel.repaint();
 
-        // Remove any previous components in the subArea
+        
         subArea.removeAll();
 
-        // Add gameButtonPanel to the subArea's center
+        
         subArea.add(gameButtonPanel, BorderLayout.CENTER);
 
-        // Refresh the subArea
+        
         subArea.revalidate();
         subArea.repaint();
     }
 
-    // Save the sidebar width to the configuration file
+    
     private void saveSidebarWidth(int width) {
         try (FileWriter writer = new FileWriter(CONFIG_FILE_PATH)) {
             writer.write(String.valueOf(width));
@@ -157,7 +157,7 @@ public class Bondi extends JFrame {
         }
     }
 
-    // Load the saved sidebar width from the configuration file
+    
     private void loadSidebarWidth() {
         File configFile = new File(CONFIG_FILE_PATH);
         if (configFile.exists()) {
@@ -179,12 +179,12 @@ public class Bondi extends JFrame {
         });
     }
 
-    // Logging utility
+    
     private static final Logger logger = Logger.getLogger(Bondi.class.getName());
 
     private void logError(String message, Throwable e) {
         logger.log(Level.SEVERE, message, e);
-        // Display a user-friendly error message if needed
+        
         JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
