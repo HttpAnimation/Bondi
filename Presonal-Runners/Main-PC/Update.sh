@@ -1,0 +1,2 @@
+wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Presonal-Runners/Main-PC/Games.ini 
+wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Presonal-Runners/Main-PC/subsections.ini
