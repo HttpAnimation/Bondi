@@ -14,9 +14,9 @@ Bondi is a versatile custom launcher designed to enhance your MacOS, Hackintosh,
 
 ## Installation
 
-The install page has moved to [here](Installation-Commands.md):
+The install page has moved to [here](Installtion-Commands.md):
 
-1. Copy the installation command from the [Installtion-Commands.md](Installation-Commands.md) file.
+1. Copy the installation command from the [Installtion-Commands.md](Installtion-Commands.md) file.
 2. Paste it into your terminal.
 3. Press Enter to execute the command.
 4. Bondi will be downloaded and installed on your system.
