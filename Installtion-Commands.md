@@ -60,12 +60,12 @@ To install Bondi, follow these simple steps:
 - This version added the following listed .
     - This version is to old to support the version changelog.
     ```
-    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V2 && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    wget https://github.com/HttpAnimation/Bondi/raw/main/Installers/V2.bash && chmod +x V2.bash && bash V2.bash
     ```
 
 ## Version 1
 - This version added the following listed .
     - This version is to old to support the version changelog.
     ```
-    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V1 && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    wget https://github.com/HttpAnimation/Bondi/raw/main/Installers/V1.bash && chmod +x V1.bash && bash V1.bash
     ```
