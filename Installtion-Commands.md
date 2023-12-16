@@ -25,35 +25,35 @@ To install Bondi, follow these simple steps:
     - Updated the displayGameButtonsForCategory method to remove all previous components in the subArea before adding new game buttons.
     - Updated the sidebarWidth default value to 200.
     ```
-    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V7 && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    wget https://github.com/HttpAnimation/Bondi/raw/main/Installers/V7.bash && chmod +x V7.bash && bash V7.bash
     ```
 
 ## Version 6
 - This version added the following listed .
     - This version is to old to support the version changelog.
     ```
-    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V6 && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    wget https://github.com/HttpAnimation/Bondi/raw/main/Installers/V6.bash && chmod +x V6.bash && bash V6.bash
     ```
 
 ## Version 5
 - This version added the following listed .
     - This version is to old to support the version changelog.
     ```
-    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V5 && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    wget https://github.com/HttpAnimation/Bondi/raw/main/Installers/V5.bash && chmod +x V5.bash && bash V5.bash
     ```
 
 ## Version 4
 - This version added the following listed .
     - This version is to old to support the version changelog.
     ```
-    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V4 && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    wget https://github.com/HttpAnimation/Bondi/raw/main/Installers/V4.bash && chmod +x V4.bash && bash V4.bash
     ```
 
 ## Version 3
 - This version added the following listed .
     - This version is to old to support the version changelog.
     ```
-    git clone https://github.com/HttpAnimation/Bondi.git && cd Bondi && git sparse-checkout init --cone && git sparse-checkout set V3 && rm Runners.md && rm README.md && rm Setup-Guide.md && rm Installation-Commands.md && rm Install-Windows-Guide.md
+    wget https://github.com/HttpAnimation/Bondi/raw/main/Installers/V3.bash && chmod +x V3.bash && bash V3.bash
     ```
 
 ## Version 2
