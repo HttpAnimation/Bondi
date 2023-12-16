@@ -1,1 +1,0 @@
-say you = gay yes? gay don't talk to me ew
