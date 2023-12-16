@@ -7,10 +7,6 @@ To install Bondi, follow these simple steps:
 1. Open your terminal.
 2. Copy and paste the command for your selected version:
 
-## IMPORTANT
-
-Note that these commands will not work on [Windows](https://www.microsoft.com/en-us/windows) as I am unable to trust [Windows](https://www.microsoft.com/en-us/windows) and don't wanna relearn my whole way of using a pc :) is you would like to use a [Windows](https://www.microsoft.com/en-us/windows) version you can see if there is one as a fork.
-
 ## Version 7
 - This version added the following listed below.
     - Added a new list for games.
