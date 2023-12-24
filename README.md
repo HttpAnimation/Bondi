@@ -1,7 +1,7 @@
 # Bondi 
 A custom Launcher for MacOS/Hackintosh and Linux/Unix.
 
-- **Project Status:** V8 is planned to come out soon a lot of bugs have been fixed there is still a lot that has to be done with certian things and dark-mode is still a little messed up the [Steam Deck](https://store.steampowered.com/steamdeck) has made it to europe and now am just waiting for it to get here.
+- **Project Status:** V8 is planned to come out soon a lot of bugs have been fixed there is still a lot that has to be done with certain things and dark mode is still a little messed up the [Steam Deck](https://store.steampowered.com/steamdeck) has made it to Europe and now am just waiting for it to get here.
 
 ![Bondi Screenshot](Photos/Screenshot%20from%202023-10-13%2019-50-41.png)
 
