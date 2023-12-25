@@ -6,7 +6,11 @@ To install Bondi, follow these simple steps:
 
 1. Open your terminal.
 2. Copy and paste the command for your selected version:
-
+## Version 8
+- This version change log is way to big click [here](https://github.com/HttpAnimation/Bondi/releases/tag/V8) for the change log.
+    ```
+    wget https://github.com/HttpAnimation/Bondi/raw/main/Installers/V8.bash && chmod +x V8.bash && bash V8.bash
+    ```
 ## Version 7
 - This version added the following listed below.
     - Added a new list for games.
