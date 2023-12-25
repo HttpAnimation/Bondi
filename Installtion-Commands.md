@@ -9,7 +9,7 @@ To install Bondi, follow these simple steps:
 ## Version 8
 - This version change log is way to big click [here](https://github.com/HttpAnimation/Bondi/releases/tag/V8) for the change log.
     ```
-    https://raw.githubusercontent.com/HttpAnimation/Bondi/main/V8/Install.sh && chmod +x V8.bash && bash V8.bash
+    wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/V8/Install.sh && chmod +x Install.sh && bash Install.sh
     ```
 ## Version 7
 - This version added the following listed below.
