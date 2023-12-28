@@ -1,7 +1,7 @@
 # Bondi 
 A custom Launcher for MacOS/Hackintosh and Linux/Unix.
 
-- **Project Status:** V8 Is here! I got done with the getting it out of beta and my [Steam Deck](https://store.steampowered.com/steamdeck) is here :).
+- **Project Status:** Am working on a guide for running Bondi on the deck :).
 
 ![Bondi Screenshot](Photos/Screenshot%20from%202023-10-13%2019-50-41.png)
 
