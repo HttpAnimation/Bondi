@@ -1,76 +1,27 @@
 # Bondi 
 A custom Launcher for MacOS/Hackintosh and Linux/Unix.
 
-- **Project Status:** Am working on a guide for running Bondi on the deck :).
+- **Project Status:** V8 Is here! I got done with the getting it out of beta and my [Steam Deck](https://store.steampowered.com/steamdeck) is here :).
 
 ![Bondi Screenshot](Photos/Screenshot%20from%202023-10-13%2019-50-41.png)
 
 Bondi is a versatile custom launcher designed to enhance your MacOS, Hackintosh, Linux, or Unix experience, providing powerful features to streamline your workflow and improve your desktop environment.
 
-## Files
+## Other parts
 - [Installation Commands.md](Installtion-Commands.md): Instructions for installing Bondi.
-- [Runners.md](Runners.md): A list of premade buttons for apps/games.
+- [Runners.md](Runners.md): A list of premade buttons for apps/games. | Note that this is no longer in use pls use the [website](https://httpanimation.github.io/Bondi/) insted.
+- [Tweaks](Tweaks/README.md): Tweaks are a way to make Games.ini based of you're files.
 - [Setup Guide.md](Setup-Guide.md): The setup guide.
 
 ## Installation
 
 The install page has moved to [here](Installtion-Commands.md):
 
-1) Copy the installation command from the [Installtion-Commands.md](Installtion-Commands.md) file.
-2) Paste it into your terminal.
-3) Press Enter to execute the command.
-4) Bondi will be downloaded and installed on your system.
+1. Copy the installation command from the [Installtion-Commands.md](Installtion-Commands.md) file.
+2. Paste it into your terminal.
+3. Press Enter to execute the command.
+4. Bondi will be downloaded and installed on your system.
 
-Certainly! Here's an improved version of your Markdown file:
-
-## Steamdeck Installation
-
-To install Bondi on your Steamdeck, follow these steps in the terminal:
-
-1. **Download JDK 21 from the Java website:**
-   ```bash
-   wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.tar.gz
-   ```
-
-2. **Extract the JDK file:**
-   ```bash
-   tar -zxvf jdk-21_linux-x64_bin.tar.gz
-   ```
-
-3. **Download Bondi from [here](https://github.com/HttpAnimation/Bondi/releases).**
-
-4. **Extract the Bondi file.**
-
-5. **Ensure your directory structure matches the following (note: "V#" denotes a version number):**
-   ```bash
-   $:/ls
-   -V#
-   -jdk-21_linux-x64_bin
-   -jdk-21_linux-x64_bin.tar.gz
-   -V#.tar.gz
-   ```
-
-6. **Remove unnecessary tar.gz files:**
-   ```bash
-   rm jdk-21_linux-x64_bin.tar.gz V#.tar.gz
-   ```
-
-7. **Navigate to the Bondi directory:**
-   ```bash
-   cd V#
-   ```
-
-8. **Compile Bondi:**
-   ```bash
-   /path/to/jdk-21.0.1/bin/javac Bondi.java
-   ```
-
-9. **Run Bondi:**
-   ```bash
-   /path/to/jdk-21.0.1/bin/java Bondi
-   ```
-
-Make sure to replace `/path/to/` with the actual path where you extracted the JDK. Now you're ready to run Bondi on your Steamdeck!
 ## Documentation and Usage
 
 To set up Bondi, head over to the setup [guide](Setup-Guide.md). For detailed information on using Bondi and its features, please refer to our [official documentation](https://httpanimation.github.io/Bondi/).
