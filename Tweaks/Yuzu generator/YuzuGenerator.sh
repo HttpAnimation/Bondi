@@ -21,7 +21,7 @@ for rom_file in "$rom_directory"/*.nsp "$rom_directory"/*.xci; do
     filename_no_ext="${filename%.*}"
 
     # Add entry to Games.ini
-    echo "Switch | $filename_no_ext | flatpak run org.ryujinx.Ryujinx \"$rom_file\"" >> Games.ini
+    echo "Switch | $filename_no_ext | flatpak run org.yuzu_emu.yuzu \"$rom_file\"" >> Games.ini
   fi
 done
 

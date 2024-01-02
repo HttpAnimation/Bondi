@@ -10,3 +10,6 @@ The **Steam generator** will grab a list of all steam game's installed in a dire
 
 ## Ryujinx generator
 The **Ryujinx generator** will grab a list of switch games and make a **Games.ini** file for Bondi do not use this as you're main **Games.ini** this is made for bedding an addon to them.
+
+## Yuzu generator
+The **Yuzu generator** will grab a list of switch games and make a **Games.ini** file for Bondi do not use this as you're main **Games.ini** this is made for bedding an addon to them.
