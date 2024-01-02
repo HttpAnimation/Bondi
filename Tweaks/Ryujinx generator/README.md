@@ -1,5 +1,5 @@
 # Ryujinx generator
-The **Ryujinx generator** will grab the list of you're [Nintendo Switch](https://www.nintendo.com/us/switch/) roms then make a Games.ini file for them with use with bondi
+The **Ryujinx generator** will grab the list of you're [Nintendo Switch](https://www.nintendo.com/us/switch/) roms then make a Games.ini file for them with use with bondi this is for use with the flatpak version of Ryujinx.
 
 ## Installing
 Open a terminal and run the command listed below.
