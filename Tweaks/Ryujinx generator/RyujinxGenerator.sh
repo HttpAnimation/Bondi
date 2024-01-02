@@ -25,5 +25,4 @@ for rom_file in "$rom_directory"/*.nsp "$rom_directory"/*.xci; do
   fi
 done
 
-wget  
 echo "The files subsections.ini and Games.ini have been created and downloaded successfully."
