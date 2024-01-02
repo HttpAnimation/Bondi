@@ -49,4 +49,4 @@ if [ "$1" != "-KS" ]; then
 fi
 
 echo "Games.ini generated at $output_file"
-echo "If a game was not found and made in the Games.ini file submit a new one by opening a issue."
+echo "If a game was not found and made in the Games.ini file submit a new one by opening a issue. You could also make a edit to the source.ini file on the Github to donate the games data."
