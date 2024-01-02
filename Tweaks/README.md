@@ -1,4 +1,5 @@
 # Tweaks
+## [Back](README.md)
 Tweaks are extra software made for Bondi that can auto get data and make stuff for them or they can just make Bondi better.
 
 ## Flatpak generator
