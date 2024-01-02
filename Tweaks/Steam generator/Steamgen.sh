@@ -4,6 +4,7 @@ script_dir=$(dirname "$(readlink -f "$0")")
 source_ini="$script_dir/source.ini"
 if [ "$1" == "-KS" ]; then
     echo "Keeping the existing source.ini file."
+    echo "Note: This file will not be updated."
 else
     curl -sSL https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Tweaks/Steam%20generator/source.ini -o "$source_ini"
 
