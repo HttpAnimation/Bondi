@@ -1,17 +1,17 @@
 # Bondi 
 A custom Launcher for MacOS/Hackintosh and Linux/Unix.
 
-- **Project Status:** V8 Is here! I got done with the getting it out of beta and my [Steam Deck](https://store.steampowered.com/steamdeck) is here :).
+- **Project Status:** Bondi is still being worked on but am kinda out of ideas so pls if you have any ideas for me to add submit them [here](https://github.com/HttpAnimation/Bondi/issues/new).
 
 ![Bondi Screenshot](Photos/Screenshot%20from%202023-10-13%2019-50-41.png)
 
 Bondi is a versatile custom launcher designed to enhance your MacOS, Hackintosh, Linux, or Unix experience, providing powerful features to streamline your workflow and improve your desktop environment.
 
 ## Other parts
-- [Installation Commands.md](Installtion-Commands.md): Instructions for installing Bondi.
-- [Runners.md](Runners.md): A list of premade buttons for apps/games. | Note that this is no longer in use pls use the [website](https://httpanimation.github.io/Bondi/) insted.
+- [Installation Commands](Installtion-Commands.md): Instructions for installing Bondi.
+- [Runners](Runners.md): A list of premade buttons for apps/games. | Note that this is no longer in use pls use the [website](https://httpanimation.github.io/Bondi/) insted.
 - [Tweaks](Tweaks/README.md): Tweaks are a way to make Games.ini based of you're files.
-- [Setup Guide.md](Setup-Guide.md): The setup guide.
+- [Setup Guide](Setup-Guide.md): The setup guide.
 
 ## Installation
 
