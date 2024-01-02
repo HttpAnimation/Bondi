@@ -8,9 +8,9 @@ mkdir Steam\ generator && cd Steam\ generator && wget https://raw.githubusercont
 ```
 
 ## Running
-In the same place where you installed the Steam generator tweak run the command to run
+In the same place where you installed the Steam generator tweak run the command to run.
 ```
-bash Steamgen.sh
+./Steamgen.sh
 ```
 
 ## Other info
