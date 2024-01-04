@@ -1,7 +1,7 @@
 # Bondi 
 A custom Launcher for MacOS/Hackintosh and Linux/Unix.
 
-- **Project Status:** Bondi is still being worked on but am kinda out of ideas so pls if you have any ideas for me to add submit them [here](https://github.com/HttpAnimation/Bondi/issues/new).
+- **Project Status:** V9 is gonna be for stuff that an issue was opened for if you submit an issue with a request to add something they will most likely be added/fixed.
 
 ![Bondi Screenshot](Photos/Screenshot%20from%202023-10-13%2019-50-41.png)
 
@@ -9,8 +9,8 @@ Bondi is a versatile custom launcher designed to enhance your MacOS, Hackintosh,
 
 ## Other parts
 - [Installation Commands](Installtion-Commands.md): Instructions for installing Bondi.
-- [Runners](Runners.md): A list of premade buttons for apps/games. | Note that this is no longer in use pls use the [website](https://httpanimation.github.io/Bondi/) insted.
-- [Tweaks](Tweaks/README.md): Tweaks are a way to make Games.ini based of you're files.
+- [Runners](Runners.md): A list of premade buttons for apps/games. | Note that this is no longer in use pls use the [website](https://httpanimation.github.io/Bondi/) instead.
+- [Tweaks](Tweaks/README.md): Tweaks are a way to make Games.ini based on your files.
 - [Setup Guide](Setup-Guide.md): The setup guide.
 
 ## Installation
