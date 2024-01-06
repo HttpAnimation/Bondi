@@ -1,0 +1,9 @@
+[
+    {
+        "Version": "Version #",
+        "Sub-Folder": "V#",
+        "Github-Page": "URL",
+        "InstallCommand": "UnixCommand",
+        "Legacy": "False"
+    }
+]

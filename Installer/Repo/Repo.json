@@ -1,0 +1,9 @@
+[
+    {
+        "Version": "8",
+        "Sub-Folder": "V8",
+        "Github-Page": "https://github.com/HttpAnimation/Bondi/releases/tag/V8",
+        "InstallCommand": "wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/V8/Install.sh && chmod +x Install.sh && bash Install.sh",
+        "Legacy": "False"
+    }
+]
