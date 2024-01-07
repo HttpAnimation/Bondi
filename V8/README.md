@@ -29,5 +29,5 @@ There is no real plan of date that this will come out but it should come out of 
 ## Installing
 To install the beta open a terminal and run the following command
    ```
-   
+   mkdir Bondi && cd Bondi && mkdir Repo-Testing && cd Repo-Testing && mkdir Config && wget https://github.com/HttpAnimation/Bondi/raw/Repo-Testing/V8/Bondi.java && cd Config && wget https://github.com/HttpAnimation/Bondi/raw/Repo-Testing/V8/Config/Games.ini && wget https://github.com/HttpAnimation/Bondi/raw/Repo-Testing/V8/Config/Lightmode.ini && wget https://github.com/HttpAnimation/Bondi/raw/Repo-Testing/V8/Config/Repos.ini && wget https://github.com/HttpAnimation/Bondi/raw/Repo-Testing/V8/Config/SidebarWidth.ini && wget https://github.com/HttpAnimation/Bondi/raw/Repo-Testing/V8/Config/Update.ini && wget https://github.com/HttpAnimation/Bondi/raw/Repo-Testing/V8/Config/subsections.ini && cd ../ && javac Bondi.java
    ```
