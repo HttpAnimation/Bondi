@@ -10,9 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -28,11 +27,10 @@ import javax.swing.UIManager;
 
 
 public class Bondi extends JFrame {
-
+    private static final String UPDATE_CHECK_URL = "https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Version.ini";
     private static final String SUBSECTIONS_FILE_PATH = "Config/subsections.ini";
     private static final String GAMES_FILE_PATH = "Config/Games.ini";
     private static final String CONFIG_FILE_PATH = "Config/SidebarWidth.ini";
-    private static final String UPDATE_CHECK_URL = "https://raw.githubusercontent.com/HttpAnimation/Bondi/main/Version.ini";
     private static final String UPDATE_PREFERENCE_FILE_PATH = "Config/Update.ini";
 
     private List<String> categories = new ArrayList<>();
@@ -41,7 +39,13 @@ public class Bondi extends JFrame {
     private boolean darkMode = true;
     private int sidebarWidth = 230;
 
+    // Needed lists
     private List<Game> games = new ArrayList<>();
+    private List<Map<String, List<String>>> repos = new ArrayList<>();
+
+    private static boolean isWindows() {
+        return System.getProperty("os.name").toLowerCase().contains("win");
+    }
 
     public Bondi() {
         if (isWindows()) {
@@ -56,7 +60,7 @@ public class Bondi extends JFrame {
         System.out.println("https://github.com/HttpAnimation/Bondi");
         System.out.println("Bondi is made by: HttpAnimations");
         System.out.println("Bondi is now loading");
-        System.out.println("This verison of Bondi is a dev-branch for testing repos.");
+        System.out.println("This version of Bondi is a dev-branch for testing repos.");
 
         setTitle("Bondi Repo-Testing");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -91,6 +95,7 @@ public class Bondi extends JFrame {
         setMinimumSize(new Dimension(800, 600));
         loadCategories();
         checkForUpdate();
+        loadRepos();  // Added to load repos during initialization
     }
 
     private void checkForUpdate() {
@@ -102,10 +107,10 @@ public class Bondi extends JFrame {
                     if (!line.startsWith("#") && line.startsWith("version")) {
                         int remoteVersion = Integer.parseInt(line.split("=")[1].trim());
                         /// Version tag
-                        int localVersion = 34875487345879;
+                        int localVersion = 999;
                         // Below is the testing command if you need to force a lower version.
                         //int localVersion = 2; 
-                        System.out.println("Version's loadded");
+                        System.out.println("Version's loaded");
                         System.out.println("Bondi is now opening.");
                         if (localVersion < remoteVersion) {
                             showUpdatePrompt();
@@ -118,6 +123,25 @@ public class Bondi extends JFrame {
             logError("Error checking for updates", e);
         }
     }
+
+    private void loadCategories() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(SUBSECTIONS_FILE_PATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                categories.add(line.trim());
+            }
+        } catch (IOException e) {
+            logError("Error loading categories from " + SUBSECTIONS_FILE_PATH, e);
+        }
+    }
+
+    private void setSystemLookAndFeel() {
+    try {
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    } catch (Exception e) {
+        logError("Error setting system look and feel", e);
+    }
+}
 
     private void showUpdatePrompt() {
         try {
@@ -158,134 +182,64 @@ public class Bondi extends JFrame {
             logError("Error showing update prompt", e);
         }
     }
-    
-private void openUpdatePage() {
-    try {
-        String command = "firefox https://github.com/HttpAnimation/Bondi";
-        ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", command);
-        processBuilder.start();
-        System.exit(1);
-    } catch (IOException e) {
-        logError("Error opening update page: " + e.getMessage(), e);
-    }
-}
 
-
-    private boolean isWindows() {
-        String osName = System.getProperty("os.name").toLowerCase();
-        return osName.contains("win");
-    }
-
-    private void loadCategories() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(SUBSECTIONS_FILE_PATH))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                categories.add(line.trim());
-            }
-        } catch (IOException e) {
-            logError("Error loading categories from " + SUBSECTIONS_FILE_PATH, e);
-        }
-    }
-
-    @Override
-    public void setTitle(String title) {
-        super.setTitle(title);
-    }
-
-    @Override
-    public void setExtendedState(int state) {
-        super.setExtendedState(state);
-    }
-
-    @Override
-    public void setDefaultCloseOperation(int operation) {
-        super.setDefaultCloseOperation(operation);
-    }
-
-    private void setSystemLookAndFeel() {
+    private void openUpdatePage() {
         try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            logError("Error setting system look", e);
+            String command = "firefox https://github.com/HttpAnimation/Bondi";
+            ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", command);
+            processBuilder.start();
+            System.exit(1);
+        } catch (IOException e) {
+            logError("Error opening update page: " + e.getMessage(), e);
         }
     }
 
-    private class CategoryButtonListener implements ActionListener {
-        private String category;
-
-        public CategoryButtonListener(String category) {
-            this.category = category;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            displayGameButtonsForCategory(category);
-        }
-    }
-
-    private void displayGameButtonsForCategory(String category) {
-        gameButtonPanel.removeAll();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(GAMES_FILE_PATH))) {
+    private void loadRepos() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("Config/Repos.ini"))) {
             String line;
+            StringBuilder jsonContent = new StringBuilder();
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split("\\|");
-                if (parts.length >= 3) {
-                    String categoryPart = parts[0].trim();
-                    String gameNamePart = parts[1].trim();
-                    String commandPart = parts[2].trim();
-
-                    if (categoryPart.equals(category)) {
-                        JButton gameButton = new JButton(gameNamePart);
-                        gameButton.setFont(new Font("Arial", Font.PLAIN, 24));
-                        gameButton.addActionListener(e -> {
-                            try {
-                                ProcessBuilder pb = new ProcessBuilder("bash", "-c", commandPart);
-                                pb.start();
-                            } catch (IOException ex) {
-                                logError("Error executing game command sorry mate. : " + commandPart, ex);
-                            }
-                        });
-                        gameButton.setMargin(new Insets(10, 10, 10, 10));
-                        
-                        gameButtonPanel.add(gameButton);                        
-                    }
-                }
+                jsonContent.append(line).append("\n");
             }
+
+            parseRepos(jsonContent.toString());
         } catch (IOException e) {
-            logError("Error loading games from " + GAMES_FILE_PATH, e);
-        }
-
-        gameButtonPanel.revalidate();
-        gameButtonPanel.repaint();
-
-        subArea.removeAll();
-
-        subArea.add(gameButtonPanel, BorderLayout.CENTER);
-
-        subArea.revalidate();
-        subArea.repaint();
-    }
-
-    private void saveSidebarWidth(int width) {
-        try (FileWriter writer = new FileWriter(CONFIG_FILE_PATH)) {
-            writer.write(String.valueOf(width));
-        } catch (IOException e) {
-            logError("Error saving sidebar width to " + CONFIG_FILE_PATH, e);
+            logError("Error loading repos from Config/Repos.ini", e);
         }
     }
 
-    private void loadSidebarWidth() {
-        File configFile = new File(CONFIG_FILE_PATH);
-        if (configFile.exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(CONFIG_FILE_PATH))) {
-                String line = reader.readLine();
-                if (line != null && !line.isEmpty()) {
-                    sidebarWidth = Integer.parseInt(line);
+    private void parseRepos(String jsonContent) {
+        try {
+            List<Map<String, List<String>>> parsedRepos = new ArrayList<>();
+
+            // Remove square brackets from the JSON content
+            String cleanedJson = jsonContent.trim().substring(1, jsonContent.length() - 2);
+
+            // Split the content into each repository
+            String[] reposArray = cleanedJson.split("\\},\\s*\\{");
+
+            for (String repo : reposArray) {
+                Map<String, List<String>> repoMap = new HashMap<>();
+
+                // Split into subsections and games
+                String[] sections = repo.split(",\\s*");
+
+                for (String section : sections) {
+                    String[] keyValue = section.split(":\\s*\\[");
+                    String key = keyValue[0].trim().replace("\"", "");
+                    String[] values = keyValue[1].replace("\"", "").split(",\\s*");
+
+                    List<String> valueList = new ArrayList<>(Arrays.asList(values));
+                    repoMap.put(key, valueList);
                 }
-            } catch (IOException e) {
-                logError("Error loading sidebar width from " + CONFIG_FILE_PATH, e);
+
+                parsedRepos.add(repoMap);
             }
+
+            repos.addAll(parsedRepos);
+
+        } catch (Exception e) {
+            logError("Error parsing JSON content from Config/Repos.ini", e);
         }
     }
 
@@ -333,6 +287,61 @@ private void openUpdatePage() {
         addNewGame(category, gameName, command);
     }
 
+    private class CategoryButtonListener implements ActionListener {
+        private String category;
+
+        public CategoryButtonListener(String category) {
+            this.category = category;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            displayGameButtonsForCategory(category);
+        }
+    }
+
+    private void displayGameButtonsForCategory(String category) {
+        gameButtonPanel.removeAll();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(GAMES_FILE_PATH))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("\\|");
+                if (parts.length >= 3) {
+                    String categoryPart = parts[0].trim();
+                    String gameNamePart = parts[1].trim();
+                    String commandPart = parts[2].trim();
+
+                    if (categoryPart.equals(category)) {
+                        JButton gameButton = new JButton(gameNamePart);
+                        gameButton.setFont(new Font("Arial", Font.PLAIN, 24));
+                        gameButton.addActionListener(e -> {
+                            try {
+                                ProcessBuilder pb = new ProcessBuilder("bash", "-c", commandPart);
+                                pb.start();
+                            } catch (IOException ex) {
+                                logError("Error executing game command sorry mate. : " + commandPart, ex);
+                            }
+                        });
+                        gameButton.setMargin(new Insets(10, 10, 10, 10));
+                        
+                        gameButtonPanel.add(gameButton);                        
+                    }
+                }
+            }
+    } catch (IOException e) {
+        logError("Error loading games from " + GAMES_FILE_PATH, e);
+    }
+}
+
+    private void saveSidebarWidth(int width) {
+        try (FileWriter writer = new FileWriter(CONFIG_FILE_PATH)) {
+            writer.write(String.valueOf(width));
+        } catch (IOException e) {
+            logError("Error saving sidebar width to " + CONFIG_FILE_PATH, e);
+        }
+    }
+
     private void saveGamesToFile(List<Game> games, String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             for (Game game : games) {
@@ -363,6 +372,7 @@ private void openUpdatePage() {
 
     private static final Logger logger = Logger.getLogger(Bondi.class.getName());
 
+    
     private void logError(String message, Throwable e) {
         if (e != null) {
             logger.log(Level.SEVERE, message, e);
@@ -409,7 +419,6 @@ private void openUpdatePage() {
             launcher.setVisible(true);
         });
     }
-
 
     private void toggleDarkMode() {
         darkMode = !darkMode;
