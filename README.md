@@ -1,2 +1,2 @@
-# Bondi
-A custom launcher for linux made beacuse others suck
+# Repo-Testing
+This part of the Bondi Github is for testing repos
