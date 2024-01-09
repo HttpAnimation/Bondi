@@ -1,7 +1,7 @@
 [
     {
         "Version": "8",
-        "Name": "Version 8",
+        "Name": "Version-8",
         "Install-Command": "mkdir test cd && test"
     }
 ]
