@@ -4,8 +4,8 @@ This folder is the repo and client for the installer for bondi version each vers
 ## Installing
 To install open a terminal and run the following commnad this will auto make a sub folder there is no need for making one by hand.
 ```
-
+mkdir Bondi && cd Bondi && wget https://github.com/HttpAnimation/Bondi/raw/main/Bondi-Installer/Script.sh && chmod +x Script.sh && cd ../ && echo "Bondi-Installer is now downloaded to run enter cd Bondi then ./Script.sh"
 ```
 
 ## Updateing
-To update downlaod [this file here]() and replace you're **script.sh** and it then should be updated.
+To update downlaod [this file here](https://github.com/HttpAnimation/Bondi/raw/main/Bondi-Installer/Script.sh) and replace you're **script.sh** and it then should be updated a auto update script will most likly be added soon

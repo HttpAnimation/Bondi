@@ -1,0 +1,7 @@
+wirte a bash script that reads the file https://github.com/HttpAnimation/Bondi/raw/main/Bondi-Installer/Repo/Repo.json for json data the json data will look like this [
+    {
+        "Version": "V8",
+        "Name": "Version 8",
+        "Install-Command": "mkdir test cd && test"
+    }
+] have it so the bash script uses zenity for the ui and make it so it displayer the name of then a install button and when you click the install button it will run the Install-Command and if the folder of the Version is already there don't display the install button and display a uninstall button and when you click it it removed the folder and also display a button called Run that cd's into that folder then run java Bondi in there and also display a button two if it's installed called Compile withch runs javac Bondi.java in that dir note that more versions will be added 
