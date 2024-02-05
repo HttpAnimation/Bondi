@@ -28,5 +28,6 @@ rm Config/README.md
 echo "Done"
 
 # Done
+echo "Run | ./run"
 echo "Install script it now done now removing good bye mate."
 rm install.sh
