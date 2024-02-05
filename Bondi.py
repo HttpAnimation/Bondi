@@ -31,13 +31,13 @@ class BondiApp:
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
     def read_categories(self):
-        config = configparser.ConfigParser(allow_no_value=True)
-        config.read("Config/subsections.ini")
-
-        if not config.sections():
-            return [line.strip() for line in config.read("Config/subsections.ini")]
-
-        return config.sections()
+        categories = []
+        with open("Config/subsections.ini", "r") as file:
+            for line in file:
+                category = line.strip()
+                if category:
+                    categories.append(category)
+        return categories
 
     def read_games(self):
         games = []
@@ -53,6 +53,8 @@ class BondiApp:
         for category in self.categories:
             button = tk.Button(self.sidebar, text=category, command=lambda cat=category: self.display_game_buttons(cat))
             button.pack(fill=tk.X)
+            button.bind("<Button-1>", lambda event, cat=category: self.display_game_buttons(cat))
+
 
     def display_game_buttons(self, category):
         for widget in self.game_buttons_frame.winfo_children():
