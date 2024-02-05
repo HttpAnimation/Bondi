@@ -59,7 +59,7 @@ class BondiApp:
             name = game["name"]
             command = game["command"]
             button = tk.Button(self.game_buttons_frame, text=name, command=lambda cmd=command: self.run_command(cmd))
-            button.pack(side=tk.TOP)  # Align buttons at the top
+            button.pack(side=tk.TOP)  
 
     def run_command(self, command):
         os.system(command)
