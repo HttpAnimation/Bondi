@@ -2,9 +2,6 @@ import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 import json
 
-def simple_input(title, prompt, default=""):
-    return simpledialog.askstring(title, prompt, initialvalue=default)
-
 class JsonEditorApp:
     def __init__(self):
         self.root = tk.Tk()
@@ -13,17 +10,13 @@ class JsonEditorApp:
         # Dark mode color scheme
         self.root.configure(bg="#1e1e1e")
         self.tree = ttk.Treeview(self.root, style="Treeview")
-        self.tree.tag_configure("selected", background="#2255AA", foreground="white")
-
         self.tree["columns"] = ("Name", "Command")
         self.tree.column("#0", width=100, minwidth=100, stretch=tk.NO)
         self.tree.column("Name", anchor=tk.W, width=100)
         self.tree.column("Command", anchor=tk.W, width=200)
-
         self.tree.heading("#0", text="Category")
         self.tree.heading("Name", text="Name")
         self.tree.heading("Command", text="Command")
-
         self.tree.bind("<ButtonRelease-1>", self.on_tree_select)
 
         self.tree.pack(fill=tk.BOTH, expand=True)
@@ -64,8 +57,7 @@ class JsonEditorApp:
     def on_tree_select(self, event):
         selected_item = self.tree.selection()
         if selected_item:
-            self.tree.tag_configure("selected", background="#2255AA", foreground="white")
-            self.tree.tag_add("selected", selected_item)
+            self.tree.selection_set(selected_item)
             self.selected_category = self.tree.item(selected_item, "text")
             self.selected_game = self.tree.item(selected_item, "values")
         else:
@@ -76,8 +68,8 @@ class JsonEditorApp:
         if not self.selected_category or not self.selected_game:
             return
 
-        new_name = simple_input("Edit Name", "Enter new name:", default=self.selected_game[0])
-        new_command = simple_input("Edit Command", "Enter new command:", default=self.selected_game[1])
+        new_name = simpledialog.askstring("Edit Name", "Enter new name:", initialvalue=self.selected_game[0])
+        new_command = simpledialog.askstring("Edit Command", "Enter new command:", initialvalue=self.selected_game[1])
 
         if new_name is not None and new_command is not None:
             for game in self.data[self.selected_category]:
@@ -101,12 +93,12 @@ class JsonEditorApp:
             self.refresh_tree()
 
     def add_entry(self):
-        new_category = simple_input("Add Category", "Enter new category:")
+        new_category = simpledialog.askstring("Add Category", "Enter new category:")
         if new_category is not None:
             if new_category not in self.data:
                 self.data[new_category] = []
-            new_name = simple_input("Add Name", "Enter name:")
-            new_command = simple_input("Add Command", "Enter command:")
+            new_name = simpledialog.askstring("Add Name", "Enter name:")
+            new_command = simpledialog.askstring("Add Command", "Enter command:")
             if new_name is not None and new_command is not None:
                 self.data[new_category].append({"name": new_name, "command": new_command})
                 self.refresh_tree()
