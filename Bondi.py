@@ -31,17 +31,19 @@ def load_category_games(category):
 def on_sidebar_click(category):
     load_category_games(category)
 
+pygame.init()
+screen = pygame.display.set_mode((1, 1), pygame.FULLSCREEN)
+pygame.mouse.set_visible(False)
+
 config_subsections = ConfigParser()
 config_subsections.read('subsections.ini')
 categories = config_subsections.sections()
 
 root = tk.Tk()
 root.title("Bondi")
-root.geometry("800x600")
-
-pygame.init()
-pygame.display.set_mode((1, 1), pygame.FULLSCREEN)
-pygame.mouse.set_visible(False)
+root.attributes("-fullscreen", True)
+root.wm_attributes("-topmost", True)
+root.attributes("-disabled", True)
 
 sidebar = ttk.Frame(root, width=150, bg='black')
 sidebar.pack(side=tk.LEFT, fill=tk.Y)
