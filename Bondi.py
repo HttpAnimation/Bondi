@@ -8,7 +8,7 @@ class BondiApp:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("Bondi")
-        self.root.geometry("800x600")
+        self.root.attributes('-fullscreen', True)  # Make the window full screen
 
         pygame.init()
 
