@@ -2,6 +2,9 @@ import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 import json
 
+def simple_input(title, prompt, default=""):
+    return simpledialog.askstring(title, prompt, initialvalue=default)
+
 class JsonEditorApp:
     def __init__(self):
         self.root = tk.Tk()
