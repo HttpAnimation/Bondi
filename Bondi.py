@@ -32,13 +32,20 @@ class BondiApp:
 
     def read_categories(self):
         config = configparser.ConfigParser(allow_no_value=True)
-        config.read("Config/subsections.ini")
+        config.optionxform = str  # Preserve case sensitivity
 
-        # Check if the file has section headers, else assume each line is a category
-        if not config.sections():
-            return [line.strip() for line in config.read("Config/subsections.ini")]
+        try:
+            config.read("Config/subsections.ini")
 
-        return config.sections()
+            # Check if the file has section headers, else assume each line is a category
+            if not config.sections():
+                return [line.strip() for line in config.read("Config/subsections.ini")]
+
+            return config.sections()
+        except configparser.MissingSectionHeaderError:
+            # Handle the case where the file doesn't have section headers
+            with open("Config/subsections.ini") as f:
+                return [line.strip() for line in f if line.strip()]
 
     def read_games(self):
         games = []
