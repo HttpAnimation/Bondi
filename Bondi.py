@@ -50,7 +50,7 @@ class BondiApp:
 
     def create_sidebar_buttons(self):
         for category in self.categories:
-            button = tk.Button(self.sidebar, text=category, command=lambda cat=category: self.display_game_buttons(cat), bg="#333", fg="white")
+            button = tk.Button(self.sidebar, text=category, command=lambda cat=category: self.display_game_buttons(cat), bg="#333", fg="white", font=("Helvetica", 14))
             button.pack(fill=tk.X)
 
     def display_game_buttons(self, category):
@@ -62,7 +62,7 @@ class BondiApp:
         for game in category_games:
             name = game["name"]
             command = game["command"]
-            button = tk.Button(self.game_buttons_frame, text=name, command=lambda cmd=command: self.run_command(cmd), bg="#333", fg="white")
+            button = tk.Button(self.game_buttons_frame, text=name, command=lambda cmd=command: self.run_command(cmd), bg="#333", fg="white", font=("Helvetica", 16))
             button.pack(side=tk.TOP, anchor='w')
 
     def run_command(self, command):
