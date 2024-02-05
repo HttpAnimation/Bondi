@@ -40,13 +40,16 @@ root.attributes("-fullscreen", True)
 root.attributes("-topmost", True)
 root.attributes("-alpha", 0.0)
 
-sidebar = ttk.Frame(root, width=150, bg='black')
+style = ttk.Style()
+style.configure("TFrame", background="black")
+sidebar = ttk.Frame(root, width=150, style="TFrame")
 sidebar.pack(side=tk.LEFT, fill=tk.Y)
 
 for category in categories:
     button = ttk.Button(sidebar, text=category, command=lambda c=category: on_sidebar_click(c))
     button.pack(fill=tk.X, padx=10, pady=10)
 
-game_frame = ttk.Frame(root, width=650, height=600, bg='black')
+game_frame = ttk.Frame(root, width=650, height=600, style="TFrame")
+game_frame.pack()
 
 root.mainloop()
