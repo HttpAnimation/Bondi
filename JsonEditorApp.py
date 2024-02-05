@@ -34,7 +34,6 @@ class JsonEditorApp:
         self.save_button = tk.Button(self.root, text="Save", command=self.save_json, bg="#333", fg="white")
         self.save_button.pack(side=tk.LEFT, padx=5)
 
-        # Dark mode style
         style = ttk.Style(self.root)
         style.configure("Treeview", background="#1e1e1e", fieldbackground="#1e1e1e", foreground="white", bordercolor="#1e1e1e", lightcolor="#1e1e1e", darkcolor="#1e1e1e", troughcolor="#1e1e1e")
 
