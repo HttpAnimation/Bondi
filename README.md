@@ -1,7 +1,7 @@
 # Bondi 
 A custom Launcher for MacOS/Hackintosh and Linux/Unix.
 
-- **Project Status:** V9 is gonna be for stuff that an issue was opened for if you submit an issue with a request to add something they will most likely be added/fixed.
+- **Project Status:** Sorry mates for the wait but due to the code being so clatterd Bondi V9 is cancled and insted a rewrite a will be drivin in python3 and all features and data will be ported over just the backend.
 
 ![Bondi Screenshot](Photos/Screenshot%20from%202023-10-13%2019-50-41.png)
 
