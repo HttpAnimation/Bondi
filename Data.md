@@ -47,3 +47,7 @@ This file just holds the Catagory's on where the buttons will go a file may look
 5) Have buttons go left to right and if they are about to go off screen it will go to the next line
 
 6) Have all the UI scale to the screen size 
+
+
+## Data
+Write a python3 script that reads the file subsections.ini then read the Games.ini use the subsections.ini for catagory's and have the Games.ini where the buttons get loaded
