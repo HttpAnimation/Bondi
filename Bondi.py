@@ -28,6 +28,10 @@ class BondiApp:
         self.sub_area.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
         self.game_buttons_frame.pack(fill=tk.BOTH, expand=True)
 
+        # Add a dividing line between sidebar and main buttons
+        self.divider = tk.Canvas(self.root, width=2, height=600, bg="#333")
+        self.divider.pack(side=tk.LEFT)
+
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
     def read_categories(self):
