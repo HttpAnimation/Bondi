@@ -18,6 +18,7 @@ class JsonEditorApp:
         self.tree.heading("Name", text="Name")
         self.tree.heading("Command", text="Command")
         self.tree.bind("<ButtonRelease-1>", self.on_tree_select)
+        self.tree.bind("<Double-Button-1>", self.edit_selected_double_click)  # Added binding for double-click
 
         self.tree.pack(fill=tk.BOTH, expand=True)
 
@@ -63,6 +64,9 @@ class JsonEditorApp:
         else:
             self.selected_category = None
             self.selected_game = None
+
+    def edit_selected_double_click(self, event):
+        self.edit_selected()
 
     def edit_selected(self):
         if not self.selected_category or not self.selected_game:
