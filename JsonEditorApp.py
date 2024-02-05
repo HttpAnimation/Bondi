@@ -9,7 +9,9 @@ class JsonEditorApp:
 
         # Dark mode color scheme
         self.root.configure(bg="#1e1e1e")
-        self.tree = ttk.Treeview(self.root, style="Treeview", selectbackground="#2255AA", selectforeground="white")
+        self.tree = ttk.Treeview(self.root, style="Treeview")
+        self.tree.tag_configure("selected", background="#2255AA", foreground="white")
+
         self.tree["columns"] = ("Name", "Command")
         self.tree.column("#0", width=100, minwidth=100, stretch=tk.NO)
         self.tree.column("Name", anchor=tk.W, width=100)
@@ -59,6 +61,8 @@ class JsonEditorApp:
     def on_tree_select(self, event):
         selected_item = self.tree.selection()
         if selected_item:
+            self.tree.tag_configure("selected", background="#2255AA", foreground="white")
+            self.tree.tag_add("selected", selected_item)
             self.selected_category = self.tree.item(selected_item, "text")
             self.selected_game = self.tree.item(selected_item, "values")
         else:
