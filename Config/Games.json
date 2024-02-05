@@ -2,7 +2,7 @@
   "Starting": [
     {
       "name": "Click me to get started",
-      "command": "firefox https://github.com/HttpAnimation/Bondi/"
+      "command": "firefox https://github.com/HttpAnimation/Bondi/main/"
     }
   ]
 }
