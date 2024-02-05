@@ -56,7 +56,7 @@ class BondiApp:
             button = tk.Button(self.sidebar, text=category, command=lambda cat=category: self.display_game_buttons(cat), bg="#333", fg="white", font=("Helvetica", 14))
             button.pack(fill=tk.X)
 
-        self.init_joysticks()  # Initialize joysticks after creating sidebar buttons
+        self.init_joysticks() 
 
     def init_joysticks(self):
         joystick_count = pygame.joystick.get_count()
@@ -67,9 +67,9 @@ class BondiApp:
 
     def handle_joystick_navigation(self, event):
         if event.type == pygame.JOYBUTTONDOWN:
-            if event.button == 0:  # Change joystick on button press
+            if event.button == 0: 
                 self.current_joystick_index = (self.current_joystick_index + 1) % len(self.joysticks)
-                self.display_game_buttons(self.categories[0])  # Refresh the displayed buttons
+                self.display_game_buttons(self.categories[0])  
 
     def display_game_buttons(self, category):
         for widget in self.game_buttons_frame.winfo_children():
@@ -110,10 +110,10 @@ class BondiApp:
         self.dark_mode = not self.dark_mode
 
     def run(self):
-        self.root.bind("<Key>", self.handle_key_press)  # Bind key press event
-        pygame.event.set_allowed([pygame.JOYBUTTONDOWN, pygame.JOYHATMOTION])  # Allow specific joystick events
+        self.root.bind("<Key>", self.handle_key_press)  
+        pygame.event.set_allowed([pygame.JOYBUTTONDOWN, pygame.JOYHATMOTION]) 
         pygame.joystick.get_init()  
-        self.root.after(100, self.check_joystick_events)  # Check joystick events every 100 milliseconds
+        self.root.after(100, self.check_joystick_events) 
         self.root.mainloop()
 
     def handle_key_press(self, event):
@@ -121,10 +121,10 @@ class BondiApp:
             self.root.destroy()
 
     def check_joystick_events(self):
-        pygame.event.pump()  # Pump the event queue
+        pygame.event.pump()  
         for event in pygame.event.get():
-            self.handle_joystick_navigation(event)  # Handle joystick navigation
-        self.root.after(100, self.check_joystick_events)  # Schedule the next check
+            self.handle_joystick_navigation(event) 
+        self.root.after(100, self.check_joystick_events)  
 
 if __name__ == "__main__":
     if not os.path.exists("LICENSE"):

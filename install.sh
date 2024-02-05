@@ -26,6 +26,9 @@ echo "Done"
 echo "Removing Config/README.md"
 rm Config/README.md
 echo "Done"
+echo "Removing remove_comments.py"
+rm remove_comments.py
+echo "Done"
 
 # Done
 echo "Run | ./run"
