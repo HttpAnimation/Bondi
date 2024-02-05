@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox, simpledialog
 import json
+import os
 
 class JsonEditorApp:
     def __init__(self):
@@ -116,5 +117,8 @@ class JsonEditorApp:
         self.root.mainloop()
 
 if __name__ == "__main__":
-    app = JsonEditorApp()
-    app.run()
+    if not os.path.exists("LICENSE"):
+        messagebox.showerror("Error", "LICENSE file not found. Cannot run the application with out this pls redownload or update.")
+    else:
+        app = JsonEditorApp()
+        app.run()
