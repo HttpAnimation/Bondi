@@ -1,0 +1,18 @@
+{
+    "Starting": [
+      {"name": "Click me to get started", "command": "firefox https://github.com/HttpAnimation/Bondi/"}
+    ],
+    "Games": [
+      {"name": "Game One", "command": "your_command_here"},
+      {"name": "Game Two", "command": "your_command_here"}
+    ],
+    "Websites": [
+      {"name": "Website One", "command": "your_command_here"},
+      {"name": "Website Two", "command": "your_command_here"}
+    ],
+    "Apps": [
+      {"name": "App One", "command": "your_command_here"},
+      {"name": "App Two", "command": "your_command_here"}
+    ]
+  }
+  
