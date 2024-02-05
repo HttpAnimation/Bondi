@@ -18,9 +18,9 @@ class BondiApp:
         self.dark_mode = True
         self.sidebar_width = 230
 
-        self.sidebar = tk.Frame(self.root, width=self.sidebar_width, bg="darkgray")
-        self.sub_area = tk.Frame(self.root, bg="gray")
-        self.game_buttons_frame = tk.Frame(self.sub_area, bg="gray")
+        self.sidebar = tk.Frame(self.root, width=self.sidebar_width, bg="#1e1e1e")
+        self.sub_area = tk.Frame(self.root, bg="#1e1e1e")
+        self.game_buttons_frame = tk.Frame(self.sub_area, bg="#1e1e1e")
 
         self.create_sidebar_buttons()
 
@@ -46,7 +46,7 @@ class BondiApp:
 
     def create_sidebar_buttons(self):
         for category in self.categories:
-            button = tk.Button(self.sidebar, text=category, command=lambda cat=category: self.display_game_buttons(cat))
+            button = tk.Button(self.sidebar, text=category, command=lambda cat=category: self.display_game_buttons(cat), bg="#333", fg="white")
             button.pack(fill=tk.X)
 
     def display_game_buttons(self, category):
@@ -58,7 +58,7 @@ class BondiApp:
         for game in category_games:
             name = game["name"]
             command = game["command"]
-            button = tk.Button(self.game_buttons_frame, text=name, command=lambda cmd=command: self.run_command(cmd))
+            button = tk.Button(self.game_buttons_frame, text=name, command=lambda cmd=command: self.run_command(cmd), bg="#333", fg="white")
             button.pack(side=tk.TOP, anchor='w')
 
     def run_command(self, command):
