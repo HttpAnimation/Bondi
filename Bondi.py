@@ -31,8 +31,13 @@ class BondiApp:
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
     def read_categories(self):
-        config = configparser.ConfigParser()
+        config = configparser.ConfigParser(allow_no_value=True)
         config.read("Config/subsections.ini")
+
+        # Check if the file has section headers, else assume each line is a category
+        if not config.sections():
+            return [line.strip() for line in config.read("Config/subsections.ini")]
+
         return config.sections()
 
     def read_games(self):
