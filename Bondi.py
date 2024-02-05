@@ -69,8 +69,25 @@ class BondiApp:
         os.system(command)
 
     def on_close(self):
-        if messagebox.askokcancel("Quit", "Are you sure you want to leave mate?", bg="#1e1e1e", fg="white"):
-            self.root.destroy()
+        quit_dialog = tk.Toplevel(self.root)
+        quit_dialog.title("Quit")
+        quit_dialog.configure(bg="#1e1e1e")
+
+        label = tk.Label(quit_dialog, text="Are you sure you want to leave mate?", bg="#1e1e1e", fg="white")
+        label.pack(padx=20, pady=10)
+
+        button_frame = tk.Frame(quit_dialog, bg="#1e1e1e")
+        button_frame.pack(pady=10)
+
+        yes_button = tk.Button(button_frame, text="Yes", command=self.root.destroy, bg="#333", fg="white", padx=10)
+        yes_button.pack(side=tk.LEFT)
+
+        no_button = tk.Button(button_frame, text="No", command=quit_dialog.destroy, bg="#333", fg="white", padx=10)
+        no_button.pack(side=tk.RIGHT)
+
+        quit_dialog.transient(self.root)
+        quit_dialog.grab_set()
+        self.root.wait_window(quit_dialog)
 
     def toggle_dark_mode(self):
         self.dark_mode = not self.dark_mode
