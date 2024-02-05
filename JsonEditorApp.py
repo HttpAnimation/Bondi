@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, simpledialog
 import json
 
 class JsonEditorApp:
@@ -7,9 +7,11 @@ class JsonEditorApp:
         self.root = tk.Tk()
         self.root.title("JSON Editor")
 
-        self.tree = ttk.Treeview(self.root)
+        # Dark mode color scheme
+        self.root.configure(bg="#1e1e1e")
+        self.tree = ttk.Treeview(self.root, style="Treeview", selectbackground="#2255AA", selectforeground="white")
         self.tree["columns"] = ("Name", "Command")
-        self.tree.column("#0", width=100, minwidth=100)
+        self.tree.column("#0", width=100, minwidth=100, stretch=tk.NO)
         self.tree.column("Name", anchor=tk.W, width=100)
         self.tree.column("Command", anchor=tk.W, width=200)
 
@@ -21,17 +23,21 @@ class JsonEditorApp:
 
         self.tree.pack(fill=tk.BOTH, expand=True)
 
-        self.edit_button = tk.Button(self.root, text="Edit", command=self.edit_selected)
+        self.edit_button = tk.Button(self.root, text="Edit", command=self.edit_selected, bg="#333", fg="white")
         self.edit_button.pack(side=tk.LEFT, padx=5)
 
-        self.delete_button = tk.Button(self.root, text="Delete", command=self.delete_selected)
+        self.delete_button = tk.Button(self.root, text="Delete", command=self.delete_selected, bg="#333", fg="white")
         self.delete_button.pack(side=tk.LEFT, padx=5)
 
-        self.add_button = tk.Button(self.root, text="Add", command=self.add_entry)
+        self.add_button = tk.Button(self.root, text="Add", command=self.add_entry, bg="#333", fg="white")
         self.add_button.pack(side=tk.LEFT, padx=5)
 
-        self.save_button = tk.Button(self.root, text="Save", command=self.save_json)
+        self.save_button = tk.Button(self.root, text="Save", command=self.save_json, bg="#333", fg="white")
         self.save_button.pack(side=tk.LEFT, padx=5)
+
+        # Dark mode style
+        style = ttk.Style(self.root)
+        style.configure("Treeview", background="#1e1e1e", fieldbackground="#1e1e1e", foreground="white", bordercolor="#1e1e1e", lightcolor="#1e1e1e", darkcolor="#1e1e1e", troughcolor="#1e1e1e")
 
         self.load_json()
 
@@ -105,10 +111,6 @@ class JsonEditorApp:
 
     def run(self):
         self.root.mainloop()
-
-def simple_input(title, prompt, default=""):
-    result = simpledialog.askstring(title, prompt, initialvalue=default)
-    return result if result is not None else default
 
 if __name__ == "__main__":
     app = JsonEditorApp()
