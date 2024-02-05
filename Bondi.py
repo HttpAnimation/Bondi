@@ -41,14 +41,18 @@ class BondiApp:
         return config.sections()
 
     def read_games(self):
-        games = []
-        config = configparser.ConfigParser()
-        config.read_string("[Default]\n" + open("Config/Games.ini").read())
-        for section in config.sections():
-            for option in config.options(section):
-                game_info = config.get(section, option)
-                games.append((section, option, game_info))
-        return games
+    games = []
+    config = configparser.ConfigParser()
+    config.read_string("[Default]\n" + open("Config/Games.ini").read())
+    for section in config.sections():
+        for option in config.options(section):
+            game_info = config.get(section, option)
+            parts = [part.strip() for part in game_info.split('|')]
+            if len(parts) >= 2:
+                game_name, launch_command = parts[0], parts[1]
+                games.append((section, game_name, launch_command))
+    return games
+
 
     def create_sidebar_buttons(self):
         for category in self.categories:
