@@ -1,55 +1,78 @@
 import tkinter as tk
-from tkinter import ttk
-from configparser import ConfigParser
+from tkinter import messagebox
+import pygame
+import configparser
+import os
 
-def run_command(command):
-    print(f"Running command: {command}")
+class BondiApp:
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.title("Bondi")
+        self.root.geometry("800x600")
 
-def load_category_games(category):
-    game_frame.destroy()
-    game_frame.pack_forget()
+        pygame.init()
 
-    game_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=20, pady=20)
+        self.subsections = self.read_subsections()
+        self.games = self.read_games()
 
-    config = ConfigParser()
-    config.read('Games.ini')
+        self.dark_mode = True
+        self.sidebar_width = 230
 
-    games = config.items(category)
+        self.sidebar = tk.Frame(self.root, width=self.sidebar_width, bg="darkgray")
+        self.sub_area = tk.Frame(self.root, bg="gray")
+        self.game_buttons_frame = tk.Frame(self.sub_area, bg="gray")
 
-    row = 0
-    col = 0
-    for name, command in games:
-        button = ttk.Button(game_frame, text=name, command=lambda c=command: run_command(c))
-        button.grid(row=row, column=col, padx=10, pady=10)
+        self.create_sidebar_buttons()
 
-        col += 1
-        if col > 2:
-            col = 0
-            row += 1
+        self.sidebar.pack(side=tk.LEFT, fill=tk.Y)
+        self.sub_area.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
+        self.game_buttons_frame.pack(fill=tk.BOTH, expand=True)
 
-def on_sidebar_click(category):
-    load_category_games(category)
+        self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
-config_subsections = ConfigParser()
-config_subsections.read('subsections.ini')
-categories = config_subsections.sections()
+    def read_subsections(self):
+        config = configparser.ConfigParser()
+        config.read("Config/subsections.ini")
+        return config.sections()
 
-root = tk.Tk()
-root.title("Bondi")
-root.attributes("-fullscreen", True)
-root.attributes("-topmost", True)
-root.attributes("-alpha", 0.0)
+    def read_games(self):
+        games = []
+        config = configparser.ConfigParser()
+        config.read("Config/Games.ini")
+        for section in config.sections():
+            for option in config.options(section):
+                game_info = config.get(section, option)
+                games.append((section, option, game_info))
+        return games
 
-style = ttk.Style()
-style.configure("TFrame", background="black")
-sidebar = ttk.Frame(root, width=150, style="TFrame")
-sidebar.pack(side=tk.LEFT, fill=tk.Y)
+    def create_sidebar_buttons(self):
+        for category in self.subsections:
+            button = tk.Button(self.sidebar, text=category, command=lambda cat=category: self.display_game_buttons(cat))
+            button.pack(fill=tk.X)
 
-for category in categories:
-    button = ttk.Button(sidebar, text=category, command=lambda c=category: on_sidebar_click(c))
-    button.pack(fill=tk.X, padx=10, pady=10)
+    def display_game_buttons(self, category):
+        for widget in self.game_buttons_frame.winfo_children():
+            widget.destroy()
 
-game_frame = ttk.Frame(root, width=650, height=600, style="TFrame")
-game_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=20, pady=20)
+        category_games = [(name, command) for cat, name, command in self.games if cat == category]
 
-root.mainloop()
+        for name, command in category_games:
+            button = tk.Button(self.game_buttons_frame, text=name, command=lambda cmd=command: self.run_command(cmd))
+            button.pack(side=tk.LEFT)
+
+    def run_command(self, command):
+        os.system(command)
+
+    def on_close(self):
+        if messagebox.askokcancel("Quit", "Do you really want to quit?"):
+            self.root.destroy()
+
+    def toggle_dark_mode(self):
+        self.dark_mode = not self.dark_mode
+
+    def run(self):
+        self.root.mainloop()
+
+if __name__ == "__main__":
+    app = BondiApp()
+    app.run()
