@@ -30,6 +30,15 @@ echo "Removing remove_comments.py"
 rm remove_comments.py
 echo "Done"
 
+# Pips
+echo "Downloading pips"
+echo "Downloading tk"
+pip install tk
+echo "Done"
+echo "Downloading pygame"
+pip install pygame
+echo "Done"
+
 # Done
 echo "Run | ./run"
 echo "Install script it now done now removing good bye mate."
