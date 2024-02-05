@@ -29,6 +29,9 @@ echo "Done"
 echo "Removing remove_comments.py"
 rm remove_comments.py
 echo "Done"
+echo "Removing Installing.md"
+rm Installing.md
+echo "Done"
 
 # Pips
 echo "Downloading pips"
