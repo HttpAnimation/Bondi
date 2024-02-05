@@ -9,7 +9,7 @@ def load_category_games(category):
     game_frame.destroy()
     game_frame.pack_forget()
 
-    game_frame.pack(side=tk.LEFT, padx=20, pady=20)
+    game_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=20, pady=20)
 
     config = ConfigParser()
     config.read('Games.ini')
@@ -50,6 +50,6 @@ for category in categories:
     button.pack(fill=tk.X, padx=10, pady=10)
 
 game_frame = ttk.Frame(root, width=650, height=600, style="TFrame")
-game_frame.pack()
+game_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=20, pady=20)
 
 root.mainloop()
