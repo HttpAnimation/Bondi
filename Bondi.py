@@ -70,7 +70,6 @@ class BondiApp:
 
     def on_close(self):
         quit_dialog = tk.Toplevel(self.root)
-        quit_dialog.title("Quit")
         quit_dialog.configure(bg="#1e1e1e")
 
         label = tk.Label(quit_dialog, text="Are you sure you want to leave mate?", bg="#1e1e1e", fg="white")
