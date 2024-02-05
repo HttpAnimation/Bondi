@@ -56,8 +56,12 @@ class BondiApp:
 
 
     def display_game_buttons(self, category):
-        for widget in self.game_buttons_frame.winfo_children():
-            widget.destroy()
+        print(f"Displaying games for category: {category}")
+
+        for name, command in self.games:
+            if category == name:  # Adjust this condition based on your actual file structure
+                print(f"Name: {name}, Command: {command}")
+
 
         category_games = [(name, command) for cat, name, command in self.games if cat == category]
 
