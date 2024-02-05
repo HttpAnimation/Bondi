@@ -55,6 +55,12 @@ class BondiApp:
             button.pack(fill=tk.X)
 
     def display_game_buttons(self, category):
+    print(f"Displaying games for category: {category}")
+
+    for cat, name, command in self.games:
+        print(f"Category: {cat}, Name: {name}, Command: {command}")
+
+        print("End of games for category")
         print(f"Displaying games for category: {category}")
 
         for cat, name, command in self.games:
