@@ -69,7 +69,7 @@ class BondiApp:
         os.system(command)
 
     def on_close(self):
-        if messagebox.askokcancel("Quit", "Do you really want to quit?"):
+        if messagebox.askokcancel("Quit", "Are you sure you want to leave mate?"):
             self.root.destroy()
 
     def toggle_dark_mode(self):
