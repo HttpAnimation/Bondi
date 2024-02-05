@@ -51,9 +51,8 @@ class BondiApp:
 
     def create_sidebar_buttons(self):
         for category in self.categories:
-            button = tk.Button(self.sidebar, text=category, command=lambda cat=category: self.display_game_buttons(cat))
+            button = tk.Button(self.sidebar, text=category, command=lambda cat=category: print(f"Clicked: {cat}"))
             button.pack(fill=tk.X)
-            button.bind("<Button-1>", lambda event, cat=category: self.display_game_buttons(cat))
 
 
     def display_game_buttons(self, category):
