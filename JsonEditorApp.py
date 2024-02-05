@@ -18,7 +18,7 @@ class JsonEditorApp:
         self.tree.heading("Name", text="Name")
         self.tree.heading("Command", text="Command")
         self.tree.bind("<ButtonRelease-1>", self.on_tree_select)
-        self.tree.bind("<Double-Button-1>", self.edit_selected_double_click)  # Added binding for double-click
+        self.tree.bind("<Double-Button-1>", self.edit_selected_double_click) 
 
         self.tree.pack(fill=tk.BOTH, expand=True)
 
