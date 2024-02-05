@@ -12,7 +12,7 @@ class BondiApp:
 
         pygame.init()
 
-        self.subsections = self.read_subsections()
+        self.categories = self.read_categories()
         self.games = self.read_games()
 
         self.dark_mode = True
@@ -30,7 +30,7 @@ class BondiApp:
 
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
-    def read_subsections(self):
+    def read_categories(self):
         config = configparser.ConfigParser()
         config.read("Config/subsections.ini")
         return config.sections()
@@ -46,7 +46,7 @@ class BondiApp:
         return games
 
     def create_sidebar_buttons(self):
-        for category in self.subsections:
+        for category in self.categories:
             button = tk.Button(self.sidebar, text=category, command=lambda cat=category: self.display_game_buttons(cat))
             button.pack(fill=tk.X)
 
