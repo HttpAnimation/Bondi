@@ -54,13 +54,14 @@ class BondiApp:
             button = tk.Button(self.sidebar, text=category, command=lambda cat=category: print(f"Clicked: {cat}"))
             button.pack(fill=tk.X)
 
-
     def display_game_buttons(self, category):
         print(f"Displaying games for category: {category}")
 
-        for name, command in self.games:
-            if category == name:  # Adjust this condition based on your actual file structure
+        for cat, name, command in self.games:
+            if cat == category:
                 print(f"Name: {name}, Command: {command}")
+
+        print("End of games for category")
 
 
         category_games = [(name, command) for cat, name, command in self.games if cat == category]
