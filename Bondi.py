@@ -43,7 +43,7 @@ class BondiApp:
     def read_games(self):
         games = []
         config = configparser.ConfigParser()
-        config.read("Config/Games.ini")
+        config.read_string("[Default]\n" + open("Config/Games.ini").read())
         for section in config.sections():
             for option in config.options(section):
                 game_info = config.get(section, option)
