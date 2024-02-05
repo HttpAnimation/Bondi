@@ -31,50 +31,38 @@ class BondiApp:
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
     def read_categories(self):
-        categories = []
-        with open("Config/subsections.ini", "r") as file:
-            for line in file:
-                category = line.strip()
-                if category:
-                    categories.append(category)
-        return categories
+        config = configparser.ConfigParser(allow_no_value=True)
+        config.read("Config/subsections.ini")
+
+        # Check if the file has section headers, else assume each line is a category
+        if not config.sections():
+            return [line.strip() for line in config.read("Config/subsections.ini")]
+
+        return config.sections()
 
     def read_games(self):
         games = []
-        with open("Config/Games.ini", "r") as file:
-            for line in file:
-                parts = [part.strip() for part in line.split('|')]
-                if len(parts) >= 3:
-                    category, game_name, launch_command = parts[0], parts[1], parts[2]
-                    games.append((category, game_name, launch_command))
+        config = configparser.ConfigParser()
+        config.read_string("[Default]\n" + open("Config/Games.ini").read())
+        for section in config.sections():
+            for option in config.options(section):
+                game_info = config.get(section, option)
+                games.append((section, option, game_info))
         return games
 
     def create_sidebar_buttons(self):
         for category in self.categories:
-            button = tk.Button(self.sidebar, text=category, command=lambda cat=category: print(f"Clicked: {cat}"))
+            button = tk.Button(self.sidebar, text=category, command=lambda cat=category: self.display_game_buttons(cat))
             button.pack(fill=tk.X)
+            button.bind("<Button-1>", lambda event, cat=category: self.display_game_buttons(cat))
 
     def display_game_buttons(self, category):
-    print(f"Displaying games for category: {category}")
-
-    for cat, name, command in self.games:
-        print(f"Category: {cat}, Name: {name}, Command: {command}")
-
-        print("End of games for category")
         print(f"Displaying games for category: {category}")
 
         for cat, name, command in self.games:
-            if cat == category:
-                print(f"Name: {name}, Command: {command}")
+            print(f"Category: {cat}, Name: {name}, Command: {command}")
 
         print("End of games for category")
-
-
-        category_games = [(name, command) for cat, name, command in self.games if cat == category]
-
-        for name, command in category_games:
-            button = tk.Button(self.game_buttons_frame, text=name, command=lambda cmd=command: self.run_command(cmd))
-            button.pack(side=tk.LEFT)
 
     def run_command(self, command):
         os.system(command)
