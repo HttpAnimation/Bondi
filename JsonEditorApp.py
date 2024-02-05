@@ -8,7 +8,6 @@ class JsonEditorApp:
         self.root = tk.Tk()
         self.root.title("Bondi JSON Editor")
 
-        # Dark mode color scheme
         self.root.configure(bg="#1e1e1e")
         self.tree = ttk.Treeview(self.root, style="Treeview")
         self.tree["columns"] = ("Name", "Command")
