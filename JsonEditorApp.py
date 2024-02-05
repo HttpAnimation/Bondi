@@ -6,7 +6,7 @@ import os
 class JsonEditorApp:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("JSON Editor")
+        self.root.title("Bondi JSON Editor")
 
         # Dark mode color scheme
         self.root.configure(bg="#1e1e1e")
