@@ -41,9 +41,9 @@ categories = config_subsections.sections()
 
 root = tk.Tk()
 root.title("Bondi")
-root.attributes("-fullscreen", True)
+root.attributes("-alpha", 0.0)
+root.wm_attributes("-fullscreen", True)
 root.wm_attributes("-topmost", True)
-root.attributes("-disabled", True)
 
 sidebar = ttk.Frame(root, width=150, bg='black')
 sidebar.pack(side=tk.LEFT, fill=tk.Y)
