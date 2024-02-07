@@ -136,9 +136,6 @@ class BondiApp:
         driver.get(url)
 
 if __name__ == "__main__":
-    if not os.path.exists("LICENSE"):
-        messagebox.showerror("Error", "LICENSE file not found. Cannot run the application without this. Please redownload or update.")
-    else:
         app = BondiApp()
         app.open_browser_to_localhost() 
         app.run()
