@@ -115,8 +115,5 @@ class JsonEditorApp:
         self.root.mainloop()
 
 if __name__ == "__main__":
-    if not os.path.exists("LICENSE"):
-        messagebox.showerror("Error", "LICENSE file not found. Cannot run the application with out this pls redownload or update.")
-    else:
         app = JsonEditorApp()
         app.run()
