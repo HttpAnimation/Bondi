@@ -3,6 +3,7 @@
 OS=$(uname)
 if [[ "$OS" == "Darwin" ]]; then
     echo "This is macOS."
+    echo "There is no install command for for macOS at this time as I don't own a mac."
 elif [[ "$OS" == "Linux" || "$OS" == "GNU" ]]; then
     echo "Running on unix/Linux."
     echo "Downloading chromedriver for Linux"
