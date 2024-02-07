@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Check the output of `uname` command
 OS=$(uname)
 
 if [[ "$OS" == "Darwin" ]]; then
