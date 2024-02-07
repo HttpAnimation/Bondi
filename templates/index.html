@@ -4,16 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bondi</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        #sidebar {
+            width: {{ bondi_app.sidebar_width }}px;
+            background-color: #1e1e1e;
+            float: left;
+            padding: 20px;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            margin-bottom: 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #gameButtons {
+            background-color: #1e1e1e;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        #gameButtonsFrame {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        #divider {
+            background-color: #333;
+            width: 2px;
+            height: 600px;
+            margin-right: 20px;
+        }
+
+        .gameButton {
+            background-color: #333;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .gameButton:hover {
+            background-color: #555;
+        }
+    </style>
 </head>
 <body>
     <h1>Bondi</h1>
-    <div id="sidebar" style="width: {{ bondi_app.sidebar_width }}px; background-color: #1e1e1e;">
+    <div id="sidebar">
         {% for category in bondi_app.categories %}
-            <button onclick="displayGames('{{ category }}')" style="background-color: #333; color: white; font-family: Helvetica; font-size: 14px; margin-bottom: 5px;">{{ category }}</button>
+            <button onclick="displayGames('{{ category }}')">{{ category }}</button>
         {% endfor %}
     </div>
-    <div id="gameButtons" style="background-color: #1e1e1e;">
-        <canvas id="divider" width="2" height="600" style="background-color: #333;"></canvas>
+    <div id="gameButtons">
+        <canvas id="divider"></canvas>
         <div id="gameButtonsFrame"></div>
     </div>
     <script>
@@ -25,11 +89,7 @@
             categoryGames.forEach(function(game) {
                 var button = document.createElement("button");
                 button.textContent = game.name;
-                button.style.backgroundColor = "#333";
-                button.style.color = "white";
-                button.style.fontFamily = "Helvetica";
-                button.style.fontSize = "16px";
-                button.style.marginBottom = "5px";
+                button.className = "gameButton";
                 button.onclick = function() {
                     runCommand(game.command);
                 };
