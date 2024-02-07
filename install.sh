@@ -32,6 +32,18 @@ echo "Done"
 echo "Removing Installing.md"
 rm Installing.md
 echo "Done"
+echo "Removing BondiWeb.py"
+rm BondiWeb.py
+echo "Done"
+echo "Removing InstallChrome.bash"
+rm InstallChrome.bash
+echo "Done"
+echo "Removing the folder static"
+rm -rf static
+echo "Done"
+echo "Removing the folder templates"
+rm -rf templates
+echo "done"
 
 # Pips
 echo "Downloading pips"
