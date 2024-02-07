@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bondi</title>
 <style>
-    body {
+body {
     background-color: #121212;
     color: #ffffff;
     font-family: Arial, sans-serif;
@@ -42,7 +42,8 @@ button:hover {
 
 #gameButtonsFrame {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: flex-start; /* Align buttons to the start (top) of the container */
     gap: 10px;
 }
 
@@ -67,6 +68,7 @@ button:hover {
 .gameButton:hover {
     background-color: #555;
 }
+
 </style>
 </head>
 <body>
