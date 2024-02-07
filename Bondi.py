@@ -11,7 +11,7 @@ class BondiApp:
         self.root.attributes('-fullscreen', True) 
 
         pygame.init()
-        pygame.joystick.init()  # Initialize the joystick module
+        pygame.joystick.init() 
 
         self.joysticks = []
         self.current_joystick_index = 0  # Index of the currently selected joystick
