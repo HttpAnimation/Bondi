@@ -108,7 +108,6 @@
         }
 
         function runCommand(command) {
-            // AJAX request to run the command on the server
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "/run_command", true);
             xhr.setRequestHeader("Content-Type", "application/json");
