@@ -128,7 +128,7 @@ class BondiApp:
         self.root.after(100, self.check_joystick_events)
 
     def open_browser_to_localhost(self):
-        chrome_driver_path = "path/to/chromedriver"  # Change this to the path of your chromedriver executable
+        chrome_driver_path = "path/to/chromedriver" 
         url = "http://localhost"
         options = webdriver.ChromeOptions()
         options.add_argument("--kiosk")  
