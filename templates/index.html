@@ -98,8 +98,15 @@
         }
 
         function runCommand(command) {
-            console.log("Running command:", command);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/run_command", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    console.log("Command executed successfully:", command);
+                }
+            };
+            xhr.send(JSON.stringify({ command: command }));
         }
-    </script>
-</body>
+    </script></body>
 </html>
