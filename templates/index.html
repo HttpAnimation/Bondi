@@ -74,7 +74,9 @@
 <body>
     <h1>Bondi</h1>
     <div id="sidebar">
-        <!-- Sidebar buttons -->
+        {% for category in bondi_app.categories %}
+            <button onclick="displayGames('{{ category }}')">{{ category }}</button>
+        {% endfor %}
     </div>
     <div id="gameButtons">
         <canvas id="divider"></canvas>
