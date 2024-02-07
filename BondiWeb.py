@@ -115,6 +115,7 @@ class BondiApp:
         pygame.event.set_allowed([pygame.JOYBUTTONDOWN, pygame.JOYHATMOTION])
         pygame.joystick.get_init()
         self.root.after(100, self.check_joystick_events)
+        self.open_browser_to_localhost()  # Call method to open browser to localhost
         self.root.mainloop()
 
     def handle_key_press(self, event):
@@ -128,14 +129,16 @@ class BondiApp:
         self.root.after(100, self.check_joystick_events)
 
     def open_browser_to_localhost(self):
-        chrome_driver_path = "chromedriver" 
-        url = "http://localhost"
-        options = webdriver.ChromeOptions()
-        options.add_argument("--kiosk")  
-        driver = webdriver.Chrome(executable_path=chrome_driver_path, options=options)
-        driver.get(url)
+        try:
+            chrome_driver_path = "chromedriver"
+            url = "http://localhost"
+            options = webdriver.ChromeOptions()
+            options.add_argument("--kiosk")
+            driver = webdriver.Chrome(executable_path=chrome_driver_path, options=options)
+            driver.get(url)
+        except Exception as e:
+            print("Error:", e)
 
 if __name__ == "__main__":
-        app = BondiApp()
-        app.open_browser_to_localhost() 
-        app.run()
+    app = BondiApp()
+    app.run()
