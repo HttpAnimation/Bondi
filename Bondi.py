@@ -14,7 +14,7 @@ class BondiApp:
         pygame.joystick.init() 
 
         self.joysticks = []
-        self.current_joystick_index = 0  # Index of the currently selected joystick
+        self.current_joystick_index = 0 
 
         self.categories = self.read_categories()
         self.games = self.read_games()
