@@ -38,13 +38,9 @@ button:hover {
     background-color: #1e1e1e;
     overflow: hidden;
     padding: 20px;
-}
-
-#gameButtonsFrame {
-    display: flex;
-    flex-direction: column; /* Stack buttons vertically */
-    align-items: flex-start; /* Align buttons to the start (top) of the container */
-    gap: 10px;
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start (left) of the container */
 }
 
 #divider {
@@ -52,6 +48,13 @@ button:hover {
     width: 2px;
     height: 600px;
     margin-right: 20px;
+}
+
+#gameButtonsFrame {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: flex-start; /* Align buttons to the start (top) of the container */
+    gap: 10px;
 }
 
 .gameButton {
@@ -68,7 +71,6 @@ button:hover {
 .gameButton:hover {
     background-color: #555;
 }
-
 </style>
 </head>
 <body>
