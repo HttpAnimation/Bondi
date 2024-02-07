@@ -140,5 +140,5 @@ if __name__ == "__main__":
         messagebox.showerror("Error", "LICENSE file not found. Cannot run the application without this. Please redownload or update.")
     else:
         app = BondiApp()
-        app.open_browser_to_localhost()  # Open browser to localhost
+        app.open_browser_to_localhost() 
         app.run()
