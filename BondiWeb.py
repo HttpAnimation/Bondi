@@ -131,7 +131,7 @@ class BondiApp:
         chrome_driver_path = "path/to/chromedriver"  # Change this to the path of your chromedriver executable
         url = "http://localhost"
         options = webdriver.ChromeOptions()
-        options.add_argument("--kiosk")  # Fullscreen mode
+        options.add_argument("--kiosk")  
         driver = webdriver.Chrome(executable_path=chrome_driver_path, options=options)
         driver.get(url)
 
