@@ -1,21 +1,43 @@
-import os
 from flask import Flask, render_template
-from selenium import webdriver
+import pygame
+import json
+import os
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+class BondiApp:
+    def __init__(self):
+        pygame.init()
+        pygame.joystick.init()
 
-def open_browser_to_localhost():
-    chrome_driver_path = "chromedriver" 
-    url = "http://localhost"
-    options = webdriver.ChromeOptions()
-    options.add_argument("--kiosk")  
-    driver = webdriver.Chrome(executable_path=chrome_driver_path, options=options)
-    driver.get(url)
+        self.joysticks = []
+        self.current_joystick_index = 0
+
+        self.categories = self.read_categories()
+        self.games = self.read_games()
+
+        self.sidebar_width = 230
+
+    def read_categories(self):
+        try:
+            with open("Config/subsections.json") as f:
+                return json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return []
+
+    def read_games(self):
+        try:
+            with open("Config/Games.json") as f:
+                return json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return {}
+
+    @app.route("/")
+    def index():
+        bondi_app = BondiApp()
+        return render_template("index.html", bondi_app=bondi_app)
+
+bondi_app = BondiApp()
 
 if __name__ == "__main__":
-    open_browser_to_localhost()
-    app.run(debug=False)
+    app.run(debug=True)
