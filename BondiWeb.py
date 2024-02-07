@@ -1,5 +1,5 @@
-from flask import Flask, render_template
-import pygame
+from flask import Flask, render_template, request
+import subprocess
 import json
 import os
 
@@ -7,15 +7,8 @@ app = Flask(__name__)
 
 class BondiApp:
     def __init__(self):
-        pygame.init()
-        pygame.joystick.init()
-
-        self.joysticks = []
-        self.current_joystick_index = 0
-
         self.categories = self.read_categories()
         self.games = self.read_games()
-
         self.sidebar_width = 230
 
     def read_categories(self):
@@ -32,12 +25,22 @@ class BondiApp:
         except (FileNotFoundError, json.JSONDecodeError):
             return {}
 
-    @app.route("/")
-    def index():
-        bondi_app = BondiApp()
-        return render_template("index.html", bondi_app=bondi_app)
+@app.route("/")
+def index():
+    bondi_app = BondiApp()
+    return render_template("index.html", bondi_app=bondi_app)
 
-bondi_app = BondiApp()
+@app.route("/runcmd", methods=["POST"])
+def run_command():
+    command = request.form.get("command")
+    if command:
+        try:
+            subprocess.run(command, shell=True, check=True)
+            return "Command executed successfully"
+        except subprocess.CalledProcessError as e:
+            return f"Error executing command: {e}"
+    else:
+        return "No command provided"
 
 if __name__ == "__main__":
     app.run(debug=True)
