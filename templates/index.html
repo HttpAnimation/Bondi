@@ -82,7 +82,6 @@
     </div>
     <script>
         function displayGames(category) {
-            // AJAX request to the server to get games for the selected category
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "/games?category=" + category, true);
             xhr.onreadystatechange = function() {
