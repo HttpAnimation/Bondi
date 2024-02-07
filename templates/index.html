@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bondi</title>
     <style>
+        /* Dark mode styles */
         body {
             background-color: #121212;
             color: #ffffff;
             font-family: Arial, sans-serif;
         }
 
+        /* Other styles */
         #sidebar {
             width: {{ bondi_app.sidebar_width }}px;
             background-color: #1e1e1e;
@@ -72,9 +74,7 @@
 <body>
     <h1>Bondi</h1>
     <div id="sidebar">
-        {% for category in bondi_app.categories %}
-            <button onclick="displayGames('{{ category }}')">{{ category }}</button>
-        {% endfor %}
+        <!-- Sidebar buttons -->
     </div>
     <div id="gameButtons">
         <canvas id="divider"></canvas>
@@ -82,11 +82,22 @@
     </div>
     <script>
         function displayGames(category) {
-            var games = {{ bondi_app.games | tojson }};
-            var categoryGames = games[category] || [];
+            // AJAX request to the server to get games for the selected category
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/games?category=" + category, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var games = JSON.parse(xhr.responseText);
+                    renderGames(games);
+                }
+            };
+            xhr.send();
+        }
+
+        function renderGames(games) {
             var gameButtonsFrame = document.getElementById("gameButtonsFrame");
             gameButtonsFrame.innerHTML = "";
-            categoryGames.forEach(function(game) {
+            games.forEach(function(game) {
                 var button = document.createElement("button");
                 button.textContent = game.name;
                 button.className = "gameButton";
@@ -96,18 +107,19 @@
                 gameButtonsFrame.appendChild(button);
             });
         }
-    
+
         function runCommand(command) {
+            // AJAX request to run the command on the server
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "/runcmd", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.open("POST", "/run_command", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    console.log("Command executed:", command);
-                    console.log(xhr.responseText);
+                    console.log("Command executed successfully");
                 }
             };
-            xhr.send("command=" + encodeURIComponent(command));
+            xhr.send(JSON.stringify({ command: command }));
         }
     </script>
-    </html>
+</body>
+</html>

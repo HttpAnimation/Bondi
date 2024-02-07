@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request
-import subprocess
+from flask import Flask, render_template, request, jsonify
 import json
 import os
 
@@ -9,7 +8,6 @@ class BondiApp:
     def __init__(self):
         self.categories = self.read_categories()
         self.games = self.read_games()
-        self.sidebar_width = 230
 
     def read_categories(self):
         try:
@@ -25,22 +23,27 @@ class BondiApp:
         except (FileNotFoundError, json.JSONDecodeError):
             return {}
 
+    def get_games_for_category(self, category):
+        return self.games.get(category, [])
+
 @app.route("/")
 def index():
     bondi_app = BondiApp()
     return render_template("index.html", bondi_app=bondi_app)
 
-@app.route("/runcmd", methods=["POST"])
+@app.route("/games")
+def get_games():
+    category = request.args.get("category")
+    bondi_app = BondiApp()
+    games = bondi_app.get_games_for_category(category)
+    return jsonify(games)
+
+@app.route("/run_command", methods=["POST"])
 def run_command():
-    command = request.form.get("command")
-    if command:
-        try:
-            subprocess.run(command, shell=True, check=True)
-            return "Command executed successfully"
-        except subprocess.CalledProcessError as e:
-            return f"Error executing command: {e}"
-    else:
-        return "No command provided"
+    data = request.json
+    command = data.get("command")
+    os.system(command)
+    return "Command executed successfully", 200
 
 if __name__ == "__main__":
     app.run(debug=True)
