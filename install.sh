@@ -7,3 +7,4 @@ wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/JsonEditorApp.
 echo "Done"
 echo "Downloading the main script."
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/BondiWeb.py
+echo "Done"
