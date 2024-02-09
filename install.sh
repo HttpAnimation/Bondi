@@ -8,4 +8,7 @@ echo "Done"
 echo "Downloading the main script."
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/BondiWeb.py
 echo "Done"
+
 echo "Making dir's"
+mkdir templates
+echo "Done"
