@@ -13,6 +13,7 @@ wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/JsonEditorApp.
 echo "Done"
 echo "Downloading the main script."
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/BondiWeb.py
+wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/window.py
 echo "Done"
 
 echo "Making dir's"
@@ -28,5 +29,8 @@ echo "Done"
 cd Config
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/Config/subsections.json
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/Config/Games.json
+echo "Done"
 
+echo "Rename the main script."
+mv BondiWeb.py Bondi.py
 echo "Done mate have fun with Bondi"
