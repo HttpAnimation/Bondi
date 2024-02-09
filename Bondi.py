@@ -3,7 +3,7 @@ from tkinter import messagebox
 import pygame
 import json
 import os
-
+print("This script it being rewritten the configs will stay the same but the script will soon use a browser for the UI as pygame and tk are way harder to use then css")
 class BondiApp:
     def __init__(self):
         self.root = tk.Tk()
