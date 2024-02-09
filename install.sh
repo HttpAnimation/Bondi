@@ -17,3 +17,5 @@ echo "Downloading webUI"
 cd templates
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/templates/index.html
 cd ../
+
+echo "Done mate have fun with Bondi"
