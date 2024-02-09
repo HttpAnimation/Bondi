@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify
 import json
 import os
 import time
-import threading
 import webview
 from multiprocessing import Process
 
@@ -59,6 +58,9 @@ def start_webview():
 if __name__ == "__main__":
     flask_process = Process(target=start_flask_app)
     flask_process.start()
+
+    # Wait a bit for the Flask app to start
+    time.sleep(2)
 
     webview_process = Process(target=start_webview)
     webview_process.start()
