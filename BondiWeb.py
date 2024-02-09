@@ -54,6 +54,7 @@ def start_flask_app():
 def start_webview():
     time.sleep(1)  # Give Flask some time to start
     webview.create_window("My App", "http://127.0.0.1:5000")
+    webview.start()
 
 if __name__ == "__main__":
     flask_process = Process(target=start_flask_app)
