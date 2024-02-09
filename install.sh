@@ -14,3 +14,4 @@ mkdir templates
 echo "Done"
 
 echo "Downloading webUI"
+wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/templates/index.html
