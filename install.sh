@@ -5,4 +5,5 @@ echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
 echo "Downloading the Json editor."
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/JsonEditorApp.py
 echo "Done"
+echo "Downloading the main script."
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/BondiWeb.py
