@@ -12,3 +12,5 @@ echo "Done"
 echo "Making dir's"
 mkdir templates
 echo "Done"
+
+echo "Downloading webUI"
