@@ -65,4 +65,4 @@ if __name__ == "__main__":
     webview_process = Process(target=start_webview)
     webview_process.start()
 
-    flask_process.join()  # Wait for Flask process to finish
+    flask_process.join()  
