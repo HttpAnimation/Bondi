@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import json
 import os
 import time
+import webview
 
 app = Flask(__name__)
 
@@ -46,5 +47,17 @@ def run_command():
     os.system(command)
     return "Command executed successfully", 200
 
+def create_window():
+    app.run(debug=False)
+
+    # Open a webview window with Flask app
+    webview.create_window("My App", "http://127.0.0.1:5000")
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Start Flask app in a separate thread
+    import threading
+    flask_thread = threading.Thread(target=create_window)
+    flask_thread.start()
+
+    # Run webview loop
+    webview.start()
