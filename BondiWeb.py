@@ -53,7 +53,7 @@ def start_flask_app():
 
 def start_webview():
     time.sleep(1) 
-    webview.create_window("My App", "http://127.0.0.1:5000")
+    webview.create_window("Bondi", "http://127.0.0.1:5000")
     webview.start()
 
 if __name__ == "__main__":
