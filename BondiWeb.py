@@ -60,7 +60,6 @@ if __name__ == "__main__":
     flask_process = Process(target=start_flask_app)
     flask_process.start()
 
-    # Wait a bit for the Flask app to start
     time.sleep(2)
 
     webview_process = Process(target=start_webview)
