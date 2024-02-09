@@ -49,7 +49,7 @@ def run_command():
     return "Command executed successfully", 200
 
 def start_flask_app():
-    app.run(debug=False)
+    app.run(debug=True)
 
 def start_webview():
     time.sleep(1) 
