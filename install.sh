@@ -17,11 +17,16 @@ echo "Done"
 
 echo "Making dir's"
 mkdir templates
+mkdir Config
 echo "Done"
 
 echo "Downloading webUI"
 cd templates
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/templates/index.html
 cd ../
+echo "Done"
+cd Config
+wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/Config/subsections.json
+wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/Config/Games.json
 
 echo "Done mate have fun with Bondi"
