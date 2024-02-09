@@ -52,9 +52,7 @@ def start_flask_app():
     app.run(debug=False)
 
 def start_webview():
-    time.sleep(1) 
-    webview.create_window("Bondi", "http://127.0.0.1:5000")
-    webview.start()
+    os.system("python3 Bondi.py")    
 
 if __name__ == "__main__":
     flask_process = Process(target=start_flask_app)
