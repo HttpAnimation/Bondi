@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, jsonify
 import json
 import os
 import time
+import threading
 import webview
+from multiprocessing import Process
 
 app = Flask(__name__)
 
@@ -47,17 +49,18 @@ def run_command():
     os.system(command)
     return "Command executed successfully", 200
 
-def create_window():
+def start_flask_app():
     app.run(debug=False)
 
-    # Open a webview window with Flask app
+def start_webview():
+    time.sleep(1)  # Give Flask some time to start
     webview.create_window("My App", "http://127.0.0.1:5000")
 
 if __name__ == "__main__":
-    # Start Flask app in a separate thread
-    import threading
-    flask_thread = threading.Thread(target=create_window)
-    flask_thread.start()
+    flask_process = Process(target=start_flask_app)
+    flask_process.start()
 
-    # Run webview loop
-    webview.start()
+    webview_process = Process(target=start_webview)
+    webview_process.start()
+
+    flask_process.join()  # Wait for Flask process to finish
