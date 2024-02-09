@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, jsonify
 import json
 import os
 import time
-from multiprocessing import Process
 import webview
+from multiprocessing import Process
 
 app = Flask(__name__)
 
@@ -49,10 +49,10 @@ def run_command():
     return "Command executed successfully", 200
 
 def start_flask_app():
-    app.run(debug=True)
+    app.run(debug=False)
 
 def start_webview():
-    time.sleep(1)
+    time.sleep(1) 
     webview.create_window("Bondi", "http://127.0.0.1:5000")
     webview.start()
 
@@ -60,12 +60,9 @@ if __name__ == "__main__":
     flask_process = Process(target=start_flask_app)
     flask_process.start()
 
-    flask_process.join()  # Wait for Flask to start
+    time.sleep(2)
 
-    # Start WebView only after Flask app has started
     webview_process = Process(target=start_webview)
     webview_process.start()
 
-    # Wait for both processes to finish
-    flask_process.join()
-    webview_process.join()
+    flask_process.join()  
