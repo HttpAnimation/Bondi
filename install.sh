@@ -2,6 +2,12 @@ echo "Bondi installer"
 echo "Lsat updated: Friday/9/Feb/2024"
 echo "Fuck anti furs, homophobes and racist"
 echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+
+echo "Making Bondi folder."
+mkdir Bondi
+cd Bondi
+echo "Done"
+
 echo "Downloading the Json editor."
 wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/JsonEditorApp.py
 echo "Done"
