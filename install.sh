@@ -32,5 +32,7 @@ wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/Config/Games.j
 echo "Done"
 
 echo "Rename the main script."
+cd Bondi
 mv BondiWeb.py Bondi.py
+cd ../
 echo "Done mate have fun with Bondi"
