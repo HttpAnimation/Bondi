@@ -1,5 +1,5 @@
 echo "Bondi installer"
-echo "Lsat updated: Friday/9/Feb/2024"
+echo "Lsat updated: Friday/16/Feb/2024"
 echo "Fuck anti furs, homophobes and racists"
 echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
 
