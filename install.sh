@@ -36,3 +36,4 @@ cd Bondi
 mv BondiWeb.py Bondi.py
 cd ../
 echo "Done mate have fun with Bondi"
+rm Install.sh
