@@ -115,7 +115,7 @@ void launch_app(GtkWidget *widget, gpointer data) {
 void load_apps(GtkWidget *widget, gpointer data) {
     GtkWidget *main_area = GTK_WIDGET(data);
     const char *category_name = gtk_button_get_label(GTK_BUTTON(widget));
-
+    
     // Clear previous apps
     gtk_container_foreach(GTK_CONTAINER(main_area), (GtkCallback)gtk_widget_destroy, NULL);
 
