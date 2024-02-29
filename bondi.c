@@ -111,6 +111,7 @@ int main(int argc, char *argv[]) {
     gtk_init(&argc, &argv);
 
     // Read data from Data.conf
+    // This is the file the script will read.
     read_data("Data.conf");
 
     // Create main window
