@@ -88,7 +88,7 @@ void launch_app(GtkWidget *widget, gpointer data) {
 // Callback function for loading apps of a category
 void load_apps(GtkWidget *widget, gpointer data) {
     GtkWidget *window = (GtkWidget *)data;
-    char *category_name = gtk_button_get_label(GTK_BUTTON(widget));
+    char *category_name = (char *)gtk_button_get_label(GTK_BUTTON(widget));
 
     // Clear previous apps
     GList *children = gtk_container_get_children(GTK_CONTAINER(window));
