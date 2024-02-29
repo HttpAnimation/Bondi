@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# GitHub repository URL
-repo_url="https://github.com/HttpAnimation/Bondi"
+# GitHub repository owner and name
+owner="HttpAnimation"
+repo="Bondi"
 
-# Retrieve the latest release version
-latest_release=$(curl -sL "$repo_url/releases/latest" | grep -o 'tag/[v.0-9]*"' | sed 's/tag\///' | sed 's/"//')
+# Retrieve the latest release version using GitHub API
+latest_release=$(curl -sL "https://api.github.com/repos/$owner/$repo/releases/latest" | grep -o '"tag_name": "[^"]*' | sed 's/"tag_name": "//')
 
 # Check if the latest_release variable is empty
 if [ -z "$latest_release" ]; then
@@ -13,7 +14,7 @@ if [ -z "$latest_release" ]; then
 fi
 
 # Form the download URL for the bondi file
-download_url="$repo_url/releases/download/$latest_release/bondi"
+download_url="https://github.com/$owner/$repo/releases/download/$latest_release/bondi"
 
 # Download the bondi file
 echo "Downloading bondi file from version $latest_release..."
