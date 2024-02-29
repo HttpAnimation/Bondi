@@ -9,3 +9,5 @@ echo "hot here yet"
 
 ## Compiling
 If you would like to compile from source follow these instructions.
+
+1) Fedora
