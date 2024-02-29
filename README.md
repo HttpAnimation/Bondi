@@ -23,3 +23,7 @@ sudo dnf update
 ```bash
 sudo dnf install gcc
 ```
+3) Intall gtk3-devel
+```bash
+sudo dnf install gtk3-devel
+```
