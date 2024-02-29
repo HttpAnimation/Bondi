@@ -14,6 +14,8 @@ If you would like to compile from source follow these instructions.
 
 #### Perrepisites 
 To install the needed packages open a terminal and run the following commands.
+
+1) Update
 ```bash
 sudo dnf 
 ```
