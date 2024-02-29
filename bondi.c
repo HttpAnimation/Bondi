@@ -22,34 +22,8 @@ typedef struct {
 Category categories[MAX_CATEGORIES];
 int num_categories = 0;
 
-// Function to read categories from Catagorys.conf
-void read_categories(const char *filename) {
-    FILE *file = fopen(filename, "r");
-    if (file == NULL) {
-        perror("Error opening Catagorys.conf");
-        exit(EXIT_FAILURE);
-    }
-
-    char line[100];
-    while (fgets(line, sizeof(line), file)) {
-        // Trim leading and trailing whitespace
-        char *trimmed_line = strtok(line, "\n");
-        trimmed_line = strtok(trimmed_line, "\r");
-
-        // Skip empty lines
-        if (trimmed_line[0] == '\0')
-            continue;
-
-        strcpy(categories[num_categories].name, trimmed_line);
-        categories[num_categories].num_apps = 0;
-        num_categories++;
-    }
-
-    fclose(file);
-}
-
-// Function to read app data from Data.conf
-void read_apps(const char *filename) {
+// Function to read data from Data.conf
+void read_data(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
         perror("Error opening Data.conf");
@@ -60,26 +34,36 @@ void read_apps(const char *filename) {
     while (fgets(line, sizeof(line), file)) {
         line[strcspn(line, "\n")] = 0; // Remove trailing newline character
 
+        // Tokenize the line
         char *token = strtok(line, "|");
+
+        // Extract category name
         char *category_name = token;
 
+        // Check if the category already exists
         int cat_index;
         for (cat_index = 0; cat_index < num_categories; cat_index++) {
             if (strcmp(categories[cat_index].name, category_name) == 0)
                 break;
         }
 
+        // If the category doesn't exist, add it
         if (cat_index == num_categories) {
-            fprintf(stderr, "Category %s not found.\n", category_name);
-            continue;
+            strcpy(categories[num_categories].name, category_name);
+            categories[num_categories].num_apps = 0;
+            num_categories++;
         }
 
+        // Extract app name and command
         token = strtok(NULL, "|");
-        strcpy(categories[cat_index].apps[categories[cat_index].num_apps].name, token);
+        char *app_name = token;
 
         token = strtok(NULL, "|");
-        strcpy(categories[cat_index].apps[categories[cat_index].num_apps].command, token);
+        char *app_command = token;
 
+        // Add app to the category
+        strcpy(categories[cat_index].apps[categories[cat_index].num_apps].name, app_name);
+        strcpy(categories[cat_index].apps[categories[cat_index].num_apps].command, app_command);
         categories[cat_index].num_apps++;
     }
 
@@ -126,9 +110,8 @@ int main(int argc, char *argv[]) {
     // Initialize GTK
     gtk_init(&argc, &argv);
 
-    // Read categories and apps
-    read_categories("Catagorys.conf");
-    read_apps("Data.conf");
+    // Read data from Data.conf
+    read_data("Data.conf");
 
     // Create main window
     GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
