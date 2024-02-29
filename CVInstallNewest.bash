@@ -6,6 +6,12 @@ repo_url="https://github.com/HttpAnimation/Bondi"
 # Retrieve the latest release version
 latest_release=$(curl -sL "$repo_url/releases/latest" | grep -o 'tag/[v.0-9]*"' | sed 's/tag\///' | sed 's/"//')
 
+# Check if the latest_release variable is empty
+if [ -z "$latest_release" ]; then
+    echo "Failed to retrieve the latest release version."
+    exit 1
+fi
+
 # Form the download URL for the bondi file
 download_url="$repo_url/releases/download/$latest_release/bondi"
 
