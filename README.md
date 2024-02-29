@@ -32,3 +32,6 @@ sudo dnf install gtk3-devel
 git clone -b stable https://github.com/HttpAnimation/Bondi.git 
 ```
 5) Enter the repo
+```bash
+cd Bondi
+```
