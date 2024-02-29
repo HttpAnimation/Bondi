@@ -106,6 +106,15 @@ void load_apps(GtkWidget *widget, gpointer data) {
     gtk_widget_show_all(window);
 }
 
+// Callback function to toggle fullscreen on F11 key press
+gboolean on_key_press(GtkWidget *window, GdkEventKey *event, gpointer user_data) {
+    if (event->keyval == GDK_KEY_F11) {
+        gtk_window_fullscreen(GTK_WINDOW(window));
+        return TRUE;
+    }
+    return FALSE;
+}
+
 int main(int argc, char *argv[]) {
     // Start GTK
     gtk_init(&argc, &argv);
@@ -119,6 +128,7 @@ int main(int argc, char *argv[]) {
     gtk_window_set_title(GTK_WINDOW(window), "Bondi - V3");
     gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+    g_signal_connect(window, "key-press-event", G_CALLBACK(on_key_press), NULL);
 
     // Create sidebar
     GtkWidget *sidebar = gtk_list_box_new();
