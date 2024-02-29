@@ -36,7 +36,9 @@ git clone -b stable https://github.com/HttpAnimation/Bondi.git
 cd Bondi
 ```
 6) Allow the script to run.
-
+```bash
+chmod +x Compile.sh
+```
 7) Compile
 ```bash
 ../Compile.bash
