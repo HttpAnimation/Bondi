@@ -10,4 +10,4 @@ echo "hot here yet"
 ## Compiling
 If you would like to compile from source follow these instructions.
 
-1) Fedora (dnf)
+1) Fedora ([dnf](https://docs.fedoraproject.org/en-US/quick-docs/dnf/))
