@@ -99,7 +99,32 @@ void load_apps(GtkWidget *widget, gpointer data) {
     for (int j = 0; j < categories[cat_index].num_apps; j++) {
         GtkWidget *launch_button = gtk_button_new_with_label(categories[cat_index].apps[j].name);
         g_signal_connect(launch_button, "clicked", G_CALLBACK(launch_app), categories[cat_index].apps[j].command);
-        gtk_stack_add_titled(GTK_STACK(main_area), launch_button, categories[cat_index].apps[j].name, categories[cat_index].apps[j].name);
+        gtk_grid_attach(GTK_GRID(main_area), launch_button, j % 3, j / 3, 1, 1);
+        gtk_widget_set_size_request(launch_button, 150, 150);
+        gtk_button_set_relief(GTK_BUTTON(launch_button), GTK_RELIEF_NONE);
+        gtk_widget_set_tooltip_text(launch_button, categories[cat_index].apps[j].command);
+        
+        // Apply CSS styling for the buttons
+        GtkCssProvider *provider = gtk_css_provider_new();
+        gtk_css_provider_load_from_data(provider,
+                                        ".steam-button {"
+                                        "   background-color: #2c2c2c;"
+                                        "   border: none;"
+                                        "   color: #ffffff;"
+                                        "   font-size: 12pt;"
+                                        "   font-weight: bold;"
+                                        "   padding: 10px;"
+                                        "}"
+                                        ".steam-button:hover {"
+                                        "   background-color: #3c3c3c;"
+                                        "   color: #ffffff;"
+                                        "}",
+                                        -1,
+                                        NULL);
+        GtkStyleContext *context = gtk_widget_get_style_context(launch_button);
+        gtk_style_context_add_class(context, "steam-button");
+        gtk_widget_set_name(launch_button, "steam_button");
+        gtk_style_context_add_provider(context, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
     }
 
     // Show all widgets
@@ -125,42 +150,33 @@ int main(int argc, char *argv[]) {
 
     // Create main window
     GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(window), "Bondi - V5");
+    gtk_window_set_title(GTK_WINDOW(window), "Bondi - V4");
     gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(window, "key-press-event", G_CALLBACK(on_key_press), NULL);
 
-    // Create main layout
+    // Create grid layout for main window
     GtkWidget *grid = gtk_grid_new();
     gtk_container_add(GTK_CONTAINER(window), grid);
 
-    // Create header bar
-    GtkWidget *header_bar = gtk_header_bar_new();
-    gtk_header_bar_set_title(GTK_HEADER_BAR(header_bar), "Bondi - V4");
-    gtk_header_bar_set_show_close_button(GTK_HEADER_BAR(header_bar), TRUE);
-    gtk_grid_attach(GTK_GRID(grid), header_bar, 0, 0, 2, 1);
-
-    // Create stack for main content
-    GtkWidget *stack = gtk_stack_new();
-    gtk_stack_set_transition_type(GTK_STACK(stack), GTK_STACK_TRANSITION_TYPE_SLIDE_LEFT_RIGHT);
-    gtk_stack_set_transition_duration(GTK_STACK(stack), 500);
-    gtk_grid_attach(GTK_GRID(grid), stack, 0, 1, 1, 1);
-
     // Create sidebar
     GtkWidget *sidebar = gtk_list_box_new();
-    gtk_widget_set_size_request(sidebar, 200, -1);
-    gtk_stack_add_titled(GTK_STACK(stack), sidebar, "sidebar", "Sidebar");
+    gtk_grid_attach(GTK_GRID(grid), sidebar, 0, 0, 1, 1);
 
     // Populate sidebar with category buttons
     for (int i = 0; i < num_categories; i++) {
         GtkWidget *category_button = gtk_button_new_with_label(categories[i].name);
         gtk_container_add(GTK_CONTAINER(sidebar), category_button);
-        g_signal_connect(category_button, "clicked", G_CALLBACK(load_apps), stack);
-    }
 
-    // Create main area
-    GtkWidget *main_area = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_stack_add_titled(GTK_STACK(stack), main_area, "main", "Main Area");
+        // Create a grid for each category
+        GtkWidget *category_grid = gtk_grid_new();
+        gtk_grid_set_row_homogeneous(GTK_GRID(category_grid), TRUE);
+        gtk_grid_set_column_homogeneous(GTK_GRID(category_grid), TRUE);
+        gtk_grid_attach(GTK_GRID(grid), category_grid, 1, 0, 1, 1);
+        
+        // Connect the load_apps callback to each category button
+        g_signal_connect(category_button, "clicked", G_CALLBACK(load_apps), category_grid);
+    }
 
     // Show all widgets
     gtk_widget_show_all(window);
