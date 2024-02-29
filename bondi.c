@@ -140,14 +140,18 @@ int main(int argc, char *argv[]) {
 
     // Populate sidebar with category buttons
     for (int i = 0; i < num_categories; i++) {
-        GtkWidget *button = gtk_button_new_with_label(categories[i].name);
-        gtk_container_add(GTK_CONTAINER(sidebar), button);
-        g_signal_connect(button, "clicked", G_CALLBACK(load_apps), grid);
-    }
+        GtkWidget *category_button = gtk_button_new_with_label(categories[i].name);
+        gtk_container_add(GTK_CONTAINER(sidebar), category_button);
 
-    // Create main area
-    GtkWidget *main_area = gtk_grid_new();
-    gtk_grid_attach(GTK_GRID(grid), main_area, 1, 0, 1, 1);
+        // Create a grid for each category
+        GtkWidget *category_grid = gtk_grid_new();
+        gtk_grid_set_row_homogeneous(GTK_GRID(category_grid), TRUE);
+        gtk_grid_set_column_homogeneous(GTK_GRID(category_grid), TRUE);
+        gtk_grid_attach(GTK_GRID(grid), category_grid, 1, 0, 1, 1);
+        
+        // Connect the load_apps callback to each category button
+        g_signal_connect(category_button, "clicked", G_CALLBACK(load_apps), category_grid);
+    }
 
     // Show all widgets
     gtk_widget_show_all(window);
