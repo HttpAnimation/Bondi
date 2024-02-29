@@ -37,11 +37,11 @@ cd Bondi
 ```
 6) Allow the script to run.
 ```bash
-chmod +x Compile.sh
+chmod +x Compile.bash
 ```
 7) Compile
 ```bash
-../Compile.bash
+./Compile.bash
 ```
 ### Debian/Ubuntu based
 Right now none
