@@ -35,3 +35,4 @@ git clone -b stable https://github.com/HttpAnimation/Bondi.git
 ```bash
 cd Bondi
 ```
+6) 
