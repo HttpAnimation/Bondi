@@ -107,7 +107,7 @@ void load_apps(GtkWidget *widget, gpointer data) {
 }
 
 int main(int argc, char *argv[]) {
-    // Initialize GTK
+    // Start GTK
     gtk_init(&argc, &argv);
 
     // Read data from Data.conf
