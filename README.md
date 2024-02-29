@@ -35,7 +35,7 @@ git clone -b stable https://github.com/HttpAnimation/Bondi.git
 ```bash
 cd Bondi
 ```
-6) Compile
+7) Compile
 ```bash
 ../Compile.bash
 ```
