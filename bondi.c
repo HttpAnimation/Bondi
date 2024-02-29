@@ -32,8 +32,15 @@ void read_categories(const char *filename) {
 
     char line[100];
     while (fgets(line, sizeof(line), file)) {
-        line[strcspn(line, "\n")] = 0; // Remove trailing newline character
-        strcpy(categories[num_categories].name, line);
+        // Trim leading and trailing whitespace
+        char *trimmed_line = strtok(line, "\n");
+        trimmed_line = strtok(trimmed_line, "\r");
+
+        // Skip empty lines
+        if (trimmed_line[0] == '\0')
+            continue;
+
+        strcpy(categories[num_categories].name, trimmed_line);
         categories[num_categories].num_apps = 0;
         num_categories++;
     }
