@@ -78,11 +78,11 @@ void launch_app(GtkWidget *widget, gpointer data) {
 
 // Callback function for loading apps of a category
 void load_apps(GtkWidget *widget, gpointer data) {
-    GtkWidget *window = (GtkWidget *)data;
+    GtkWidget *main_area = (GtkWidget *)data;
     char *category_name = (char *)gtk_button_get_label(GTK_BUTTON(widget));
 
     // Clear previous apps
-    GList *children = gtk_container_get_children(GTK_CONTAINER(window));
+    GList *children = gtk_container_get_children(GTK_CONTAINER(main_area));
     for (GList *iter = children; iter != NULL; iter = g_list_next(iter)) {
         gtk_widget_destroy(GTK_WIDGET(iter->data));
     }
@@ -95,15 +95,15 @@ void load_apps(GtkWidget *widget, gpointer data) {
             break;
     }
 
-    // Add apps buttons
+    // Add apps buttons to the main area
     for (int j = 0; j < categories[cat_index].num_apps; j++) {
         GtkWidget *launch_button = gtk_button_new_with_label(categories[cat_index].apps[j].name);
         g_signal_connect(launch_button, "clicked", G_CALLBACK(launch_app), categories[cat_index].apps[j].command);
-        gtk_container_add(GTK_CONTAINER(window), launch_button);
+        gtk_grid_attach(GTK_GRID(main_area), launch_button, j % 3, j / 3, 1, 1);
     }
 
     // Show all widgets
-    gtk_widget_show_all(window);
+    gtk_widget_show_all(main_area);
 }
 
 // Callback function to toggle fullscreen on F11 key press
@@ -126,26 +126,14 @@ int main(int argc, char *argv[]) {
     // Create main window
     GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(window), "Bondi - V3");
-    gtk_window_set_default_size(GTK_WINDOW(window), 300, 200);
+    gtk_window_set_default_size(GTK_WINDOW(window), 600, 400);
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(window, "key-press-event", G_CALLBACK(on_key_press), NULL);
 
+    // Create grid layout for main window
+    GtkWidget *grid = gtk_grid_new();
+    gtk_container_add(GTK_CONTAINER(window), grid);
+
     // Create sidebar
     GtkWidget *sidebar = gtk_list_box_new();
-    gtk_container_add(GTK_CONTAINER(window), sidebar);
-
-    // Populate sidebar with category buttons
-    for (int i = 0; i < num_categories; i++) {
-        GtkWidget *button = gtk_button_new_with_label(categories[i].name);
-        gtk_list_box_insert(GTK_LIST_BOX(sidebar), button, -1);
-        g_signal_connect(button, "clicked", G_CALLBACK(load_apps), window);
-    }
-
-    // Show all widgets
-    gtk_widget_show_all(window);
-
-    // Run the GTK main loop
-    gtk_main();
-
-    return 0;
-}
+    gtk_grid_attach(GTK_GRID(grid), sidebar, 0, 0,
