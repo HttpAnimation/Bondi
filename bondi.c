@@ -3,8 +3,9 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
-#define MAX_CATEGORIES 10
-#define MAX_APPS_PER_CATEGORY 10
+#define INITIAL_CATEGORY_CAPACITY 10
+#define INITIAL_APP_CAPACITY 10
+#define BUFFER_SIZE 256
 
 // Structure to store app information
 typedef struct {
@@ -16,21 +17,33 @@ typedef struct {
 typedef struct {
     char name[50];
     int num_apps;
-    App apps[MAX_APPS_PER_CATEGORY];
+    int capacity;
+    App *apps;
 } Category;
 
-Category categories[MAX_CATEGORIES];
+Category *categories = NULL;
 int num_categories = 0;
+int category_capacity = 0;
+
+// Function to initialize categories
+void initialize_categories() {
+    categories = malloc(INITIAL_CATEGORY_CAPACITY * sizeof(Category));
+    if (categories == NULL) {
+        perror("Memory allocation failed.");
+        exit(EXIT_FAILURE);
+    }
+    category_capacity = INITIAL_CATEGORY_CAPACITY;
+}
 
 // Function to read data from Data.conf
 void read_data(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        perror("Error opening Data.conf make sure the file exists :3.");
+        perror("Error opening Data.conf. Make sure the file exists.");
         exit(EXIT_FAILURE);
     }
 
-    char line[100];
+    char line[BUFFER_SIZE];
     while (fgets(line, sizeof(line), file)) {
         line[strcspn(line, "\n")] = 0; // Remove trailing newline character
 
@@ -49,8 +62,22 @@ void read_data(const char *filename) {
 
         // If the category doesn't exist, add it
         if (cat_index == num_categories) {
+            if (num_categories == category_capacity) {
+                category_capacity *= 2;
+                categories = realloc(categories, category_capacity * sizeof(Category));
+                if (categories == NULL) {
+                    perror("Memory allocation failed.");
+                    exit(EXIT_FAILURE);
+                }
+            }
             strcpy(categories[num_categories].name, category_name);
             categories[num_categories].num_apps = 0;
+            categories[num_categories].capacity = INITIAL_APP_CAPACITY;
+            categories[num_categories].apps = malloc(INITIAL_APP_CAPACITY * sizeof(App));
+            if (categories[num_categories].apps == NULL) {
+                perror("Memory allocation failed.");
+                exit(EXIT_FAILURE);
+            }
             num_categories++;
         }
 
@@ -62,6 +89,14 @@ void read_data(const char *filename) {
         char *app_command = token;
 
         // Add app to the category
+        if (categories[cat_index].num_apps == categories[cat_index].capacity) {
+            categories[cat_index].capacity *= 2;
+            categories[cat_index].apps = realloc(categories[cat_index].apps, categories[cat_index].capacity * sizeof(App));
+            if (categories[cat_index].apps == NULL) {
+                perror("Memory allocation failed.");
+                exit(EXIT_FAILURE);
+            }
+        }
         strcpy(categories[cat_index].apps[categories[cat_index].num_apps].name, app_name);
         strcpy(categories[cat_index].apps[categories[cat_index].num_apps].command, app_command);
         categories[cat_index].num_apps++;
@@ -78,15 +113,11 @@ void launch_app(GtkWidget *widget, gpointer data) {
 
 // Callback function for loading apps of a category
 void load_apps(GtkWidget *widget, gpointer data) {
-    GtkWidget *main_area = (GtkWidget *)data;
-    char *category_name = (char *)gtk_button_get_label(GTK_BUTTON(widget));
+    GtkWidget *main_area = GTK_WIDGET(data);
+    const char *category_name = gtk_button_get_label(GTK_BUTTON(widget));
 
     // Clear previous apps
-    GList *children = gtk_container_get_children(GTK_CONTAINER(main_area));
-    for (GList *iter = children; iter != NULL; iter = g_list_next(iter)) {
-        gtk_widget_destroy(GTK_WIDGET(iter->data));
-    }
-    g_list_free(children);
+    gtk_container_foreach(GTK_CONTAINER(main_area), (GtkCallback)gtk_widget_destroy, NULL);
 
     // Find category index
     int cat_index;
@@ -103,6 +134,7 @@ void load_apps(GtkWidget *widget, gpointer data) {
         gtk_widget_set_size_request(launch_button, 150, 150);
         gtk_button_set_relief(GTK_BUTTON(launch_button), GTK_RELIEF_NONE);
         gtk_widget_set_tooltip_text(launch_button, categories[cat_index].apps[j].command);
+        gtk_widget_show(launch_button);
     }
 
     // Show all widgets
@@ -122,13 +154,16 @@ int main(int argc, char *argv[]) {
     // Start GTK
     gtk_init(&argc, &argv);
 
+    // Initialize categories
+    initialize_categories();
+
     // Read data from Data.conf
     // This is the file the script will read.
     read_data("Data.conf");
 
     // Create main window
     GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(window), "Bondi - V5");
+    gtk_window_set_title(GTK_WINDOW(window), "Bondi - V6");
     gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(window, "key-press-event", G_CALLBACK(on_key_press), NULL);
@@ -180,6 +215,12 @@ int main(int argc, char *argv[]) {
 
     // Run the GTK main loop
     gtk_main();
+
+    // Free allocated memory
+    for (int i = 0; i < num_categories; i++) {
+        free(categories[i].apps);
+    }
+    free(categories);
 
     return 0;
 }
