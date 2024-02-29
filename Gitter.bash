@@ -8,3 +8,5 @@ git clone -b blank https://github.com/HttpAnimation/Bondi.git
 mv Bondi blank
 git clone -b Repo-Testing https://github.com/HttpAnimation/Bondi.git
 mv Bondi Repo-Testing
+git clone -b Downloads https://github.com/HttpAnimation/Bondi.git
+mv Bondi Downloads
