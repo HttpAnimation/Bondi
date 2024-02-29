@@ -103,28 +103,6 @@ void load_apps(GtkWidget *widget, gpointer data) {
         gtk_widget_set_size_request(launch_button, 150, 150);
         gtk_button_set_relief(GTK_BUTTON(launch_button), GTK_RELIEF_NONE);
         gtk_widget_set_tooltip_text(launch_button, categories[cat_index].apps[j].command);
-        
-        // Apply CSS styling for the buttons
-        GtkCssProvider *provider = gtk_css_provider_new();
-        gtk_css_provider_load_from_data(provider,
-                                        ".steam-button {"
-                                        "   background-color: #2c2c2c;"
-                                        "   border: none;"
-                                        "   color: #ffffff;"
-                                        "   font-size: 12pt;"
-                                        "   font-weight: bold;"
-                                        "   padding: 10px;"
-                                        "}"
-                                        ".steam-button:hover {"
-                                        "   background-color: #3c3c3c;"
-                                        "   color: #ffffff;"
-                                        "}",
-                                        -1,
-                                        NULL);
-        GtkStyleContext *context = gtk_widget_get_style_context(launch_button);
-        gtk_style_context_add_class(context, "steam-button");
-        gtk_widget_set_name(launch_button, "steam_button");
-        gtk_style_context_add_provider(context, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
     }
 
     // Show all widgets
@@ -150,7 +128,7 @@ int main(int argc, char *argv[]) {
 
     // Create main window
     GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(window), "Bondi - V5");
+    gtk_window_set_title(GTK_WINDOW(window), "Bondi - V4");
     gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(window, "key-press-event", G_CALLBACK(on_key_press), NULL);
@@ -158,6 +136,25 @@ int main(int argc, char *argv[]) {
     // Create grid layout for main window
     GtkWidget *grid = gtk_grid_new();
     gtk_container_add(GTK_CONTAINER(window), grid);
+
+    // Apply CSS styling to the whole application
+    GtkCssProvider *provider = gtk_css_provider_new();
+    gtk_css_provider_load_from_data(provider,
+                                    ".steam-button {"
+                                    "   background-color: #2c2c2c;"
+                                    "   border: none;"
+                                    "   color: #ffffff;"
+                                    "   font-size: 12pt;"
+                                    "   font-weight: bold;"
+                                    "   padding: 10px;"
+                                    "}"
+                                    ".steam-button:hover {"
+                                    "   background-color: #3c3c3c;"
+                                    "   color: #ffffff;"
+                                    "}",
+                                    -1,
+                                    NULL);
+    gtk_style_context_add_provider_for_screen(gdk_screen_get_default(), GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
 
     // Create sidebar
     GtkWidget *sidebar = gtk_list_box_new();
