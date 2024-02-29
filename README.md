@@ -13,6 +13,7 @@ If you would like to compile from source follow these instructions.
 ### [Fedora](https://fedoraproject.org/) ([dnf](https://docs.fedoraproject.org/en-US/quick-docs/dnf/))
 
 #### Perrepisites 
+To install the needed packages open a terminal and run the following commands.
 ```bash
 sudo dnf 
 ```
