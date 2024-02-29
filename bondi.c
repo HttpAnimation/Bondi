@@ -163,7 +163,7 @@ int main(int argc, char *argv[]) {
 
     // Create main window
     GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(window), "Bondi - V6");
+    gtk_window_set_title(GTK_WINDOW(window), "Bondi - V7");
     gtk_window_set_default_size(GTK_WINDOW(window), 800, 600);
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(window, "key-press-event", G_CALLBACK(on_key_press), NULL);
@@ -175,17 +175,37 @@ int main(int argc, char *argv[]) {
     // Apply CSS styling to the whole application
     GtkCssProvider *provider = gtk_css_provider_new();
     gtk_css_provider_load_from_data(provider,
-                                    ".steam-button {"
-                                    "   background-color: #2c2c2c;"
+                                    ".app-button {"
+                                    "   background-color: #4CAF50;"
                                     "   border: none;"
-                                    "   color: #ffffff;"
-                                    "   font-size: 12pt;"
-                                    "   font-weight: bold;"
-                                    "   padding: 10px;"
+                                    "   color: white;"
+                                    "   padding: 10px 20px;"
+                                    "   text-align: center;"
+                                    "   text-decoration: none;"
+                                    "   display: inline-block;"
+                                    "   font-size: 16px;"
+                                    "   margin: 4px 2px;"
+                                    "   cursor: pointer;"
+                                    "   border-radius: 12px;"
                                     "}"
-                                    ".steam-button:hover {"
-                                    "   background-color: #3c3c3c;"
-                                    "   color: #ffffff;"
+                                    ".app-button:hover {"
+                                    "   background-color: #45a049;"
+                                    "}"
+                                    ".category-button {"
+                                    "   background-color: #008CBA;"
+                                    "   border: none;"
+                                    "   color: white;"
+                                    "   padding: 10px 20px;"
+                                    "   text-align: center;"
+                                    "   text-decoration: none;"
+                                    "   display: inline-block;"
+                                    "   font-size: 16px;"
+                                    "   margin: 4px 2px;"
+                                    "   cursor: pointer;"
+                                    "   border-radius: 12px;"
+                                    "}"
+                                    ".category-button:hover {"
+                                    "   background-color: #006E9D;"
                                     "}",
                                     -1,
                                     NULL);
@@ -198,6 +218,7 @@ int main(int argc, char *argv[]) {
     // Populate sidebar with category buttons
     for (int i = 0; i < num_categories; i++) {
         GtkWidget *category_button = gtk_button_new_with_label(categories[i].name);
+        gtk_style_context_add_class(GTK_STYLE_CONTEXT(category_button), "category-button");
         gtk_container_add(GTK_CONTAINER(sidebar), category_button);
 
         // Create a grid for each category
