@@ -28,3 +28,5 @@ sudo dnf install gcc
 sudo dnf install gtk3-devel
 ```
 4) Clone the repo with stable data.
+```bash
+```
