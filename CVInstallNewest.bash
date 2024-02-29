@@ -23,6 +23,8 @@ wget "$download_url" -O bondi
 # Check if the download was successful
 if [ $? -eq 0 ]; then
     echo "bondi file downloaded successfully."
+    wget https://raw.githubusercontent.com/HttpAnimation/Bondi/stable/Data.conf
+    chmod +x bondi
 else
     echo "Failed to download bondi file."
 fi
