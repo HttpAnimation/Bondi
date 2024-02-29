@@ -26,7 +26,7 @@ int num_categories = 0;
 void read_data(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        perror("Error opening Data.conf run kate Data.conf");
+        perror("Error opening Data.conf ");
         exit(EXIT_FAILURE);
     }
 
