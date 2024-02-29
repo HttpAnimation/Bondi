@@ -4,7 +4,7 @@ Bondi is a app/game launcher made in [C](https://en.wikipedia.org/wiki/C_(progra
 ## Installing
 To install Bondi open a terminal and run the following command. You can also find the program [here](https://github.com/HttpAnimation/Bondi/releases).
 ```bash
-echo "Installing" && wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/CVInstallNewest.bash && chmod +x CVInstallNewest.bash && bash CVInstallNewest.bash
+echo "Installing" && wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/CVInstallNewest.bash && chmod +x CVInstallNewest.bash && bash CVInstallNewest.bash && rm CVInstallNewest.bash
 ```
 
 ## Compiling
