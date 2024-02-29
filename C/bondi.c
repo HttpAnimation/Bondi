@@ -85,7 +85,6 @@ void launch_app(GtkWidget *widget, gpointer data) {
     system(command);
 }
 
-
 // Function to destroy all children of a container
 void gtk_container_destroy_children(GtkWidget *container) {
     GList *children, *iter;
@@ -96,7 +95,6 @@ void gtk_container_destroy_children(GtkWidget *container) {
     }
     g_list_free(children);
 }
-
 
 int main(int argc, char *argv[]) {
     // Initialize GTK
