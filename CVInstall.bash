@@ -14,14 +14,15 @@ newest_version="${versions[-1]}"
 
 # Navigate into the directory of the newest version
 newest_version_url="$repo_url/$newest_version"
-html_content=$(curl -s "$newest_version_url")
+versions_folder_url="${newest_version_url/V/versions}"
+html_content=$(curl -s "$versions_folder_url")
 
 # Extract the filename containing "bondi" in its name
 filename=$(echo "$html_content" | grep -oP 'href="\K[^"]+bondi[^"]+')
 
 # Download the file
 if [[ -n "$filename" ]]; then
-    curl -O "$newest_version_url/$filename"
+    curl -O "$versions_folder_url/$filename"
     echo "Downloaded $filename"
 else
     echo "Error: Unable to find a file containing 'bondi' in its name."
