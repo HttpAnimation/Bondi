@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bondi</title>
+<style>
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+#sidebar {
+    width: {{ bondi_app.sidebar_width }}px;
+    background-color: #1e1e1e;
+    float: left;
+    padding: 20px;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#gameButtons {
+    background-color: #1e1e1e;
+    overflow: hidden;
+    padding: 20px;
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the start (left) of the container */
+}
+
+#divider {
+    background-color: #333;
+    width: 2px;
+    height: 600px;
+    margin-right: 20px;
+}
+
+#gameButtonsFrame {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 10px;
+}
+
+.gameButton {
+    background-color: #333;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.gameButton:hover {
+    background-color: #555;
+}
+</style>
+</head>
+<body>
+    <h1>Bondi</h1>
+    <div id="sidebar">
+        {% for category in bondi_app.categories %}
+            <button onclick="displayGames('{{ category }}')">{{ category }}</button>
+        {% endfor %}
+    </div>
+    <div id="gameButtons">
+        <canvas id="divider"></canvas>
+        <div id="gameButtonsFrame"></div>
+    </div>
+<script>
+    function displayGames(category) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/games?category=" + category, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var games = JSON.parse(xhr.responseText);
+            renderGames(games);
+        }
+    };
+    xhr.send();
+}
+
+function renderGames(games) {
+    var gameButtonsFrame = document.getElementById("gameButtonsFrame");
+    gameButtonsFrame.innerHTML = "";
+    games.forEach(function(game) {
+        var button = document.createElement("button");
+        button.textContent = game.name;
+        button.className = "gameButton";
+        button.onclick = function() {
+            runCommand(game.command);
+        };
+        gameButtonsFrame.appendChild(button);
+    });
+}
+
+function runCommand(command) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/run_command", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log("Command executed successfully");
+        }
+    };
+    xhr.send(JSON.stringify({ command: command }));
+}
+
+</script>
+</body>
+</html>
