@@ -136,4 +136,24 @@ int main(int argc, char *argv[]) {
 
     // Create sidebar
     GtkWidget *sidebar = gtk_list_box_new();
-    gtk_grid_attach(GTK_GRID(grid), sidebar, 0, 0,
+    gtk_grid_attach(GTK_GRID(grid), sidebar, 0, 0, 1, 1);
+
+    // Populate sidebar with category buttons
+    for (int i = 0; i < num_categories; i++) {
+        GtkWidget *button = gtk_button_new_with_label(categories[i].name);
+        gtk_container_add(GTK_CONTAINER(sidebar), button);
+        g_signal_connect(button, "clicked", G_CALLBACK(load_apps), grid);
+    }
+
+    // Create main area
+    GtkWidget *main_area = gtk_grid_new();
+    gtk_grid_attach(GTK_GRID(grid), main_area, 1, 0, 1, 1);
+
+    // Show all widgets
+    gtk_widget_show_all(window);
+
+    // Run the GTK main loop
+    gtk_main();
+
+    return 0;
+}
