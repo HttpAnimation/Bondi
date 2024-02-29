@@ -6,3 +6,5 @@ To install Bondi open a terminal and run the following command.
 ```bash
 echo "hot here yet"
 ```
+
+## Compiling
