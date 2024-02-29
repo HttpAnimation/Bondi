@@ -17,5 +17,6 @@ To install the needed packages open a terminal and run the following commands.
 
 1) Update
 ```bash
-sudo dnf 
+sudo dnf update
 ```
+2) Install [gcc](https://gcc.gnu.org/)
