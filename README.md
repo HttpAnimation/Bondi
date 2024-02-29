@@ -12,5 +12,7 @@ If you would like to compile from source follow these instructions.
 
 ### [Fedora](https://fedoraproject.org/) ([dnf](https://docs.fedoraproject.org/en-US/quick-docs/dnf/))
 
-1) Perrepisites 
-
+#### Perrepisites 
+```bash
+sudo dnf 
+```
