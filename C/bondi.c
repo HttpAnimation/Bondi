@@ -85,6 +85,19 @@ void launch_app(GtkWidget *widget, gpointer data) {
     system(command);
 }
 
+
+// Function to destroy all children of a container
+void gtk_container_destroy_children(GtkWidget *container) {
+    GList *children, *iter;
+
+    children = gtk_container_get_children(GTK_CONTAINER(container));
+    for (iter = children; iter != NULL; iter = g_list_next(iter)) {
+        gtk_widget_destroy(GTK_WIDGET(iter->data));
+    }
+    g_list_free(children);
+}
+
+
 int main(int argc, char *argv[]) {
     // Initialize GTK
     gtk_init(&argc, &argv);
@@ -109,7 +122,7 @@ int main(int argc, char *argv[]) {
         gtk_list_box_insert(GTK_LIST_BOX(sidebar), button, -1);
         g_signal_connect(button, "clicked", G_CALLBACK(gtk_widget_show_all), window);
         g_signal_connect_swapped(button, "clicked", G_CALLBACK(gtk_widget_hide), sidebar);
-        g_signal_connect(button, "clicked", G_CALLBACK(gtk_widget_destroy_children), window);
+        g_signal_connect(button, "clicked", G_CALLBACK(gtk_container_destroy_children), window);
 
         // Populate each category with launch buttons
         for (int j = 0; j < categories[i].num_apps; j++) {
