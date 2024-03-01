@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h> // For the exec family of functions
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #define MAX_GAMES 100
 #define MAX_NAME_LENGTH 50
@@ -33,8 +36,24 @@ void readConfigFile() {
 }
 
 void launchGame(int gameIndex) {
-    // Code to launch the game executable
-    printf("Launching game: %s\n", games[gameIndex].executable);
+    pid_t pid = fork();
+    if (pid == -1) {
+        perror("fork");
+        exit(EXIT_FAILURE);
+    }
+
+    if (pid == 0) {
+        // Child process
+        if (execlp(games[gameIndex].executable, games[gameIndex].executable, NULL) == -1) {
+            perror("execlp");
+            exit(EXIT_FAILURE);
+        }
+    } else {
+        // Parent process
+        int status;
+        waitpid(pid, &status, 0);
+        printf("Game has exited with status: %d\n", status);
+    }
 }
 
 int main() {
