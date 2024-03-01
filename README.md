@@ -14,7 +14,7 @@ echo "Installing" && wget https://raw.githubusercontent.com/HttpAnimation/Bondi/
 ## Usage
 ### Launching
 To open Bondi you can eitehr double click the app if your distro and window manager surrports it only tested with [KDE](https://kde.org/) and [Fedora](https://fedoraproject.org/). Rather then that you can run **./bondi** in the terminal.
-###
+### Config's
 
 <br>
 
