@@ -121,7 +121,7 @@ static void activate(GtkApplication *app, gpointer user_data) {
     gtk_container_add(GTK_CONTAINER(window), box);
 
     // Create a label for the title
-    label = gtk_label_new("Bondi - Big Picture Mode");
+    label = gtk_label_new("Bondi");
     gtk_widget_set_name(label, "title");
     gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, 20);
 
