@@ -8,6 +8,7 @@ echo "Installing" && wget https://raw.githubusercontent.com/HttpAnimation/Bondi/
 ```
 
 ## Usage
+### Launching
 
 ## Compiling from source
 If you would like to compile from source follow these instructions.
