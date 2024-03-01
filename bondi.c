@@ -5,17 +5,18 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-#define MAX_GAMES 100
+#define MAX_APPS 100
 #define MAX_NAME_LENGTH 50
+#define MAX_COMMAND_LENGTH 100
 #define CONFIG_FILE "Data.conf"
 
 typedef struct {
     char name[MAX_NAME_LENGTH];
-    char executable[MAX_NAME_LENGTH];
-} Game;
+    char command[MAX_COMMAND_LENGTH];
+} App;
 
-Game games[MAX_GAMES];
-int numGames = 0;
+App apps[MAX_APPS];
+int numApps = 0;
 
 void readConfigFile() {
     FILE *file = fopen(CONFIG_FILE, "r");
@@ -24,10 +25,10 @@ void readConfigFile() {
         exit(EXIT_FAILURE);
     }
 
-    while (fscanf(file, "%s %s", games[numGames].name, games[numGames].executable) == 2) {
-        numGames++;
-        if (numGames >= MAX_GAMES) {
-            fprintf(stderr, "Too many games in config file\n");
+    while (fscanf(file, "%s %[^\n]", apps[numApps].name, apps[numApps].command) == 2) {
+        numApps++;
+        if (numApps >= MAX_APPS) {
+            fprintf(stderr, "Too many applications in config file\n");
             break;
         }
     }
@@ -35,7 +36,7 @@ void readConfigFile() {
     fclose(file);
 }
 
-void launchGame(int gameIndex) {
+void launchApp(int appIndex) {
     pid_t pid = fork();
     if (pid == -1) {
         perror("fork");
@@ -44,7 +45,7 @@ void launchGame(int gameIndex) {
 
     if (pid == 0) {
         // Child process
-        if (execlp(games[gameIndex].executable, games[gameIndex].executable, NULL) == -1) {
+        if (execlp("/bin/sh", "sh", "-c", apps[appIndex].command, NULL) == -1) {
             perror("execlp");
             exit(EXIT_FAILURE);
         }
@@ -52,18 +53,18 @@ void launchGame(int gameIndex) {
         // Parent process
         int status;
         waitpid(pid, &status, 0);
-        printf("Game has exited with status: %d\n", status);
+        printf("Application has exited with status: %d\n", status);
     }
 }
 
 int main() {
     readConfigFile();
 
-    // Example: Launch the first game in the list
-    if (numGames > 0) {
-        launchGame(0);
+    // Example: Launch the first application in the list
+    if (numApps > 0) {
+        launchApp(0);
     } else {
-        printf("No games found in config file\n");
+        printf("No applications found in config file\n");
     }
 
     return 0;
