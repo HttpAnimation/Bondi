@@ -17,6 +17,10 @@ To open Bondi you can eitehr double click the app if your distro and window mana
 ### Config's
 The config holds all the apps you want Bondi to be able to use. To edit your config open the file **Data.conf**.
 
+```
+NameOfTheApp LaunchCommand Photo.png
+```
+
 <br>
 
 ## Compiling from source
