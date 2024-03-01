@@ -61,6 +61,11 @@ void launchApp(int appIndex, GtkWindow *parentWindow) {
 static void launch_selected_app(GtkWidget *widget, gpointer data) {
     int appIndex = GPOINTER_TO_INT(data);
     GtkWindow *parentWindow = GTK_WINDOW(gtk_widget_get_toplevel(widget));
+    
+    // Minimize the parent window (Bondi window)
+    gtk_window_iconify(parentWindow);
+    
+    // Launch the selected application
     launchApp(appIndex, parentWindow);
 }
 
