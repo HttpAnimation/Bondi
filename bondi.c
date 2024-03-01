@@ -39,6 +39,7 @@ void readConfigFile() {
             // If so, construct the path to the photo using the name and assuming it's in the GameArt folder
             char photoPath[256];
             sprintf(photoPath, "GameArt/%s.png", apps[numApps].name);
+            printf("Photo Path: %s\n", photoPath); // Print photo path for debugging
             // Check if the photo exists
             if (access(photoPath, F_OK) != -1) {
                 // If the photo exists, create a button with an image
