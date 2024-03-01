@@ -19,6 +19,12 @@ typedef struct {
 
 App apps[MAX_APPS];
 int numApps = 0;
+GtkWidget *grid; // Declare grid as a global variable
+
+void readConfigFile(); // Declare functions to fix the order
+void launchApp(int appIndex, GtkWindow *parentWindow);
+static void launch_selected_app(GtkWidget *widget, gpointer data);
+static void activate(GtkApplication *app, gpointer user_data);
 
 void readConfigFile() {
     FILE *file = fopen(CONFIG_FILE, "r");
@@ -102,15 +108,11 @@ static void launch_selected_app(GtkWidget *widget, gpointer data) {
 
 static void activate(GtkApplication *app, gpointer user_data) {
     GtkWidget *window;
-    GtkWidget *grid;
-    GtkWidget *button;
     GtkWidget *box;
     GtkWidget *label;
     GtkCssProvider *provider;
     GdkDisplay *display;
     GdkScreen *screen;
-
-    readConfigFile();
 
     // Create a new window
     window = gtk_application_window_new(app);
@@ -159,12 +161,8 @@ static void activate(GtkApplication *app, gpointer user_data) {
     grid = gtk_grid_new();
     gtk_container_add(GTK_CONTAINER(box), grid);
 
-    // Create buttons for each application
-    for (int i = 0; i < numApps; i++) {
-        button = gtk_button_new_with_label(apps[i].name);
-        g_signal_connect(button, "clicked", G_CALLBACK(launch_selected_app), GINT_TO_POINTER(i));
-        gtk_grid_attach(GTK_GRID(grid), button, 0, i, 1, 1);
-    }
+    // Read configuration file and create buttons
+    readConfigFile();
 
     gtk_widget_show_all(window);
 }
