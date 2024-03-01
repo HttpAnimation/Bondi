@@ -27,7 +27,34 @@ void readConfigFile() {
         exit(EXIT_FAILURE);
     }
 
-    while (fscanf(file, "%s %[^\n]", apps[numApps].name, apps[numApps].command) == 2) {
+    while (fscanf(file, "%s %s", apps[numApps].name, apps[numApps].command) == 2) {
+        // Check if the command is "photo"
+        if (strcmp(apps[numApps].command, "photo") == 0) {
+            // If so, construct the path to the photo using the name and assuming it's in the GameArt folder
+            char photoPath[256];
+            sprintf(photoPath, "GameArt/%s.png", apps[numApps].name);
+            // Check if the photo exists
+            if (access(photoPath, F_OK) != -1) {
+                // If the photo exists, create a button with an image
+                GtkWidget *image = gtk_image_new_from_file(photoPath);
+                GtkWidget *button = gtk_button_new();
+                gtk_button_set_image(GTK_BUTTON(button), image);
+                gtk_widget_set_tooltip_text(button, apps[numApps].name);
+                g_signal_connect(button, "clicked", G_CALLBACK(launch_selected_app), GINT_TO_POINTER(numApps));
+                gtk_grid_attach(GTK_GRID(grid), button, 0, numApps, 1, 1);
+            } else {
+                // If the photo doesn't exist, create a button with text only
+                GtkWidget *button = gtk_button_new_with_label(apps[numApps].name);
+                g_signal_connect(button, "clicked", G_CALLBACK(launch_selected_app), GINT_TO_POINTER(numApps));
+                gtk_grid_attach(GTK_GRID(grid), button, 0, numApps, 1, 1);
+            }
+        } else {
+            // If the command is not "photo", create a button with text only
+            strcpy(apps[numApps].command, "firefox"); // Assuming default command is "firefox" when not specified
+            GtkWidget *button = gtk_button_new_with_label(apps[numApps].name);
+            g_signal_connect(button, "clicked", G_CALLBACK(launch_selected_app), GINT_TO_POINTER(numApps));
+            gtk_grid_attach(GTK_GRID(grid), button, 0, numApps, 1, 1);
+        }
         numApps++;
         if (numApps >= MAX_APPS) {
             fprintf(stderr, "Too many applications in config file\n");
