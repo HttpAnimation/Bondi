@@ -7,6 +7,8 @@ To install Bondi open a terminal and run the following command. You can also fin
 echo "Installing" && wget https://raw.githubusercontent.com/HttpAnimation/Bondi/main/CVInstallNewest.bash && chmod +x CVInstallNewest.bash && bash CVInstallNewest.bash && rm CVInstallNewest.bash
 ```
 
+## Usage
+
 ## Compiling from source
 If you would like to compile from source follow these instructions.
 
