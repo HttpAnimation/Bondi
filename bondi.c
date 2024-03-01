@@ -1,3 +1,4 @@
+#include <gtk/gtk.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -57,15 +58,45 @@ void launchApp(int appIndex) {
     }
 }
 
-int main() {
+static void launch_selected_app(GtkWidget *widget, gpointer data) {
+    int appIndex = GPOINTER_TO_INT(data);
+    launchApp(appIndex);
+}
+
+static void activate(GtkApplication *app, gpointer user_data) {
+    GtkWidget *window;
+    GtkWidget *grid;
+    GtkWidget *button;
+
     readConfigFile();
 
-    // Example: Launch the first application in the list
-    if (numApps > 0) {
-        launchApp(0);
-    } else {
-        printf("No applications found in config file\n");
+    // Create a new window
+    window = gtk_application_window_new(app);
+    gtk_window_set_title(GTK_WINDOW(window), "Bondi - Big Picture Mode");
+    gtk_window_set_default_size(GTK_WINDOW(window), 200, 100);
+
+    // Create a grid layout
+    grid = gtk_grid_new();
+    gtk_container_add(GTK_CONTAINER(window), grid);
+
+    // Create buttons for each application
+    for (int i = 0; i < numApps; i++) {
+        button = gtk_button_new_with_label(apps[i].name);
+        g_signal_connect(button, "clicked", G_CALLBACK(launch_selected_app), GINT_TO_POINTER(i));
+        gtk_grid_attach(GTK_GRID(grid), button, 0, i, 1, 1);
     }
 
-    return 0;
+    gtk_widget_show_all(window);
+}
+
+int main(int argc, char **argv) {
+    GtkApplication *app;
+    int status;
+
+    app = gtk_application_new("org.example.bondi", G_APPLICATION_FLAGS_NONE);
+    g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
+    status = g_application_run(G_APPLICATION(app), argc, argv);
+    g_object_unref(app);
+
+    return status;
 }
