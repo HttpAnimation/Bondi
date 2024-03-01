@@ -37,7 +37,7 @@ void readConfigFile() {
     fclose(file);
 }
 
-void launchApp(int appIndex) {
+void launchApp(int appIndex, GtkWindow *parentWindow) {
     pid_t pid = fork();
     if (pid == -1) {
         perror("fork");
@@ -60,7 +60,8 @@ void launchApp(int appIndex) {
 
 static void launch_selected_app(GtkWidget *widget, gpointer data) {
     int appIndex = GPOINTER_TO_INT(data);
-    launchApp(appIndex);
+    GtkWindow *parentWindow = GTK_WINDOW(gtk_widget_get_toplevel(widget));
+    launchApp(appIndex, parentWindow);
 }
 
 static void activate(GtkApplication *app, gpointer user_data) {
