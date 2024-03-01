@@ -123,7 +123,7 @@ static void activate(GtkApplication *app, gpointer user_data) {
 
     // Create a label for the title
     char title[50];
-    sprintf(title, "Bondi v%d", VERSION);
+    sprintf(title, "Bondi CV%d", VERSION);
     label = gtk_label_new(title);
     gtk_widget_set_name(label, "title");
     gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, 20);
