@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define MAX_LENGTH 256
-#define MAX_APPS 100
+#define MAX_APPS 10000 // Defined as a very large number
 
 int main() {
     FILE *fp;
