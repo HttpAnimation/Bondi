@@ -19,7 +19,7 @@ typedef struct {
 
 App apps[MAX_APPS];
 int numApps = 0;
-GtkWidget *grid; // Declare grid as a global variable
+GtkWidget *grid = NULL; // Declare grid as a global variable and initialize it to NULL
 
 void readConfigFile(); // Declare functions to fix the order
 void launchApp(int appIndex, GtkWindow *parentWindow);
