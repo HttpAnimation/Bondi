@@ -25,6 +25,7 @@ void readConfigFile(); // Declare functions to fix the order
 void launchApp(int appIndex, GtkWindow *parentWindow);
 static void launch_selected_app(GtkWidget *widget, gpointer data);
 static void activate(GtkApplication *app, gpointer user_data);
+static gboolean on_controller_button_pressed(GtkWidget *widget, GdkEventButton *event, gpointer user_data);
 
 void readConfigFile() {
     FILE *file = fopen(CONFIG_FILE, "r");
@@ -166,6 +167,16 @@ static void activate(GtkApplication *app, gpointer user_data) {
     readConfigFile();
 
     gtk_widget_show_all(window);
+    
+    // Connect controller button press event
+    g_signal_connect(window, "button-press-event", G_CALLBACK(on_controller_button_pressed), NULL);
+}
+
+// Function to handle controller input events
+static gboolean on_controller_button_pressed(GtkWidget *widget, GdkEventButton *event, gpointer user_data) {
+    // Handle controller button press event here
+    printf("Controller button pressed\n");
+    return TRUE;
 }
 
 int main(int argc, char **argv) {
