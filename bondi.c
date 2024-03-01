@@ -122,7 +122,9 @@ static void activate(GtkApplication *app, gpointer user_data) {
     gtk_container_add(GTK_CONTAINER(window), box);
 
     // Create a label for the title
-    label = gtk_label_new("Bondi");
+    char title[50];
+    sprintf(title, "Bondi v%d", VERSION);
+    label = gtk_label_new(title);
     gtk_widget_set_name(label, "title");
     gtk_box_pack_start(GTK_BOX(box), label, FALSE, FALSE, 20);
 
