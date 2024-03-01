@@ -74,6 +74,7 @@ static void activate(GtkApplication *app, gpointer user_data) {
     window = gtk_application_window_new(app);
     gtk_window_set_title(GTK_WINDOW(window), "Bondi - Big Picture Mode");
     gtk_window_set_default_size(GTK_WINDOW(window), 200, 100);
+    gtk_window_fullscreen(GTK_WINDOW(window)); // Set the window to full-screen mode
 
     // Create a grid layout
     grid = gtk_grid_new();
