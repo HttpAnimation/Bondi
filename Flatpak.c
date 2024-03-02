@@ -15,7 +15,7 @@ void append_to_file(const char *filename, const char *text) {
 }
 
 int main() {
-    const char *games_ini_path = "Output/Games.ini";
+    const char *games_ini_path = "Data.conf";
     FILE *games_ini_file = fopen(games_ini_path, "r");
     if (games_ini_file == NULL) {
         games_ini_file = fopen(games_ini_path, "w");
