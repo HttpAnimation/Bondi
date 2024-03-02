@@ -12,7 +12,7 @@ int main() {
     int num_apps = 0;
 
     // Open a pipe to read the list of installed Flatpak applications
-    fp = popen("flatpak list --app --columns=Application", "r");
+    fp = popen("flatpak list --app", "r");
     if (fp == NULL) {
         printf("Failed to run command\n");
         return 1;
@@ -20,8 +20,14 @@ int main() {
 
     // Read the output line by line
     while (fgets(buffer, MAX_LENGTH, fp) != NULL) {
-        // Store the application ID (launch command)
-        apps[num_apps] = strdup(buffer);
+        // Skip lines that don't start with the application ID
+        if (buffer[0] == ' ') continue;
+        
+        // Extract the application name
+        char *app_name = strtok(buffer, " ");
+        
+        // Store the application name
+        apps[num_apps] = strdup(app_name);
         num_apps++;
     }
 
@@ -35,11 +41,9 @@ int main() {
         return 1;
     }
 
-    // Write each application ID to the file
+    // Write each application name to the file
     for (int i = 0; i < num_apps; i++) {
-        // Trim newline character from the end of the app ID
-        apps[i][strlen(apps[i])-1] = '\0';
-        fprintf(fp, "flatpak run %s\n", apps[i]);
+        fprintf(fp, "%s flatpak run %s\n", apps[i], apps[i]);
         free(apps[i]);
     }
 
