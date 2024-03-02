@@ -1,46 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #define MAX_LENGTH 256
-#define MAX_APPS 10000 // Defined as a very large number
 
 int main() {
-    FILE *fp;
+    FILE *fp_in, *fp_out;
     char buffer[MAX_LENGTH];
-    char app_name[MAX_LENGTH];
-    int num_apps = 0;
 
     // Open a pipe to read the list of installed Flatpak applications
-    fp = popen("flatpak list --app", "r");
-    if (fp == NULL) {
+    fp_in = popen("flatpak list --app", "r");
+    if (fp_in == NULL) {
         printf("Failed to run command\n");
         return 1;
     }
 
-    // Write the data to Data.conf file
-    fp = fopen("Data.conf", "w");
-    if (fp == NULL) {
+    // Open Data.conf file for writing
+    fp_out = fopen("Data.conf", "w");
+    if (fp_out == NULL) {
         printf("Error opening file\n");
         return 1;
     }
 
-    // Read the output line by line
-    while (fgets(buffer, MAX_LENGTH, fp) != NULL) {
-        // Skip lines that don't start with the application ID
-        if (buffer[0] == ' ') continue;
-
-        // Extract the application name
-        sscanf(buffer, "%s", app_name);
-
-        // Write the application name and its launch command to Data.conf
-        fprintf(fp, "%s flatpak run %s", app_name, app_name);
-        num_apps++;
+    // Read the output line by line and write to Data.conf
+    while (fgets(buffer, MAX_LENGTH, fp_in) != NULL) {
+        fprintf(fp_out, "%s", buffer);
     }
 
-    // Close the pipe and file
-    pclose(fp);
-    fclose(fp);
+    // Close the pipes and files
+    pclose(fp_in);
+    fclose(fp_out);
 
     printf("Data written to Data.conf successfully\n");
 
