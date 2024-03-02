@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MAX_LENGTH 256
 
 int main() {
     FILE *fp_in, *fp_out;
     char buffer[MAX_LENGTH];
+    char app_name[MAX_LENGTH], app_id[MAX_LENGTH];
 
     // Open a pipe to read the list of installed Flatpak applications
-    fp_in = popen("flatpak list --app", "r");
+    fp_in = popen("flatpak list --app --columns=Name,Application", "r");
     if (fp_in == NULL) {
         printf("Failed to run command\n");
         return 1;
@@ -23,7 +25,11 @@ int main() {
 
     // Read the output line by line and write to Data.conf
     while (fgets(buffer, MAX_LENGTH, fp_in) != NULL) {
-        fprintf(fp_out, "%s", buffer);
+        // Parse application name and ID from the buffer
+        sscanf(buffer, "%s %s", app_name, app_id);
+
+        // Write application name and launch command to Data.conf
+        fprintf(fp_out, "%s flatpak run %s\n", app_name, app_id);
     }
 
     // Close the pipes and files
