@@ -3,5 +3,5 @@ Tweakers allows you auto make a **Data.conf** file that you can combine with the
 
 ## Flatpak
 ```bash
-
+wget https://github.com/HttpAnimation/Bondi/raw/Tweakers/Flatpaks-Tweakers
 ```
