@@ -86,7 +86,7 @@ int main() {
     }
     pclose(pipe);
 
-    printf("Commands have been written to Games.ini\n");
+    printf("Commands have been written to Data.conf\n");
 
     return 0;
 }
