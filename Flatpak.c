@@ -84,6 +84,6 @@ int main() {
     pclose(pipe);
 
     printf("Commands have been written to Data.conf\n");
-
+    printf("Make sure to open the file Data.conf to make sure all the data is right\n");
     return 0;
 }
