@@ -29,12 +29,6 @@ int main() {
         fclose(games_ini_file);
     }
 
-    FILE *subsections_ini = fopen("subsections.ini", "r");
-    if (subsections_ini == NULL) {
-        perror("Error opening subsections.ini");
-        exit(EXIT_FAILURE);
-    }
-    fclose(subsections_ini);
     char flatpak_list_output[MAX_LINE_LENGTH];
     FILE *pipe = popen("flatpak list", "r");
     if (pipe == NULL) {
