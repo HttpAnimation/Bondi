@@ -9,7 +9,7 @@
 #define MAX_APPS 100
 #define MAX_NAME_LENGTH 50
 #define MAX_COMMAND_LENGTH 100
-#define VERSION 7
+#define VERSION 8
 #define CONFIG_FILE "Data.conf"
 
 typedef struct {
