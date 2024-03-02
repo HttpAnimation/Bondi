@@ -10,7 +10,7 @@ void append_to_file(const char *filename, const char *text) {
         perror("Error opening file");
         exit(EXIT_FAILURE);
     }
-    fprintf(file, "%s", text);
+    fprintf(file, "%s\n", text);
     fclose(file);
 }
 
@@ -55,7 +55,7 @@ int main() {
 
             // If the third column starts with "flatpak run", use it directly
             if (strncmp(columns[2], "flatpak run", 11) == 0) {
-                snprintf(command_str, sizeof(command_str), "%s\n", columns[2]);
+                snprintf(command_str, sizeof(command_str), "%s %s\n", columns[0], columns[2]);
             } else {
                 // Extract app name, flatpak name, and run command
                 char *app_name = columns[0];
@@ -65,7 +65,7 @@ int main() {
                 char *version_number = strrchr(flatpak_name, '.') + 1;
 
                 // Build the command string
-                snprintf(command_str, sizeof(command_str), "Flatpak | %s | %s | %s\n", app_name, columns[2], version_number);
+                snprintf(command_str, sizeof(command_str), "%s flatpak run %s\n", app_name, flatpak_name);
             }
 
             // Append command to file
