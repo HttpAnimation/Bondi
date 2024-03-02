@@ -15,6 +15,9 @@ void append_to_file(const char *filename, const char *text) {
 }
 
 int main() {
+    // Run flatpak update to ensure the list is up-to-date
+    system("flatpak update");
+
     const char *games_ini_path = "Data.conf";
     FILE *games_ini_file = fopen(games_ini_path, "r");
     if (games_ini_file == NULL) {
