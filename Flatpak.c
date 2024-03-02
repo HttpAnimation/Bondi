@@ -2,53 +2,85 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_LENGTH 256
-#define MAX_APPS 10000 // Defined as a very large number
+#define MAX_LINE_LENGTH 1024
+
+void append_to_file(const char *filename, const char *text) {
+    FILE *file = fopen(filename, "a");
+    if (file == NULL) {
+        perror("Error opening file");
+        exit(EXIT_FAILURE);
+    }
+    fprintf(file, "%s", text);
+    fclose(file);
+}
 
 int main() {
-    FILE *fp;
-    char buffer[MAX_LENGTH];
-    char *apps[MAX_APPS];
-    int num_apps = 0;
-
-    // Open a pipe to read the list of installed Flatpak applications
-    fp = popen("flatpak list --app", "r");
-    if (fp == NULL) {
-        printf("Failed to run command\n");
-        return 1;
+    const char *games_ini_path = "Output/Games.ini";
+    FILE *games_ini_file = fopen(games_ini_path, "r");
+    if (games_ini_file == NULL) {
+        games_ini_file = fopen(games_ini_path, "w");
+        if (games_ini_file == NULL) {
+            perror("Error creating Games.ini");
+            exit(EXIT_FAILURE);
+        }
+        fprintf(games_ini_file, "# Flatpak\n");
+        fclose(games_ini_file);
+    } else {
+        fclose(games_ini_file);
     }
 
-    // Read the output line by line
-    while (fgets(buffer, MAX_LENGTH, fp) != NULL) {
-        // Skip lines that don't start with the application ID
-        if (buffer[0] == ' ') continue;
-        
-        // Extract the application name
-        char *app_name = strtok(buffer, " ");
-        
-        // Store the application name
-        apps[num_apps] = strdup(app_name);
-        num_apps++;
+    FILE *subsections_ini = fopen("subsections.ini", "r");
+    if (subsections_ini == NULL) {
+        perror("Error opening subsections.ini");
+        exit(EXIT_FAILURE);
     }
-
-    // Close the pipe
-    pclose(fp);
-
-    // Write the data to Data.conf file
-    fp = fopen("Data.conf", "w");
-    if (fp == NULL) {
-        printf("Error opening file\n");
-        return 1;
+    fclose(subsections_ini);
+    char flatpak_list_output[MAX_LINE_LENGTH];
+    FILE *pipe = popen("flatpak list", "r");
+    if (pipe == NULL) {
+        perror("Error executing flatpak list");
+        exit(EXIT_FAILURE);
     }
+    while (fgets(flatpak_list_output, sizeof(flatpak_list_output), pipe) != NULL) {
+        char *saveptr;
+        char *line = strtok_r(flatpak_list_output, "\n", &saveptr);
+        while (line != NULL) {
+            char *token;
+            char *columns[4];
+            int col = 0;
+            token = strtok(line, "\t");
+            while (token != NULL && col < 4) {
+                columns[col++] = token;
+                token = strtok(NULL, "\t");
+            }
+            if (col >= 4 && columns[2] != NULL) {
+                char app_name[MAX_LINE_LENGTH];
+                char flatpak_name[MAX_LINE_LENGTH];
+                char run_command[MAX_LINE_LENGTH];
+                strcpy(app_name, columns[0]);
+                strcpy(flatpak_name, columns[1]);
+                strcpy(run_command, columns[2]);
 
-    // Write each application name to the file
-    for (int i = 0; i < num_apps; i++) {
-        fprintf(fp, "%s flatpak run %s\n", apps[i], apps[i]);
-        free(apps[i]);
+                char *version_number = strrchr(flatpak_name, '.') + 1;
+
+                char command_str[MAX_LINE_LENGTH];
+                snprintf(command_str, sizeof(command_str), "Flatpak | %s | flatpak run %s | %s\n", app_name, flatpak_name, version_number);
+
+                if (strcmp(app_name, prev_app_name) != 0 || strcmp(run_command, prev_run_command) != 0) {
+                    append_to_file(games_ini_path, "\n");
+                }
+
+                append_to_file(games_ini_path, command_str);
+
+                strcpy(prev_app_name, app_name);
+                strcpy(prev_run_command, run_command);
+            }
+            line = strtok_r(NULL, "\n", &saveptr);
+        }
     }
+    pclose(pipe);
 
-    fclose(fp);
-    printf("Data written to Data.conf successfully\n");
+    printf("Commands have been written to Games.ini\n");
 
     return 0;
 }
