@@ -111,5 +111,5 @@ int main(int argc, char *argv[]) {
 
     printf("Commands have been written to %s\n", games_ini_path);
     printf("Make sure to open the file %s to make sure all the data is right\n", games_ini_path);
-    return 0;
+    return 0; 
 }
