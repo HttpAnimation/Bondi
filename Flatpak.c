@@ -23,9 +23,21 @@ void append_to_file(const char *filename, const char *text) {
     fclose(file);
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     const char *games_ini_path = "Data.conf";
-    
+
+    if (argc > 1 && strcmp(argv[1], "-f") == 0 && argc > 2) {
+        char *filename = argv[2];
+        // Check if the filename ends with ".conf", if not, append it
+        if (strlen(filename) < 5 || strcmp(filename + strlen(filename) - 5, ".conf") != 0) {
+            char new_filename[MAX_LINE_LENGTH];
+            snprintf(new_filename, sizeof(new_filename), "%s.conf", filename);
+            games_ini_path = new_filename;
+        } else {
+            games_ini_path = filename;
+        }
+    }
+
     // Clear the file
     clear_file(games_ini_path);
 
@@ -83,7 +95,7 @@ int main() {
     }
     pclose(pipe);
 
-    printf("Commands have been written to Data.conf\n");
-    printf("Make sure to open the file Data.conf to make sure all the data is right\n");
+    printf("Commands have been written to %s\n", games_ini_path);
+    printf("Make sure to open the file %s to make sure all the data is right\n", games_ini_path);
     return 0;
 }
