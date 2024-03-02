@@ -3,42 +3,51 @@
 #include <string.h>
 
 #define MAX_LENGTH 256
+#define MAX_APPS 10000 // Defined as a very large number
 
 int main() {
-    FILE *fp_in, *fp_out;
+    FILE *fp;
     char buffer[MAX_LENGTH];
-    char app_name[MAX_LENGTH], app_id[MAX_LENGTH];
+    char *apps[MAX_APPS];
+    int num_apps = 0;
 
     // Open a pipe to read the list of installed Flatpak applications
-    fp_in = popen("flatpak list --app", "r");
-    if (fp_in == NULL) {
+    fp = popen("flatpak list --app", "r");
+    if (fp == NULL) {
         printf("Failed to run command\n");
         return 1;
     }
 
-    // Open Data.conf file for writing
-    fp_out = fopen("Data.conf", "w");
-    if (fp_out == NULL) {
+    // Read the output line by line
+    while (fgets(buffer, MAX_LENGTH, fp) != NULL) {
+        // Skip lines that don't start with the application ID
+        if (buffer[0] == ' ') continue;
+        
+        // Extract the application name
+        char *app_name = strtok(buffer, " ");
+        
+        // Store the application name
+        apps[num_apps] = strdup(app_name);
+        num_apps++;
+    }
+
+    // Close the pipe
+    pclose(fp);
+
+    // Write the data to Data.conf file
+    fp = fopen("Data.conf", "w");
+    if (fp == NULL) {
         printf("Error opening file\n");
         return 1;
     }
 
-    // Read the output line by line and write to Data.conf
-    while (fgets(buffer, MAX_LENGTH, fp_in) != NULL) {
-        // Skip lines that don't start with the application ID
-        if (buffer[0] == ' ') continue;
-
-        // Extract the application ID
-        sscanf(buffer, "%s %s", app_name, app_id);
-
-        // Write application name and launch command to Data.conf
-        fprintf(fp_out, "%s flatpak run %s\n", app_name, app_id);
+    // Write each application name to the file
+    for (int i = 0; i < num_apps; i++) {
+        fprintf(fp, "%s flatpak run %s\n", apps[i], apps[i]);
+        free(apps[i]);
     }
 
-    // Close the pipes and files
-    pclose(fp_in);
-    fclose(fp_out);
-
+    fclose(fp);
     printf("Data written to Data.conf successfully\n");
 
     return 0;
