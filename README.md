@@ -8,3 +8,6 @@ Tweakers allows you auto make a **Data.conf** file that you can combine with the
 wget https://github.com/HttpAnimation/Bondi/raw/Tweakers/Flatpaks-Tweakers
 ```
 ### Running
+```
+./Flatpaks-Tweakers
+```
