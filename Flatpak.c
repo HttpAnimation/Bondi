@@ -4,6 +4,15 @@
 
 #define MAX_LINE_LENGTH 1024
 
+void clear_file(const char *filename) {
+    FILE *file = fopen(filename, "w");
+    if (file == NULL) {
+        perror("Error clearing file");
+        exit(EXIT_FAILURE);
+    }
+    fclose(file);
+}
+
 void append_to_file(const char *filename, const char *text) {
     FILE *file = fopen(filename, "a");
     if (file == NULL) {
@@ -15,21 +24,21 @@ void append_to_file(const char *filename, const char *text) {
 }
 
 int main() {
+    const char *games_ini_path = "Data.conf";
+    
+    // Clear the file
+    clear_file(games_ini_path);
+
     // Run flatpak update to ensure the list is up-to-date
     system("flatpak update");
 
-    const char *games_ini_path = "Data.conf";
-    FILE *games_ini_file = fopen(games_ini_path, "r");
+    // Open the file in append mode to ensure it exists
+    FILE *games_ini_file = fopen(games_ini_path, "a");
     if (games_ini_file == NULL) {
-        games_ini_file = fopen(games_ini_path, "w");
-        if (games_ini_file == NULL) {
-            perror("Error creating Data.conf");
-            exit(EXIT_FAILURE);
-        }
-        fclose(games_ini_file);
-    } else {
-        fclose(games_ini_file);
+        perror("Error opening Data.conf");
+        exit(EXIT_FAILURE);
     }
+    fclose(games_ini_file);
 
     char flatpak_list_output[MAX_LINE_LENGTH];
     FILE *pipe = popen("flatpak list", "r");
