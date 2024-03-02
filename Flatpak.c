@@ -7,10 +7,10 @@
 int main() {
     FILE *fp_in, *fp_out;
     char buffer[MAX_LENGTH];
-    char app_id[MAX_LENGTH];
+    char app_name[MAX_LENGTH], app_id[MAX_LENGTH];
 
     // Open a pipe to read the list of installed Flatpak applications
-    fp_in = popen("flatpak list --app", "r");
+    fp_in = popen("flatpak list --app --columns=Name,Application", "r");
     if (fp_in == NULL) {
         printf("Failed to run command\n");
         return 1;
@@ -28,11 +28,11 @@ int main() {
         // Skip lines that don't start with the application ID
         if (buffer[0] == ' ') continue;
 
-        // Extract the application ID
-        sscanf(buffer, "%s", app_id);
+        // Extract the application name and ID
+        sscanf(buffer, "%s %s", app_name, app_id);
 
         // Write application name and launch command to Data.conf
-        fprintf(fp_out, "%s flatpak run %s\n", app_id, app_id);
+        fprintf(fp_out, "%s flatpak run %s\n", app_name, app_id);
     }
 
     // Close the pipes and files
