@@ -8,7 +8,7 @@
 int main() {
     FILE *fp;
     char buffer[MAX_LENGTH];
-    char *app_name;
+    char app_name[MAX_LENGTH];
     int num_apps = 0;
 
     // Open a pipe to read the list of installed Flatpak applications
@@ -29,10 +29,10 @@ int main() {
     while (fgets(buffer, MAX_LENGTH, fp) != NULL) {
         // Skip lines that don't start with the application ID
         if (buffer[0] == ' ') continue;
-        
+
         // Extract the application name
-        app_name = strtok(buffer, " ");
-        
+        sscanf(buffer, "%s", app_name);
+
         // Write the application name and its launch command to Data.conf
         fprintf(fp, "%s flatpak run %s", app_name, app_name);
         num_apps++;
