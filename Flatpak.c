@@ -23,18 +23,32 @@ void append_to_file(const char *filename, const char *text) {
     fclose(file);
 }
 
+void display_usage() {
+    printf("Usage: program [-f filename] [-h]\n");
+    printf("Options:\n");
+    printf("  -f filename  Specify the filename to save the commands (default: Data.conf)\n");
+    printf("  -h           Display this help message\n");
+}
+
 int main(int argc, char *argv[]) {
     const char *games_ini_path = "Data.conf";
 
-    if (argc > 1 && strcmp(argv[1], "-f") == 0 && argc > 2) {
-        char *filename = argv[2];
-        // Check if the filename ends with ".conf", if not, append it
-        if (strlen(filename) < 5 || strcmp(filename + strlen(filename) - 5, ".conf") != 0) {
-            char new_filename[MAX_LINE_LENGTH];
-            snprintf(new_filename, sizeof(new_filename), "%s.conf", filename);
-            games_ini_path = new_filename;
-        } else {
-            games_ini_path = filename;
+    if (argc > 1) {
+        if (strcmp(argv[1], "-h") == 0) {
+            display_usage();
+            return 0;
+        }
+
+        if (strcmp(argv[1], "-f") == 0 && argc > 2) {
+            char *filename = argv[2];
+            // Check if the filename ends with ".conf", if not, append it
+            if (strlen(filename) < 5 || strcmp(filename + strlen(filename) - 5, ".conf") != 0) {
+                char new_filename[MAX_LINE_LENGTH];
+                snprintf(new_filename, sizeof(new_filename), "%s.conf", filename);
+                games_ini_path = new_filename;
+            } else {
+                games_ini_path = filename;
+            }
         }
     }
 
