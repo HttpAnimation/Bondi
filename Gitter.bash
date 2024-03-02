@@ -10,3 +10,5 @@ git clone -b Repo-Testing https://github.com/HttpAnimation/Bondi.git
 mv Bondi Repo-Testing
 git clone -b Downloads https://github.com/HttpAnimation/Bondi.git
 mv Bondi Downloads
+git clone -b Tweakers https://github.com/HttpAnimation/Bondi.git
+mv Bondi Tweakers
