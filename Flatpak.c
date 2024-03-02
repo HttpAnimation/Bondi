@@ -41,40 +41,44 @@ int main() {
     char prev_run_command[MAX_LINE_LENGTH] = "";
 
     while (fgets(flatpak_list_output, sizeof(flatpak_list_output), pipe) != NULL) {
-        char *saveptr;
-        char *line = strtok_r(flatpak_list_output, "\n", &saveptr);
-        while (line != NULL) {
-            char *token;
-            char *columns[4];
-            int col = 0;
-            token = strtok(line, "\t");
-            while (token != NULL && col < 4) {
-                columns[col++] = token;
-                token = strtok(NULL, "\t");
+        // Tokenize the line by tabs
+        char *token;
+        char *columns[4];
+        int col = 0;
+        token = strtok(flatpak_list_output, "\t");
+        while (token != NULL && col < 4) {
+            columns[col++] = token;
+            token = strtok(NULL, "\t");
+        }
+
+        // Ensure we have at least three columns and the third column is not empty
+        if (col >= 3 && columns[2] != NULL) {
+            char app_name[MAX_LINE_LENGTH];
+            char flatpak_name[MAX_LINE_LENGTH];
+            char run_command[MAX_LINE_LENGTH];
+
+            // Extract app name, flatpak name, and run command
+            strcpy(app_name, columns[0]);
+            strcpy(flatpak_name, columns[1]);
+            strcpy(run_command, columns[2]);
+
+            // Extract version number from flatpak name
+            char *version_number = strrchr(flatpak_name, '.') + 1;
+
+            // Build the command string
+            char command_str[MAX_LINE_LENGTH];
+            snprintf(command_str, sizeof(command_str), "Flatpak | %s | flatpak run %s | %s\n", app_name, flatpak_name, version_number);
+
+            // Write to file if app name or run command changes
+            if (strcmp(app_name, prev_app_name) != 0 || strcmp(run_command, prev_run_command) != 0) {
+                append_to_file(games_ini_path, "\n");
             }
-            if (col >= 4 && columns[2] != NULL) {
-                char app_name[MAX_LINE_LENGTH];
-                char flatpak_name[MAX_LINE_LENGTH];
-                char run_command[MAX_LINE_LENGTH];
-                strcpy(app_name, columns[0]);
-                strcpy(flatpak_name, columns[1]);
-                strcpy(run_command, columns[2]);
 
-                char *version_number = strrchr(flatpak_name, '.') + 1;
+            append_to_file(games_ini_path, command_str);
 
-                char command_str[MAX_LINE_LENGTH];
-                snprintf(command_str, sizeof(command_str), "Flatpak | %s | flatpak run %s | %s\n", app_name, flatpak_name, version_number);
-
-                if (strcmp(app_name, prev_app_name) != 0 || strcmp(run_command, prev_run_command) != 0) {
-                    append_to_file(games_ini_path, "\n");
-                }
-
-                append_to_file(games_ini_path, command_str);
-
-                strcpy(prev_app_name, app_name);
-                strcpy(prev_run_command, run_command);
-            }
-            line = strtok_r(NULL, "\n", &saveptr);
+            // Update prev_app_name and prev_run_command
+            strcpy(prev_app_name, app_name);
+            strcpy(prev_run_command, run_command);
         }
     }
     pclose(pipe);
