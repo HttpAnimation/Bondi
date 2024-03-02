@@ -41,6 +41,11 @@ int main() {
         perror("Error executing flatpak list");
         exit(EXIT_FAILURE);
     }
+
+    // Declarations for prev_app_name and prev_run_command
+    char prev_app_name[MAX_LINE_LENGTH] = "";
+    char prev_run_command[MAX_LINE_LENGTH] = "";
+
     while (fgets(flatpak_list_output, sizeof(flatpak_list_output), pipe) != NULL) {
         char *saveptr;
         char *line = strtok_r(flatpak_list_output, "\n", &saveptr);
