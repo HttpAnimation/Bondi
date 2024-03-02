@@ -1,0 +1,1 @@
+gcc Flatpak.c -o Flatpaks-Tweakers
