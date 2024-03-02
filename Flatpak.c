@@ -49,19 +49,24 @@ int main() {
             token = strtok(NULL, "\t");
         }
 
-        // Ensure we have at least three columns and the third column starts with "flatpak run"
-        if (col >= 3 && strncmp(columns[2], "flatpak run", 11) == 0) {
-            // Extract app name, flatpak name, and run command
-            char *app_name = columns[0];
-            char *flatpak_name = columns[1];
-            char *run_command = columns[2];
-
-            // Extract version number from flatpak name
-            char *version_number = strrchr(flatpak_name, '.') + 1;
-
-            // Build the command string
+        // Ensure we have at least three columns
+        if (col >= 3) {
             char command_str[MAX_LINE_LENGTH];
-            snprintf(command_str, sizeof(command_str), "Flatpak | %s | %s | %s\n", app_name, run_command, version_number);
+
+            // If the third column starts with "flatpak run", use it directly
+            if (strncmp(columns[2], "flatpak run", 11) == 0) {
+                snprintf(command_str, sizeof(command_str), "%s\n", columns[2]);
+            } else {
+                // Extract app name, flatpak name, and run command
+                char *app_name = columns[0];
+                char *flatpak_name = columns[1];
+
+                // Extract version number from flatpak name
+                char *version_number = strrchr(flatpak_name, '.') + 1;
+
+                // Build the command string
+                snprintf(command_str, sizeof(command_str), "Flatpak | %s | %s | %s\n", app_name, columns[2], version_number);
+            }
 
             // Append command to file
             append_to_file(games_ini_path, command_str);
