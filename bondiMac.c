@@ -1,4 +1,10 @@
 #import <Cocoa/Cocoa.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h> // For the exec family of functions
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #define MAX_APPS 100
 #define MAX_NAME_LENGTH 50
@@ -16,8 +22,12 @@ int numApps = 0;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (nonatomic, strong) NSWindow *window;
-@property (nonatomic, strong) NSButton *buttons[MAX_APPS];
+@property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet NSButton *launchButton;
+@property (assign) IBOutlet NSTextField *titleLabel;
+@property (assign) IBOutlet NSView *buttonContainer;
+
+- (IBAction)launchApp:(id)sender;
 
 @end
 
@@ -35,12 +45,12 @@ int numApps = 0;
     }
 
     while (fscanf(file, "%49[^:]:%99s", apps[numApps].name, apps[numApps].command) == 2) {
-        NSButton *button = [[NSButton alloc] initWithFrame:NSMakeRect(20, 20 + 40 * numApps, 200, 30)];
+        NSButton *button = [[NSButton alloc] initWithFrame:NSMakeRect(0, numApps * 40, 200, 30)];
         [button setTitle:[NSString stringWithUTF8String:apps[numApps].name]];
         [button setTarget:self];
-        [button setAction:@selector(launchSelectedApp:)];
-        [self.window.contentView addSubview:button];
-        self.buttons[numApps] = button;
+        [button setAction:@selector(launchApp:)];
+        [[self.buttonContainer subviews] addObject:button];
+
         numApps++;
         if (numApps >= MAX_APPS) {
             fprintf(stderr, "Too many applications in config file\n");
@@ -51,58 +61,28 @@ int numApps = 0;
     fclose(file);
 }
 
-- (void)launchApp:(NSInteger)appIndex {
-    pid_t pid = fork();
-    if (pid == -1) {
-        perror("fork");
-        exit(EXIT_FAILURE);
+- (IBAction)launchApp:(id)sender {
+    NSButton *button = (NSButton *)sender;
+    NSInteger appIndex = [[self.buttonContainer subviews] indexOfObject:button];
+    
+    NSString *command = [NSString stringWithUTF8String:apps[appIndex].command];
+    if (!command) {
+        NSLog(@"Failed to get command for app at index %ld", (long)appIndex);
+        return;
     }
-
-    if (pid == 0) {
-        // Child process
-        if (execlp("/bin/sh", "sh", "-c", apps[appIndex].command, NULL) == -1) {
-            perror("execlp");
-            exit(EXIT_FAILURE);
-        }
-    } else {
-        // Parent process
-        int status;
-        waitpid(pid, &status, 0);
-        printf("Application has exited with status: %d\n", status);
-    }
-}
-
-- (void)launchSelectedApp:(NSButton *)sender {
-    NSInteger index = [self indexOfButton:sender];
-    [self launchApp:index];
-}
-
-- (NSInteger)indexOfButton:(NSButton *)button {
-    for (NSInteger i = 0; i < numApps; i++) {
-        if (self.buttons[i] == button) {
-            return i;
-        }
-    }
-    return -1;
+    
+    NSTask *task = [[NSTask alloc] init];
+    [task setLaunchPath:@"/bin/sh"];
+    [task setArguments:@[@"-c", command]];
+    [task launch];
 }
 
 @end
 
 int main(int argc, const char * argv[]) {
-    @autoreleasepool {
-        AppDelegate *delegate = [[AppDelegate alloc] init];
-        NSApplication *application = [NSApplication sharedApplication];
-        [application setDelegate:delegate];
-        
-        NSWindow *window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, 640, 480)
-                                                       styleMask:NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskResizable
-                                                         backing:NSBackingStoreBuffered
-                                                           defer:NO];
-        [window setTitle:@"Bondi - Big Picture Mode"];
-        [window makeKeyAndOrderFront:nil];
-        delegate.window = window;
-        
-        [application run];
-    }
+    NSApplication *application = [NSApplication sharedApplication];
+    AppDelegate *delegate = [[AppDelegate alloc] init];
+    [application setDelegate:delegate];
+    [application run];
     return 0;
 }
