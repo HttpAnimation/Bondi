@@ -20,7 +20,7 @@ mkdir -p "$build_folder"
 
 # Compile c scripts into the build folder
 if [[ "$OS" == "macOS" ]]; then
-    clang -o BondiMac -framework Cocoa BondiMac.c
+    clang -o "$build_folder/BondiMac" -framework Cocoa BondiMac.c
 elif [[ "$OS" == "Linux" ]]; then
     gcc -o "$build_folder/bondiLinux" bondiLinux.c `pkg-config --cflags --libs gtk+-3.0`
 fi
