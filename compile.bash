@@ -3,14 +3,11 @@ gcc -o bondi bondi.c `pkg-config --cflags --libs gtk+-3.0`
 #!/bin/bash
 clear
 
-# Create Builds folder if it doesn't exist
-mkdir -p Builds
-
 # Get current date and time
 current_datetime=$(date +'%Y-%m-%d_%H-%M-%S')
 
 # Create a folder with the current date and time
-build_folder="Builds/$current_datetime"
+build_folder="$current_datetime"
 mkdir -p "$build_folder"
 
 # Compile c scripts into the build folder
