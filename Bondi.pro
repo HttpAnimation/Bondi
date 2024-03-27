@@ -15,12 +15,4 @@ QT += widgets
 #DEFINES += QT_DISABLE_DEPRECATED_UP_TO=0x060000 # disables all APIs deprecated in Qt 6.0.0 and earlier
 
 # Input
-SOURCES += bondiLinux.c \
-           bondiMac.c \
-           bondiQT.c \
-           2024-03-26_18-35-07/bondiLinux.c \
-           2024-03-26_18-35-07/bondiMac.c \
-           2024-03-26_18-36-21/bondiLinux.c \
-           2024-03-26_18-36-21/bondiMac.c \
-           2024-03-26_18-45-32/bondiLinux.c \
-           2024-03-26_18-45-32/bondiMac.c
+SOURCES += bondiQT.c
