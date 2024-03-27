@@ -10,7 +10,7 @@
 #define MAX_NAME_LENGTH 50
 #define MAX_COMMAND_LENGTH 100
 #define VERSION 8
-#define CONFIG_FILE "Data.conf"
+#define CONFIG_FILE "config.conf"
 
 typedef struct {
     char name[MAX_NAME_LENGTH];
