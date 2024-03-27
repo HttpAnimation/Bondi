@@ -1,5 +1,3 @@
-gcc -o bondi bondi.c `pkg-config --cflags --libs gtk+-3.0`
-
 #!/bin/bash
 clear
 
@@ -12,8 +10,8 @@ mkdir -p "$build_folder"
 
 # Compile c scripts into the build folder
 # gcc -o "$build_folder/openGLTest" openGLTest.c -lglfw -lGL -I/usr/include
-gcc -o "$build_folder/sdl_example" sdl_example.c -lSDL2 -I/usr/x86_64-w64-mingw32/sys-root/mingw/include/SDL2
-gcc CView.c -o "$build_folder/CView" -I/usr/include/SDL2 -L/usr/lib64 -lSDL2 -lSDL2_image -lSDL2_ttf
+gcc -o "$build_folder/bondiLinux" bondiLinux.c `pkg-config --cflags --libs gtk+-3.0`
+gcc -o "$build_folder/bondiMac" bondiMac.c `pkg-config --cflags --libs gtk+-3.0`
 
 # Copy files into the build folder
 cp openGLTest.c "$build_folder"
@@ -30,4 +28,5 @@ echo "This is an auto-generated message and might work or might not." >> "$readm
 # Print the path to the build folder
 echo "Builds created at: $build_folder"
 echo "You can also run it by typing this in:"
-echo "./$build_folder/bondi"
+echo "./$build_folder/bondiLinux"
+echo "./$build_folder/bondiMac"
